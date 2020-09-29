@@ -7,22 +7,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "clear": "rimraf node_modules && rimraf dist && npm install",
-    "push": "start ./push.sh",
-    "deploy": "start ./deploy.sh"
+    "serve": "vue-cli-service serve",   //启动
+    "build": "vue-cli-service build",   //打包
+    "lint": "vue-cli-service lint",     //修复
+    "clear": "rimraf node_modules && rimraf dist && npm install",   //删除依赖包并重新下载，删除dist
+    "push": "start ./push.sh",        //推送项目到github和gitter
+    "deploy": "start ./deploy.sh"     //推送打包到github和gitter
   },
   "dependencies": {
-    "core-js": "^3.6.5",
+    "core-js": "^3.6.5",   
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0", //代码规范
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

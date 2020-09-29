@@ -1,6 +1,6 @@
 # vue-admin-ay-template
 
-**Demo:** <http://anitt.cn/>
+**项目演示地址:** <http://anitt.cn/>
 
 > - Username: test
 > - Password: 123456
