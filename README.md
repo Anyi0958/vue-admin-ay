@@ -51,19 +51,6 @@
 └── vue.config.js      # 项目配置
 ```
 
-## vscode 插件
-
-```bash
-  Chinese (Simplified) Language Pack for Visual Studio Code
-  Live Server
-  Prettier - Code formatter
-  EditorConfig for VS Code
-  ESLint
-  stylelint
-  Vetur
-  vscode-icons
-  ESLint
-```
 
 ## 快速开始
 
@@ -102,3 +89,19 @@ yarn build
 # 或
 npm run build
 ```
+
+## vscode 插件
+
+```bash
+  Chinese (Simplified) Language Pack for Visual Studio Code
+  Live Server
+  Prettier - Code formatter
+  EditorConfig for VS Code
+  ESLint
+  stylelint
+  Vetur
+  vscode-icons
+  ESLint
+```
+
+**Git小乌龟的安装及使用**<https://www.jianshu.com/p/33108325fc87>
