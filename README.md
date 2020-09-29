@@ -22,13 +22,16 @@
 ├── /public            # 静态文件
 ├── /src               # 源码目录
 │ ├── /assets          # 静态资源
-│ ├── /components      # 公共组件
-│ ├── /layouts         # 布局组件
+│ ├── /api             # 所有请求
+│ ├── /components      # 全局组件
+│ ├── /config          # 全局配置
+│ ├── /lang            # 国际化 language
+│ ├── /libs            # 全局公用方法
 │ ├── /mock            # 数据模拟
 │ ├── /router          # 路由配置
 │ ├── /services        # 数据接口
 │ ├── /store           # vuex状态管理
-│ ├── /utils           # 工具库
+│ ├── /styles          # 全局样式
 │ ├── /views           # 路由组件(页面维度)
 │ ├── App.vue          # 组件入口
 │ ├── config.js        # 应用配置
@@ -38,11 +41,11 @@
 ├── .eslintignore      # 忽略检测
 ├── .env.development   # 开发环境
 ├── .env.production    # 生产环境
-├── .env.release       # 预生产环境
+├── .env.release       # 预生产环境
 ├── .env.test          # 测试环境
 ├── .gitignore         # git忽视
 ├── .prettierrc.js     # js代码格式化规则
-├── .stylelintrc.js   # 检查css的样式语法规则
+├── .stylelintrc.js    # 检查css的样式语法规则
 ├── babel.config.js    # ES6语法编译配置
 ├── LICENSE            # 版权信息
 ├── package.json       # 依赖包

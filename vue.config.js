@@ -1,5 +1,6 @@
 const path = require("path");
 const defaultSettings = require("./src/config/settings.js");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const resolve = dir => {
   return path.join(__dirname, dir);
@@ -78,6 +79,12 @@ module.exports = {
           "@": resolve("src"),
         },
       },
+      plugins: [
+        new CompressionPlugin({
+          test: /\.js$|\.html$|\.css/, // 匹配文件
+          threshold: 10240, // 对超过10k文件压缩
+        }),
+      ],
     };
   },
 
