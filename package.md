@@ -1,4 +1,4 @@
-## package.json 文档说明123
+## package.json 文档说明
  
 
 ```bash
