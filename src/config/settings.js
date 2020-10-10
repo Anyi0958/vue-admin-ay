@@ -1,18 +1,21 @@
 module.exports = {
   //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题）
-  title: "vue-admin-ay",
-
-  //版本号
-  version: process.env.VUE_APP_VERSION,
-
-  //作者信息
-  author: process.env.VUE_APP_AUTHOR,
+  title: "Vue-Admin-AY",
 
   //是否显示页面底部版权信息
   footerCopy: process.env.NODE_ENV !== "development",
 
   //是否显示右上角github图标
   githubCorner: process.env.NODE_ENV !== "development",
+
+  //ui类型( element iview )
+  uiType: "element",
+
+  //ui尺寸( default small  large)
+  uiSize: "default",
+
+  //ui语言（默认中文） zh en
+  uiLang: "en",
 
   //是否显示顶部进度条
   progressBar: true,

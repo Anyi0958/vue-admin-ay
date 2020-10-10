@@ -1,10 +1,11 @@
 const path = require("path");
-const defaultSettings = require("./src/config/settings.js");
-const CompressionPlugin = require("compression-webpack-plugin");
 
 const resolve = dir => {
   return path.join(__dirname, dir);
 };
+
+const defaultSettings = require("./src/config/settings.js");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 let BASE_URL = "";
 
@@ -38,7 +39,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === "development",
 
   // 进行编译的依赖
-  transpileDependencies: ["vue-echarts", "resize-detector", "zx-layouts"],
+  transpileDependencies: ["vue-echarts"],
 
   devServer: {
     //模块热替换
@@ -58,7 +59,7 @@ module.exports = {
     host: "127.0.0.1",
     // 启动端口
     port: process.env.NODE_ENV === "development" ? 9999 : 80,
-    //设置代理
+    // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
     proxy: {
       "/xboot": {
         // 请求后端项目地址
@@ -70,6 +71,9 @@ module.exports = {
       },
     },
   },
+
+  // 打包时不生成.map文件 避免看到源码
+  productionSourceMap: false,
 
   configureWebpack() {
     return {
@@ -89,6 +93,10 @@ module.exports = {
   },
 
   chainWebpack(config) {
+    config.resolve.alias
+      .set("@", resolve("src")) // key,value自行定义，比如.set('@@', resolve('src/components'))
+      .set("_c", resolve("src/components"));
+
     // 它可以提高第一屏的速度，建议开启预加载
     config.plugin("preload").tap(() => [
       {
