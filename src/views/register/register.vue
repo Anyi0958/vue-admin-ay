@@ -1,5 +1,5 @@
 <template>
-  <div class="register">注册</div>
+  <div class="register-container">注册</div>
 </template>
 
 <script>

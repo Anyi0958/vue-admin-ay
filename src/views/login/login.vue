@@ -1,5 +1,8 @@
 <template>
-  <div class="login">登录</div>
+  <div class="login-container">
+    <h1>登录</h1>
+    <p>登录</p>
+  </div>
 </template>
 
 <script>
@@ -34,4 +37,23 @@ export default {
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
+.login-container {
+  $w: 200px;
+  $h: 200px;
+  $b: 2px;
+  $b-d: left;
+  $btn_color: teal;
+  $border: $b solid $btn_color;
+  width: $w;
+  height: $h;
+  margin: 0 auto;
+  border: $border;
+  border-#{$b-d}: none;
+  h1 {
+    color: $btn_color;
+    $cc: red;
+  }
+  p {
+  }
+}
 </style>
