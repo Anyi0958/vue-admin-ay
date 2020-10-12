@@ -20,10 +20,13 @@
       <i-button type="warning">Warning</i-button>
       <i-button type="error">Error</i-button>
     </el-row>
+
     <i-col>
       <i-date-picker type="date" style="width: 200px"></i-date-picker>
     </i-col>
+
     <img alt="Vue logo" src="../assets/logo.png" />
+
     <HelloWorld msg="Welcome to Your Vue.js App" />
 
     <div class="block">
