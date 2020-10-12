@@ -1,5 +1,6 @@
-## package.json 文档说明
+# package.json 文档说明
 
+## vue-cli-service  
 ```bash
 
 用法：vue-cli-service serve [options] [entry]
@@ -15,6 +16,8 @@
 
 ```
 
+
+## vue-cli-service build  
 ```bash
 
 用法：vue-cli-service build [options] [entry|pattern]
@@ -31,6 +34,118 @@
   --report-json 生成 report.json 以帮助分析包内容
   --watch       监听文件变化
 ```
+
+## npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [--dry-run]  
+
+<br>
+
+#### 安装所有项目中需要的依赖包
+> - npm install
+
+<br>
+
+#### 查看所有已经安装的模块
+> - npm list 或 npm ll 或 npm la 或 npm ls
+
+<br>
+
+#### 卸载已经安装的模块 options参数意思与安装时候的意思一样
+> - npm uninstall packagename [options]
+
+<br>
+
+#### 默认会安装最新的版本安装包  
+> - npm install packagename    
+  
+<br>
+
+#### 安装指定版本安装包            
+> - npm install packagename@3.9.1  
+  
+<br>
+
+#### 安装包信息将加入到dependencies（生产阶段的依赖）  
+> - npm install packagename --save 或 npm install packagename -S      
+  
+<br>
+
+#### 安装包信息将加入到devDependencies（开发阶段的依赖），所以开发阶段一般使用它  
+> - npm install packagename --save-dev 或 npm install packagename -D        
+  
+<br>
+
+#### 安装包信息将加入到optionalDependencies（可选阶段的依赖） 
+> - npm install packagename --save-optional 或 npm install packagename -O   
+  
+<br>
+
+#### 精确安装指定模块版 dependencies字段里每个模块版本号前面的^不见
+> - npm install packagename --save-exact 或 npm install packagename -E      
+
+<br>
+
+#### 列出所有已经过时了的模块
+> - npm outdated 
+
+<br>
+
+#### 更新已经安装的模块(或全局的模块)
+> - npm update [-g]
+
+<br>
+
+#### 查看某条命令的详细帮助
+> - npm help '命令'
+
+<br>
+
+## 其他
+
+### 快速删除文件npm模块
+> - 安装 npm install rimraf -g 
+> - 使用 rimraf node_modules
+
+<br>
+
+### 快速更新package依赖包
+> - 安装 npm install npm-check-updates -g 
+> - 检测 ncu -u
+
+<br>
+
+### 代码规范
+> - eslint  
+> - eslint-plugin-prettier  
+> - eslint-plugin-vue
+> - prettier  
+> - stylelint
+> - stylelint-config-prettier
+> - stylelint-config-recess-order
+
+<br>
+
+### elementUi依赖包
+> - element-ui  -  npm i element-ui -S
+> - 按需引入组件  -  npm install babel-plugin-component -D
+> - sass,sass-loader  -  npm install -D sass sass-loader
+
+<br>
+
+### elementUi依赖包
+> - element-ui  -  npm i element-ui -S
+> - 按需引入组件  -  npm install babel-plugin-component -D (配合.babelre文件使用) 
+> - sass,sass-loader  -  npm install -D sass sass-loader
+
+<br>
+
+### iview依赖包
+> - view-design  -  npm install view-design --save
+> - 按需引入组件 -  npm babel-plugin-import -D  (配合.babelre文件使用) 
+> - less,less-loader  -  npm install -D less less-loader
+
+<br>
+
+## packagejson  
 
 ```bash
 {
@@ -49,25 +164,27 @@
     "lint": "vue-cli-service lint",     //修复
     "lint:style": "stylelint-config-prettier-check",  //修复
     "clear": "rimraf node_modules && rimraf dist && npm install",   //删除依赖包并重新下载，删除dist
+    "update": "ncu -u&&npm i",  // 更新依赖包
+    "update:globle": "ncu -g --concurrency 10 --timeout 80000", // 全局更新依赖包 最大请求  并发10 
     "push": "start ./push.sh",        //推送项目到github和gitter
     "deploy": "start ./deploy.sh"     //推送打包到github和gitter
   },
-  // element 使用 sass , iview 使用 less
+  // npm insatll --save ***（npm insatll -S）    下载到 生产环境 依赖下
+  // npm insatll --save-dev（npm insatll -D）      下载到 开发环境 依赖下
+  // 生产环境使用
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",  
     "dayjs": "^1.9.1",  // 一个轻量级类 moment.js API 时间库
     "element-ui": "^2.13.2",
     "js-cookie": "^2.2.1",
-    "sass": "^1.27.0",
-    "sass-loader": "^10.0.3", 
-    "less": "^2.7.3",
-    "less-loader": "^4.0.5",
     "vue": "^2.6.11",
     "vue-i18n": "^8.22.0",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
+  // 开发环境使用
+  // element 使用 sass , iview 使用 less
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0", //代码规范
@@ -85,6 +202,10 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.1.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3",
     "script-ext-html-webpack-plugin": "2.1.3",
     "stylelint": "^13.7.0",
     "stylelint-config-prettier": "^8.0.2",

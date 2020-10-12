@@ -1,6 +1,7 @@
 {
   "presets": ["@vue/app"],
   "plugins": [
+    // element 组件按需引入
     [
       "component",
       {
@@ -8,6 +9,7 @@
         "styleLibraryName": "theme-chalk"
       }
     ],
+    // iview 组件按需引入
     [
       "import",
       {

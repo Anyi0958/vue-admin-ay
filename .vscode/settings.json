@@ -1,0 +1,87 @@
+{
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  //工作台图标主题
+  "workbench.colorTheme": "One Monokai",
+   // 一个制表符等于的空格数。该设置在 `editor.detectIndentation` 启用时根据文件内容进行重写。
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  // 以像素为单位控制字号。
+  "editor.fontSize": 16,
+  //是否自动换行
+  "editor.wordWrap": "on",
+  // 控制终端游标是否闪烁。
+  "terminal.integrated.cursorBlinking": true,
+  // 启用后，按 TAB 键时，将展开 Emmet 缩写。
+  "emmet.triggerExpansionOnTab": true,
+  // 保存时候自动格式化
+  "editor.formatOnSave": true,
+  // 自动格式化粘贴的代码
+  "editor.formatOnPaste": true,
+
+  // 终端cmd字体
+  // "terminal.integrated.fontFamily": "monospace",
+  // 终端cmd字号
+  "terminal.integrated.fontSize": 16,
+
+  "javascript.format.enable": true,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "explorer.confirmDelete": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "files.exclude": {
+    "**/.idea": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true,
+    "source.fixAll.eslint": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.vueIndentScriptAndStyle": true,
+  "prettier.eslintIntgration": true,
+  "docthis.authorName": "chuzhixin 1204505056@qq.com",
+  "docthis.includeAuthorTag": true,
+  "docthis.includeDescriptionTag": true,
+  "docthis.enableHungarianNotationEvaluation": true,
+  "docthis.inferTypesFromNames": true,
+  "vetur.format.defaultFormatter.html": "prettier",
+
+
+  // 启用stylelint插件
+  "stylelint.enable": true,
+
+  // 防止编辑器内置linter与插件冲突设置
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  // 是否为JavaScript文件开启eslint检测
+  "eslint.enable": true,
+  // 保存之后进行lint
+  "eslint.run": "onSave",
+  // 是否启用eslint的调试模式
+  "eslint.debug": true
+}
