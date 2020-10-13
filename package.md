@@ -167,7 +167,8 @@
     "update": "ncu -u&&npm i",  // 更新依赖包
     "update:globle": "ncu -g --concurrency 10 --timeout 80000", // 全局更新依赖包 最大请求  并发10 
     "push": "start ./push.sh",        //推送项目到github和gitter
-    "deploy": "start ./deploy.sh"     //推送打包到github和gitter
+    "deploy": "start ./deploy.sh",     //推送打包到github和gitter
+    "preview": "node build/index.js --preview"
   },
   // npm insatll --save ***（npm insatll -S）    下载到 生产环境 依赖下
   // npm insatll --save-dev（npm insatll -D）      下载到 开发环境 依赖下

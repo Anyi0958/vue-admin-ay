@@ -18,7 +18,8 @@
     "update": "ncu -u&&npm i",
     "update:globle": "ncu -g --concurrency 10 --timeout 80000",
     "push": "start ./push.sh",
-    "deploy": "start ./deploy.sh"
+    "deploy": "start ./deploy.sh",
+    "preview": "node build/index.js --preview"
   },
   "dependencies": {
     "axios": "^0.20.0",
