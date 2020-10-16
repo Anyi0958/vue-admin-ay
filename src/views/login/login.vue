@@ -1,7 +1,19 @@
 <template>
   <div class="login-container">
-    <h1>登录</h1>
-    <div class="header">用户名</div>
+    <el-row class="login-content" type="flex" justify="center">
+      <el-col :span="24">顶部信息</el-col>
+    </el-row>
+    <el-row class="login-content" type="flex" justify="center">
+      <el-col :span="24">
+        <el-tabs v-model="loginType">
+          <el-tab-pane label="用户名登录" name="user">账号密码登录</el-tab-pane>
+          <el-tab-pane label="手机号登录" name="tel">手机号登录</el-tab-pane>
+        </el-tabs>
+      </el-col>
+    </el-row>
+    <el-row class="login-content" type="flex" justify="center">
+      <el-col :span="24">底部信息</el-col>
+    </el-row>
   </div>
 </template>
 
@@ -14,7 +26,9 @@ export default {
   components: {},
   data() {
     //这里存放数据
-    return {};
+    return {
+      loginType: "user",
+    };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -36,37 +50,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-//@import url(); 引入公共css类
-@mixin left($value: 10px) {
-  float: left;
-  margin-left: $value;
-}
-// ssss
+$min-width: 500px;
 .login-container {
-  $w: 200px;
-  $h: 200px;
-  $b: 2px+5px;
-  $b-d: left;
-  $btn_color: teal;
-  $border: $b solid $btn_color;
-  width: $w;
-  height: $h;
-  margin: 0 auto;
-  border: $border;
-  border: {
-    left: none;
-  }
-  &:hover {
-    border: $border;
-  }
-  h1 {
-    color: $btn_color;
-    $cc: red;
-    @include left;
-  }
-  p {
+  width: 100%;
+  height: 100%;
+  .login-content {
     @extend .login-container;
-    @include left(20px);
   }
 }
 </style>
