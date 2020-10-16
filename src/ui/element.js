@@ -80,7 +80,7 @@ import {
   Notification,
 } from "element-ui";
 
-import "./element.scss";
+import "../styles/element.scss";
 
 Vue.use(Pagination);
 Vue.use(Dialog);

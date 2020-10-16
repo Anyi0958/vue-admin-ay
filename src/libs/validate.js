@@ -5,6 +5,20 @@
  */
 import dayjs from "dayjs";
 
+/**
+ * 用户名
+ */
+export const validateusername = (rule, value, callback) => {
+  if ("" == value) {
+    callback(new Error("用户名不能为空"));
+  } else {
+    callback();
+  }
+};
+
+/**
+ * 密码
+ */
 export const validatePassword = (rule, value, callback) => {
   if (value.length < 6) {
     callback(new Error("密码长度不得小于6位"));

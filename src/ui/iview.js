@@ -84,7 +84,7 @@ import {
 } from "view-design";
 
 import "view-design/dist/styles/iview.css";
-import "./iview.less";
+import "../styles/iview.less";
 
 Vue.component("i-affix", Affix);
 Vue.component("i-alert", Alert);

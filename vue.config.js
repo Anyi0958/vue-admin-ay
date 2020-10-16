@@ -78,6 +78,7 @@ module.exports = {
   configureWebpack() {
     return {
       plugins: [
+        // 启用gzip
         new CompressionPlugin({
           test: /\.js$|\.html$|\.css/, // 匹配文件
           threshold: 10240, // 对超过10k文件压缩
@@ -104,8 +105,15 @@ module.exports = {
       },
     ]);
 
-    // 当有很多页面时，会产生很多无意义的请求
+    /**
+     * 删除懒加载模块的 prefetch preload，降低带宽压力
+     * 当有很多页面时，会产生很多无意义的请求
+     */
+    config.plugins.delete("preload");
     config.plugins.delete("prefetch");
+
+    // 清除警告
+    config.performance.set("hints", false);
 
     // set svg-sprite-loader
     config.module.rule("svg").exclude.add(resolve("src/icons")).end();
@@ -164,5 +172,28 @@ module.exports = {
       // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
       config.optimization.runtimeChunk("single");
     });
+  },
+
+  runtimeCompiler: true,
+  productionSourceMap: false,
+  css: {
+    requireModuleExtension: true,
+    sourceMap: true,
+    loaderOptions: {
+      scss: {
+        /*sass-loader 8.0语法 */
+        //prependData: '@import "~@/styles/variables.scss";',
+
+        /*sass-loader 9.0写法*/
+        additionalData(content, loaderContext) {
+          const { resourcePath, rootContext } = loaderContext;
+          const relativePath = path.relative(rootContext, resourcePath);
+          if (relativePath.replace(/\\/g, "/") !== "src/styles/index.scss") {
+            return '@import "~@/styles/index.scss";' + content;
+          }
+          return content;
+        },
+      },
+    },
   },
 };

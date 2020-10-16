@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <h1>登录</h1>
-    <p>登录</p>
+    <div class="header">用户名</div>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
   float: left;
   margin-left: $value;
 }
-
+// ssss
 .login-container {
   $w: 200px;
   $h: 200px;
