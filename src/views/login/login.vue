@@ -30,17 +30,22 @@ export default {
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
-  activated() {},
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
   //方法集合
-  methods: {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
+@mixin left($value: 10px) {
+  float: left;
+  margin-left: $value;
+}
+
 .login-container {
   $w: 200px;
   $h: 200px;
-  $b: 2px;
+  $b: 2px+5px;
   $b-d: left;
   $btn_color: teal;
   $border: $b solid $btn_color;
@@ -48,12 +53,20 @@ export default {
   height: $h;
   margin: 0 auto;
   border: $border;
-  border-#{$b-d}: none;
+  border: {
+    left: none;
+  }
+  &:hover {
+    border: $border;
+  }
   h1 {
     color: $btn_color;
     $cc: red;
+    @include left;
   }
   p {
+    @extend .login-container;
+    @include left(20px);
   }
 }
 </style>

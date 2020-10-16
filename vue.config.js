@@ -61,7 +61,7 @@ module.exports = {
     port: process.env.NODE_ENV === "development" ? 9999 : 80,
     // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
     proxy: {
-      "/xboot": {
+      "/ay": {
         // 请求后端项目地址
         target: BASE_URL,
         ws: true,
@@ -77,12 +77,6 @@ module.exports = {
 
   configureWebpack() {
     return {
-      name: defaultSettings.title || "vue-admin-ay",
-      resolve: {
-        alias: {
-          "@": resolve("src"),
-        },
-      },
       plugins: [
         new CompressionPlugin({
           test: /\.js$|\.html$|\.css/, // 匹配文件
@@ -93,6 +87,8 @@ module.exports = {
   },
 
   chainWebpack(config) {
+    config.name(defaultSettings.title || "AY-Vue-Admin");
+
     config.resolve.alias
       .set("@", resolve("src")) // key,value自行定义，比如.set('@@', resolve('src/components'))
       .set("_c", resolve("src/components"));
@@ -113,6 +109,7 @@ module.exports = {
 
     // set svg-sprite-loader
     config.module.rule("svg").exclude.add(resolve("src/icons")).end();
+
     config.module
       .rule("icons")
       .test(/\.svg$/)
@@ -149,6 +146,11 @@ module.exports = {
             name: "chunk-elementUI", // 将elementUI拆分为单个包
             priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
             test: /[\\/]node_modules[\\/]_?element-ui(.*)/, // in order to adapt to cnpm
+          },
+          viewDesign: {
+            name: "chunk-viewDesign", // 将viewDesign拆分为单个包
+            priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+            test: /[\\/]node_modules[\\/]_?view-design(.*)/, // in order to adapt to cnpm
           },
           commons: {
             name: "chunk-commons",

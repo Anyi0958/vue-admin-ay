@@ -1,6 +1,6 @@
 module.exports = {
   //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题）
-  title: "Vue-Admin-AY",
+  title: "AY-Vue-Admin",
 
   //是否显示页面底部版权信息
   footerCopy: process.env.NODE_ENV !== "development",
