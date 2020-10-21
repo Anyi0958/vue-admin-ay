@@ -138,7 +138,7 @@ export const request = obj => {
     transformResponse: [
       function (data) {
         // 对 data 进行任意转换处理
-        return data;
+        return JSON.parse(data);
       },
     ],
 
