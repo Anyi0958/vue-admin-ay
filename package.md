@@ -145,6 +145,12 @@
 
 <br>
 
+### Mock模拟数据
+> - mockjs  -  npm install mockjs --save
+
+
+<br>
+
 ## packagejson  
 
 ```bash
@@ -179,6 +185,7 @@
     "dayjs": "^1.9.1",  // 一个轻量级类 moment.js API 时间库
     "element-ui": "^2.13.2",
     "js-cookie": "^2.2.1",
+    "mockjs": "^1.1.0", 
     "vue": "^2.6.11",
     "vue-i18n": "^8.22.0",
     "vue-router": "^3.2.0",
