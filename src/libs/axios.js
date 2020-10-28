@@ -13,7 +13,7 @@ let $_Message = setting.uiType == "element" ? Message : iviewMessage;
 import Cookies from "js-cookie";
 
 // 统一请求路径前缀
-let base = "/ay";
+let base = setting.base;
 // 超时设定
 axios.defaults.timeout = 20000;
 
