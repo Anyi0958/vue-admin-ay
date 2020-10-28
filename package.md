@@ -148,6 +148,12 @@
 ### Mock模拟数据
 > - mockjs  -  npm install mockjs --save
 
+<br>
+
+### plop 自动化构建工具
+> - plop  -  npm install plop --save
+> - 入口文件 根目录创建 plopfile.js
+> - 参考链接 https://blog.csdn.net/zemprogram/article/details/104146833
 
 <br>
 
@@ -212,6 +218,8 @@
     "prettier": "^2.1.1",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
+    "plop": "^2.7.4",
+    "prettier": "^2.1.1",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
     "script-ext-html-webpack-plugin": "2.1.3",

@@ -1,0 +1,29 @@
+{
+  "_from": "zx-templates@^0.0.24",
+  "_id": "zx-templates@0.0.24",
+  "_inBundle": false,
+  "_integrity": "sha1-6eIDDXcrSQrGEP39N7RBKFszGIs=",
+  "_location": "/zx-templates",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "zx-templates@^0.0.24",
+    "name": "zx-templates",
+    "escapedName": "zx-templates",
+    "rawSpec": "^0.0.24",
+    "saveSpec": null,
+    "fetchSpec": "^0.0.24"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/zx-templates/download/zx-templates-0.0.24.tgz",
+  "_shasum": "e9e2030d772b490ac610fdfd37b441285b33188b",
+  "_spec": "zx-templates@^0.0.24",
+  "_where": "G:\\web-ui\\vue-admin\\vue-admin-beautiful",
+  "bundleDependencies": false,
+  "deprecated": false,
+  "name": "zx-templates",
+  "version": "0.0.24"
+}
