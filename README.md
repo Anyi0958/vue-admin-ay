@@ -38,20 +38,22 @@
 │ ├── App.vue          # 组件入口
 │ ├── config.js        # 应用配置
 │ └── main.js          # 应用入口
-├── .editorconfig      # 定义代码格式
-├── .eslintrc.js       # 定义JavaScript和JSX检查工具
+├── .editorconfig      # eslint定义代码格式
 ├── .eslintignore      # 忽略检测
+├── .eslintrc.js       # eslint设置
 ├── .env.development   # 开发环境
 ├── .env.production    # 生产环境
 ├── .env.release       # 预生产环境
 ├── .env.test          # 测试环境
 ├── .gitignore         # git忽视
 ├── .prettierrc.js     # js代码格式化规则
-├── .stylelintrc.js    # 检查css的样式语法规则
+├── .stylelintrc.js    # css的样式语法规则
 ├── babel.config.js    # ES6语法编译配置
+├── deploy.sh          # 编译后推送github、码云
 ├── LICENSE            # 版权信息
 ├── package.json       # 依赖包
 ├── postcss.config.js  # 将px转化成rem
+├── push.sh            # 项目推送github、码云
 ├── README.md          # 项目文档
 └── vue.config.js      # 项目配置
 ```
