@@ -13,12 +13,15 @@
 4.  使用 Vue 官方建议的 Axios 插件进行 HTTP 操作
 5.  采用 UI 组件库 iView element
 6.  通过 Mock.js 插件拦截 Ajax 请求并生成随机数据
+7.  通过 plop 实现前端自动化
 
 # 开发构建
 
 ### 目录结构
 
 ```bash
+├── /Mock              # 数据模拟
+├── /plop-temp         # plop模板
 ├── /public            # 静态文件
 ├── /src               # 源码目录
 │ ├── /assets          # 静态资源
@@ -27,7 +30,6 @@
 │ ├── /config          # 全局配置
 │ ├── /lang            # 国际化 language
 │ ├── /libs            # 全局公用方法
-│ ├── /mock            # 数据模拟
 │ ├── /router          # 路由配置
 │ ├── /services        # 数据接口
 │ ├── /store           # vuex状态管理
