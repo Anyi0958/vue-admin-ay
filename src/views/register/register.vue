@@ -1,6 +1,7 @@
 <template>
   <div class="register-container">
     <h1>register注册</h1>
+    <router-view></router-view>
   </div>
 </template>
 
