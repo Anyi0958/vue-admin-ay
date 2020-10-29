@@ -58,7 +58,7 @@ module.exports = {
     // 项目本地启动地址
     host: "127.0.0.1",
     // 启动端口
-    port: process.env.NODE_ENV === "development" ? 9999 : 80,
+    port: process.env.NODE_ENV === "development" ? 8080 : 80,
     // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
     proxy: {
       "/xboot": {

@@ -21,6 +21,14 @@ axios.defaults.timeout = 20000;
 axios.interceptors.request.use(
   config => {
     // 在发送请求之前做些什么
+
+    //这里会过滤所有为空、0、false的key，如果不需要请自行注释
+    // if (config.data)
+    //   config.data = Vue.prototype.$baseLodash.pickBy(
+    //     config.data,
+    //     Vue.prototype.$baseLodash.identity
+    //   );
+
     return config;
   },
   err => {
@@ -73,6 +81,19 @@ axios.interceptors.response.use(
   },
   err => {
     // 对响应错误,返回状态码不为200时候的错误处理
+    // let { message } = err;
+    // if (message === "Network Error") {
+    //   message = "后端接口连接异常";
+    // }
+    // if (message.includes("timeout")) {
+    //   message = "后端接口请求超时";
+    // }
+    // if (message.includes("Request failed with status code")) {
+    //   const code = message.substr(message.length - 3);
+    //   message = "后端接口" + code + "异常";
+    // }
+    // $_Message.error(message || `后端接口未知异常`, "error");
+
     $_Message.error(err.toString());
     return Promise.resolve(err);
   }
