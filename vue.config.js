@@ -77,6 +77,8 @@ module.exports = {
 
   configureWebpack() {
     return {
+      // 浏览器显示源代码（默认不显示）
+      devtool: "source-map",
       plugins: [
         // 启用gzip
         new CompressionPlugin({

@@ -38,10 +38,18 @@ const routes = [
     component: () => import("@/views/register/register.vue"),
     children: [
       {
-        path: "/",
+        path: "",
+        component: Home,
+      },
+      {
+        path: "sss",
         component: Home,
       },
     ],
+  },
+  {
+    path: "*",
+    component: () => import("@/views/login/login.vue"),
   },
 ];
 
