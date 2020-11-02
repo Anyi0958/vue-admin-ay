@@ -78,7 +78,7 @@ module.exports = {
   configureWebpack() {
     return {
       // 浏览器显示源代码（默认不显示）
-      devtool: "source-map",
+      devtool: process.env.NODE_ENV === "development" ? "source-map" : "",
       plugins: [
         // 启用gzip
         new CompressionPlugin({
@@ -91,6 +91,11 @@ module.exports = {
 
   chainWebpack(config) {
     config.name(defaultSettings.title || "AY-Vue-Admin");
+
+    config.plugin("html").tap(args => {
+      args[0].title = defaultSettings.title || "AY-Vue-Admin";
+      return args;
+    });
 
     config.resolve.alias
       .set("@", resolve("src")) // key,value自行定义，比如.set('@@', resolve('src/components'))

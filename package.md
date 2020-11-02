@@ -192,6 +192,7 @@
     "element-ui": "^2.13.2",
     "js-cookie": "^2.2.1",
     "mockjs": "^1.1.0", 
+    "nprogress": "^0.2.0",  // 进度条基于 Vue 的 nprogress
     "vue": "^2.6.11",
     "vue-i18n": "^8.22.0",
     "vue-router": "^3.2.0",

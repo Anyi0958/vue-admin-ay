@@ -16,15 +16,7 @@ new Vue({
   store,
   i18n,
   data: {},
-  watch: {
-    $route(to, from) {
-      // 对路由变化作出响应...
-      console.log("==============路由变化===============");
-      console.warn("当前路由", to);
-      console.warn("跳转路由", from);
-      console.log("==============路由变化===============");
-    },
-  },
+  watch: {},
   mounted() {},
   methods: {},
   render: h => h(App),
