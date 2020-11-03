@@ -187,7 +187,9 @@
   // 生产环境使用
   "dependencies": {
     "axios": "^0.20.0",
+    "body-parser": "^1.19.0", // Mock用于解析请求
     "core-js": "^3.6.5",  
+    "chokidar": "^3.4.2", // 文件变化监听
     "dayjs": "^1.9.1",  // 一个轻量级类 moment.js API 时间库
     "element-ui": "^2.13.2",
     "js-cookie": "^2.2.1",

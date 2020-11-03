@@ -15,7 +15,7 @@ module.exports = {
     const actions = [
       {
         type: "add",
-        path: `mock/controller/${name}.js`,
+        path: `mock/${name}.js`,
         templateFile: "plop-temp/mock/index.hbs",
         data: {
           name: name,

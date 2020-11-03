@@ -1,4 +1,7 @@
-// 统一请求路径前缀在libs/axios.js中修改
+const defaultSettings = require("@/config/settings.js");
+// 统一请求路径前缀
+let base = defaultSettings.base;
+
 import {
   request,
   getRequest,
@@ -15,15 +18,15 @@ import {
 // Vaptcha ID
 export const vaptchaID = "5dce36188713b71e70a41eb7";
 // 文件上传接口
-export const uploadFile = "/xboot/upload/file";
+export const uploadFile = `${base}/upload/file`;
 // 验证码渲染图片接口
-export const drawCodeImage = "/xboot/common/captcha/draw/";
+export const drawCodeImage = `${base}/common/captcha/draw/`;
 // 获取菜单
-export const getMenuList = "/xboot/permission/getMenuList";
+export const getMenuList = `${base}/permission/getMenuList`;
 // 获取数据字典
-export const getDictData = "/xboot/dictData/getByType/";
+export const getDictData = `${base}/dictData/getByType/`;
 // Websocket
-export const ws = "/xboot/ws";
+export const ws = `${base}/ws`;
 
 // 登陆
 export const login = params => {

@@ -1,15 +1,18 @@
+// 测试环境 development
+// 生产环境 production
+
 module.exports = {
-  //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题）
+  //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题 登录标题）
   title: "AY-Vue-Admin",
 
   // 统一网络请求前缀
   base: "/xboot",
 
   //是否显示页面底部版权信息
-  footerCopy: process.env.NODE_ENV !== "development",
+  footerCopy: process.env.NODE_ENV == "development",
 
   //是否显示右上角github图标
-  githubCorner: process.env.NODE_ENV !== "development",
+  githubCorner: process.env.NODE_ENV == "development",
 
   //ui类型( element iview )
   uiType: "element",

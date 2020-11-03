@@ -44,7 +44,11 @@ router.beforeEach((to, from, next) => {
 
   // 白名单
   if (Util.whiteListRoutes.includes(to.name)) {
-    next();
+    if (name == "login") {
+      next({ name: "Home" });
+    } else {
+      next();
+    }
   }
   // 不在白名单
   else {

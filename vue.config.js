@@ -7,6 +7,11 @@ const resolve = dir => {
 const defaultSettings = require("./src/config/settings.js");
 const CompressionPlugin = require("compression-webpack-plugin");
 
+// const mockServer = () => {
+//   if (process.env.NODE_ENV === "development") return require("./mock/mockServer.js");
+//   else return "";
+// };
+
 let BASE_URL = "";
 
 switch (process.env.NODE_ENV) {
@@ -70,6 +75,7 @@ module.exports = {
         target: "<other_url>",
       },
     },
+    // before: mockServer(),
   },
 
   // 打包时不生成.map文件 避免看到源码

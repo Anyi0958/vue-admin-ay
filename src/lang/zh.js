@@ -1,3 +1,5 @@
+const defaultSettings = require("@/config/settings.js");
+
 export default {
   route: {
     dashboard: "首页",
@@ -73,10 +75,13 @@ export default {
     size: "布局大小",
   },
   login: {
-    title: "系统登录",
+    welcome: `欢迎来到${defaultSettings.title} 后台管理系统`,
+    title: defaultSettings.title + " 后台管理系统",
     logIn: "登录",
     username: "账号",
     password: "密码",
+    usererr: "账号不能为空",
+    passerr: "密码不能为空",
     any: "随便填",
     thirdparty: "第三方登录",
     thirdpartyTips: "本地不能模拟，请结合自己业务进行模拟！！！",

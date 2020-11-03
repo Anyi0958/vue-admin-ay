@@ -1,3 +1,5 @@
+const defaultSettings = require("@/config/settings.js");
+
 export default {
   route: {
     dashboard: "Dashboard",
@@ -73,10 +75,13 @@ export default {
     size: "Global Size",
   },
   login: {
-    title: "Login Form",
+    welcome: `Welcome to ${defaultSettings.title}`,
+    title: defaultSettings.title,
     logIn: "Login",
     username: "Username",
     password: "Password",
+    usererr: "Username cannot be empty",
+    passerr: "Password cannot be empty",
     any: "any",
     thirdparty: "Or connect with",
     thirdpartyTips:

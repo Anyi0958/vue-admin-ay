@@ -1,4 +1,7 @@
-// 统一请求路径前缀在libs/axios.js中修改
+const defaultSettings = require("@/config/settings.js");
+// 统一请求路径前缀
+let base = defaultSettings.base;
+
 import {
   request,
   getRequest,
@@ -13,13 +16,13 @@ import {
 } from "@/libs/axios";
 
 // 导出模型
-export const exportModel = "/sdzh/actModel/export/";
+export const exportModel = `${base}/actModel/export/`;
 // 通过文件部署模型流程
-export const deployByFile = "/sdzh/actModel/deployByFile";
+export const deployByFile = `${base}/actModel/deployByFile`;
 // 导出流程资源
-export const exportResource = "/sdzh/actProcess/export";
+export const exportResource = `${base}/actProcess/export`;
 // 获取高亮实时流程图
-export const getHighlightImg = "/sdzh/actProcess/getHighlightImg/";
+export const getHighlightImg = `${base}/actProcess/getHighlightImg/`;
 
 // 获取模型
 export const getModelDataList = params => {

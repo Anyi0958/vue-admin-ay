@@ -1,4 +1,7 @@
-// 统一请求路径前缀在libs/axios.js中修改
+const defaultSettings = require("@/config/settings.js");
+// 统一请求路径前缀
+let base = defaultSettings.base;
+
 import {
   request,
   getRequest,

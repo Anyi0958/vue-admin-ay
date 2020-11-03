@@ -1,5 +1,8 @@
 import Vue from "vue";
 
+//此部分引入的是我们所编写的mockjs文档
+process.env.NODE_ENV === "development" && require("../../Mock/index.js");
+
 // 按需引入ui组件以及全局配置
 import "@/ui/element";
 import "@/ui/iview";
