@@ -4,7 +4,7 @@ import Vue from "vue";
 import "@/ui/element";
 import "@/ui/iview";
 
-// 轻量级时间格式
+// 轻量级时间格式  使用 https://www.cnblogs.com/cjrfan/p/9154539.html
 import dayjs from "dayjs";
 Vue.prototype.dayjs = dayjs;
 

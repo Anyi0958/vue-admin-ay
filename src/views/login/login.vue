@@ -1,20 +1,5 @@
 <template>
-  <div class="login-container">
-    <el-row class="login-content" type="flex" justify="center">
-      <el-col :span="24">顶部信息</el-col>
-    </el-row>
-    <!-- <el-row class="login-content" type="flex" justify="center">
-      <el-col :span="24">
-        <el-tabs v-model="loginType">
-          <el-tab-pane label="用户名登录" name="user">账号密码登录</el-tab-pane>
-          <el-tab-pane label="手机号登录" name="tel">手机号登录</el-tab-pane>
-        </el-tabs>
-      </el-col>
-    </el-row> -->
-    <el-row class="login-content" type="flex" justify="center">
-      <el-col :span="24">底部信息</el-col>
-    </el-row>
-  </div>
+  <div class="login-container"></div>
 </template>
 
 <script>
