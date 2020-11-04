@@ -1,27 +1,32 @@
 <template>
   <div id="app">
     <router-view />
-    <footer v-if="footerCopy">
-      Copyright © 2020 安逸 All Rights Reserved. 备案号：
-      <a
-        href="http://www.beian.miit.gov.cn"
-        target="_blank"
-        style="color: #fff"
-        one-link-mark="yes"
-      >
-        豫ICP备20009066号
-      </a>
-    </footer>
+    <footer-bar v-if="footerCopy"></footer-bar>
   </div>
 </template>
 <script>
 const defaultSettings = require("@/config/settings.js");
 
+import FooterBar from "@/components/footer";
+import Cookies from "js-cookie";
+import { mapState } from "vuex";
+
 export default {
+  components: {
+    FooterBar,
+  },
   //监听属性 类似于data概念
   computed: {
     footerCopy() {
       return defaultSettings.footerCopy;
+    },
+    ...mapState({
+      lang: state => state.user.userInfo.lang,
+    }),
+  },
+  watch: {
+    lang() {
+      Cookies.set("language", this.lang);
     },
   },
 };
@@ -30,16 +35,5 @@ export default {
 #app {
   height: 100vh;
   font-family: Arial, serif;
-
-  footer {
-    position: absolute;
-    bottom: 30px;
-    z-index: 10;
-    width: 100%;
-    height: 10px;
-    font-size: 12px;
-    color: #fff;
-    text-align: center;
-  }
 }
 </style>

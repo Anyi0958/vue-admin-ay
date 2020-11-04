@@ -78,6 +78,7 @@ export default {
     welcome: `Welcome to ${defaultSettings.title}`,
     title: defaultSettings.title,
     logIn: "Login",
+    register: "Register",
     username: "Username",
     password: "Password",
     usererr: "Username cannot be empty",

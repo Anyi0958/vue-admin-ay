@@ -1,93 +1,162 @@
 <template>
-  <div class="register-container">
-    <h1>register注册</h1>
-    <router-view></router-view>
+  <div class="login-container" @keyup.enter="submitForm('form')">
+    <el-row :gutter="20" type="flex" justify="center" align="middle">
+      <el-col class="content">
+        <LangSwitch />
+
+        <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
+          <h2>{{ $t("login.title") }}</h2>
+          <br />
+
+          <el-form-item prop="username">
+            <el-input
+              v-model="form.username"
+              v-focus
+              clearable
+              prefix-icon="el-icon-user"
+            ></el-input>
+          </el-form-item>
+
+          <el-form-item prop="password">
+            <el-input
+              v-model="form.password"
+              type="password"
+              clearable
+              show-password
+              prefix-icon="el-icon-lock"
+            ></el-input>
+          </el-form-item>
+
+          <el-button
+            :loading="loading"
+            class="login-submit"
+            type="primary"
+            @click="submitForm('form')"
+          >
+            {{ $t("login.register") }}
+          </el-button>
+        </el-form>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-
 let name = "注册";
-
+import Cookies from "js-cookie";
+import { regist } from "@/api/user";
+import LangSwitch from "@/components/user/lang-switch";
 export default {
   name: "Register",
-
-  //import引入的组件需要注入到对象中才能使用
-  components: {},
-
-  props: {
-    msg: {
-      // 数据类型
-      type: [String, Number, Boolean, Function, Object, Array, Symbol],
-      // 是否必填
-      required: false,
-      // 默认值
-      default: () => {
-        return null;
-      },
-      // 验证函数
-      validator: function (value) {
-        // 这个值必须匹配下列字符串中的一个
-        return ["success", "warning", "danger"].indexOf(value) !== -1;
+  directives: {
+    focus: {
+      inserted(el) {
+        el.querySelector("input").focus();
       },
     },
   },
-
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    LangSwitch,
+  },
   data() {
     //这里存放数据
-    return {};
+    return {
+      loading: false,
+      form: {
+        username: "admin",
+        password: "123456",
+      },
+    };
   },
   //监听属性 类似于data概念
-  computed: {},
-
+  computed: {
+    ruleForm() {
+      return {
+        username: [{ required: true, message: this.$t("login.usererr"), trigger: "blur" }],
+        password: [{ required: true, message: this.$t("login.passerr"), trigger: "blur" }],
+      };
+    },
+  },
   //监控data中的数据变化
   watch: {},
-
-  //生命周期 - 创建之前
-  beforeCreate() {},
-
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
-
-  //生命周期 - 挂载之前
-  beforeMount() {},
-
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
-
-  //生命周期 - 更新之前
-  beforeUpdate() {},
-
-  //生命周期 - 更新之后
-  updated() {},
-
-  //生命周期 - 销毁之前
-  beforeDestroy() {},
-
-  //生命周期 - 销毁完成
-  destroyed() {},
-
-  //如果页面有keep-alive缓存功能，这个函数会触发
-  activated() {},
-
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
+  beforeDestroy() {}, //生命周期 - 销毁之前
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
   //方法集合
-  methods: {},
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.loading = true;
+          let data = Object.assign({}, this.form);
+
+          regist(data).then(res => {
+            console.log(res);
+            this.loading = false;
+            if (res.success) {
+              this.$router.push({ name: "login" });
+            }
+          });
+        }
+      });
+    },
+  },
 };
 </script>
+
 <style lang="scss" scoped>
-//  @import 'foo.scss'; //都会导入文件 foo.scss
-//  @import 'foo'; //都会导入文件 foo.scss
-//  @import 'http://foo.com/bar';  // 插入外部文件
-//  @import 'foo.css'; // 等同于css的import命令。
-//  多行注释 - 这些使用 /**/ 写入。多行注释都保留在CSS输出。 快捷键ctrl+shift+/
-//  单行注释 - 这些是使用 // 跟着注释。单行注释不会保留在CSS输出。快捷键ctrl+/
-//  $ 符号来标识变量；把反复使用的css属性值定义成变量
-//  在嵌套的代码块内，可以使用 & 引用父元素
-//  所有数据类型均支持相等运算 == 或 !=，此外，每种数据类型也有其各自支持的运算方式。
-//  数字运算: 支持数字的加减乘除、取整等运算 (+, -, *, /, %)
-//  有引号的文本字符串中使用 #{} 插值语句可以添加动态的值
-//  使用@extend命令 可以继承是基于类class
-//  使用@mixin命令，定义一个代码块。 用@include命令，调用这个mixin。
+$min-width: 500px;
+.login-container {
+  width: 100%;
+  height: 100%;
+  @include flex;
+  background: url("http://api.neweb.top/bing.php?type=rand") center center fixed no-repeat;
+  background-size: cover;
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .content {
+    position: relative;
+    z-index: 12;
+    width: 400px;
+    height: 320px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ccc;
+    .login-form {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      @include flex;
+      div {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+    .login-submit {
+      width: 100%;
+      height: 40px;
+      margin-top: 20px;
+    }
+  }
+}
 </style>

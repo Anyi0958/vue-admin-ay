@@ -1,6 +1,7 @@
 // vue-router 使用文档 router.vuejs.org/zh/
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "@/store";
 
 import Cookies from "js-cookie";
 
@@ -47,25 +48,29 @@ router.beforeEach((to, from, next) => {
 
   let name = to.name;
 
-  // 跳转路由是否在白名单
-
-  // 白名单
-  if (Util.whiteListRoutes.includes(to.name)) {
-    if (name == "login" && Cookies.get("userInfo")) {
-      next({ name: "Home" });
+  // 是否已登录
+  if (Cookies.get("accessToken")) {
+    if (name == "login") {
+      next({ path: "/" });
     } else {
+      const hasRoles = store.state.user.roles && store.state.user.roles.length > 0;
+      if (hasRoles) {
+        next();
+      } else {
+        store.dispatch("user/getInfo").then(res => {
+          if (res.success) {
+            next();
+          } else {
+            nprogress.done();
+          }
+        });
+      }
+    }
+  } else {
+    // 跳转路由是否在白名单
+    if (Util.whiteListRoutes.includes(to.name)) {
       next();
-    }
-  }
-  // 不在白名单
-  else {
-    //  是否登录
-    if (Cookies.get("userInfo")) {
-      // 已登录 正常跳转
-      name == "login" ? next({ name: "Home" }) : next();
-    }
-    // 不在白名单 且 未登录
-    else {
+    } else {
       next({ name: "login" });
     }
   }

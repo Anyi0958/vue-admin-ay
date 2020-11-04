@@ -11,7 +11,7 @@ util.title = function (title) {
 };
 
 // 路由白名单
-util.whiteListRoutes = ["login", "regist", "about"];
+util.whiteListRoutes = ["login", "register", "about"];
 
 util.inOf = function (arr, targetArr) {
   let res = true;

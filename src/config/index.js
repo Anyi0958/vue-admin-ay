@@ -49,9 +49,10 @@ if (setting.donation) {
   console.log(
     `%c 欢迎使用 ${setting.title} %c ${
       process.env.NODE_ENV == "production" ? "生产环境" : "测试环境"
-    } ${process.env.NODE_ENV}  基于 Vue v${Vue.version}  %c`,
+    } ${process.env.NODE_ENV} %c 基于 Vue v${Vue.version}  %c`,
     "background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
-    "background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff",
+    "background:#41b883 ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
+    "background:#E6A23C ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff",
     "background:transparent"
   );
 }

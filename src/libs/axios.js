@@ -3,11 +3,11 @@ import axios from "axios";
 
 import { getStore, setStore } from "./storage";
 
-import { router } from "../router/index";
+import { router } from "@/router";
 
 import { Message as iviewMessage } from "view-design";
 import { Message } from "element-ui";
-import setting from "../config/settings";
+import setting from "@/config/settings";
 import Cookies from "js-cookie";
 
 let uType = Cookies.get("uiType") || setting.uiType;
@@ -42,21 +42,24 @@ axios.interceptors.request.use(
 // 添加响应拦截器
 axios.interceptors.response.use(
   response => {
+    console.log("响应数据", response);
     // 对响应数据做点什么
     const data = response.data;
     // 根据返回的code值来做不同的处理(和后端约定)
     switch (data.code) {
       case 401:
         // 未登录 清除已登录状态
-        Cookies.set("userInfo", "");
-        setStore("accessToken", "");
+        Cookies.remove("userInfo");
+        Cookies.remove("accessToken", "");
+
         if (router.history.current.name != "login") {
-          if (data.message !== null) {
-            $_Message.error(data.message);
-          } else {
-            $_Message.error("未知错误，请重新登录");
-          }
           router.push("/login");
+        }
+
+        if (data.message !== null) {
+          $_Message.error(data.message);
+        } else {
+          $_Message.error("未知错误，请重新登录");
         }
         break;
       case 403:

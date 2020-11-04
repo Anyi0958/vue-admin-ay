@@ -25,7 +25,9 @@
       <i-date-picker type="date" style="width: 200px"></i-date-picker>
     </i-col>
 
-    <svg-icon icon-class="language" />
+    <svg-icon icon-class="yun" />
+
+    <el-button @click="loginOut">注销</el-button>
 
     <img alt="Vue logo" src="../assets/logo.png" />
 
@@ -48,7 +50,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-
+import Cookies from "js-cookie";
 export default {
   name: "Home",
   components: {
@@ -62,9 +64,12 @@ export default {
       currentPage4: 4,
     };
   },
-  mounted() {
-    console.log(process.env);
+  mounted() {},
+  methods: {
+    async loginOut() {
+      await this.$store.dispatch("user/logout");
+      this.$router.push("/login");
+    },
   },
-  methods: {},
 };
 </script>

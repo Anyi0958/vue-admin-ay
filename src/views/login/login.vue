@@ -65,8 +65,8 @@ export default {
     return {
       loading: false,
       form: {
-        username: "",
-        password: "",
+        username: "admin",
+        password: "123456",
       },
     };
   },
@@ -107,16 +107,18 @@ export default {
           this.loading = true;
           let data = Object.assign({}, this.form);
 
-          login(data).then(res => {
-            console.log(res);
-            this.loading = false;
-            if (res.success) {
-              Cookies.set("accessToken", "accessToken");
-              Cookies.set("userInfo", data);
-
-              this.$router.push({ name: "Home" });
-            }
-          });
+          this.$store
+            .dispatch("user/login", data)
+            .then(res => {
+              console.log(res);
+              this.loading = false;
+              if (res.success) {
+                this.$router.push({ name: "Home" });
+              }
+            })
+            .catch(() => {
+              this.loading = false;
+            });
         }
       });
     },

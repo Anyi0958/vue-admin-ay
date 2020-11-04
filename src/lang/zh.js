@@ -78,6 +78,7 @@ export default {
     welcome: `欢迎来到${defaultSettings.title}`,
     title: defaultSettings.title,
     logIn: "登录",
+    register: "注册",
     username: "账号",
     password: "密码",
     usererr: "账号不能为空",
