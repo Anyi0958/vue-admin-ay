@@ -20,8 +20,8 @@ module.exports = {
   //ui尺寸( default small  large)
   uiSize: "default",
 
-  //ui语言（默认中文） zh en
-  uiLang: "en",
+  //语言（默认中文） zh en
+  lang: "en",
 
   //是否显示顶部进度条
   progressBar: true,

@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
 
   // 白名单
   if (Util.whiteListRoutes.includes(to.name)) {
-    if (name == "login") {
+    if (name == "login" && Cookies.get("userInfo")) {
       next({ name: "Home" });
     } else {
       next();

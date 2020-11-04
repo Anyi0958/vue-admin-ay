@@ -8,9 +8,10 @@ import { router } from "../router/index";
 import { Message as iviewMessage } from "view-design";
 import { Message } from "element-ui";
 import setting from "../config/settings";
-let $_Message = setting.uiType == "element" ? Message : iviewMessage;
-
 import Cookies from "js-cookie";
+
+let uType = Cookies.get("uiType") || setting.uiType;
+let $_Message = uType == "element" ? Message : iviewMessage;
 
 // 统一请求路径前缀
 let base = setting.base;

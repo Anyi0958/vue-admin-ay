@@ -229,6 +229,8 @@
     "stylelint": "^13.7.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.1.0",
+    "svg-sprite-loader": "4.1.3", //svg加载优化 可以将多个 svg 打包成 svg-sprite
+    "svgo": "1.2.0", // svg优化 去掉亢余信息 如注释
     "vue-template-compiler": "^2.6.12"
   },
 

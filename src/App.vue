@@ -35,6 +35,8 @@ export default {
     z-index: 10;
     width: 100%;
     height: 10px;
+    font-family: Arial, serif;
+    font-size: 12px;
     color: #fff;
     text-align: center;
   }

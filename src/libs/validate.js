@@ -1,3 +1,7 @@
+// icon
+export function isExternal(path) {
+  return /^(https?:|mailto:|tel:)/.test(path);
+}
 /**
  * @param rule 验证规则（不少于6位）
  * @param value 需要验证的值

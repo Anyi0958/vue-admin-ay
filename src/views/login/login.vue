@@ -2,6 +2,8 @@
   <div class="login-container" @keyup.enter="submitForm('form')">
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
+        <LangSwitch />
+
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
           <h2>{{ $t("login.title") }}</h2>
           <br />
@@ -44,7 +46,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 let name = "登录";
 import { login } from "@/api/user";
-
+import LangSwitch from "@/components/user/lang-switch";
 export default {
   name: "Login",
   directives: {
@@ -55,7 +57,9 @@ export default {
     },
   },
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    LangSwitch,
+  },
   data() {
     //这里存放数据
     return {

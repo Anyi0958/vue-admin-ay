@@ -96,7 +96,7 @@ module.exports = {
   },
 
   chainWebpack(config) {
-    config.name(defaultSettings.title || "AY-Vue-Admin");
+    // config.name(defaultSettings.title || "AY-Vue-Admin");
 
     config.plugin("html").tap(args => {
       args[0].title = defaultSettings.title || "AY-Vue-Admin";
@@ -128,9 +128,8 @@ module.exports = {
     // 清除警告
     config.performance.set("hints", false);
 
-    // set svg-sprite-loader
+    // set svg-sprite-loader 可以将多个 svg 打包成 svg-sprite
     config.module.rule("svg").exclude.add(resolve("src/icons")).end();
-
     config.module
       .rule("icons")
       .test(/\.svg$/)

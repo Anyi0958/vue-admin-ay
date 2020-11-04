@@ -14,6 +14,10 @@ import ElementLocale from "element-ui/lib/locale";
 import { locale } from "view-design";
 
 import setting from "../config/settings";
+import Cookies from "js-cookie";
+
+let lang = (Cookies.get("language") || setting.lang).toLowerCase();
+
 // 设置语言
 Vue.use(VueI18n);
 const messages = {
@@ -32,10 +36,10 @@ const messages = {
 };
 
 //iview国际化设置
-locale(messages[setting.uiLang]);
+locale(messages[lang]);
 
 const i18n = new VueI18n({
-  locale: setting.uiLang, // set locale
+  locale: lang, // set locale
   messages, // set locale messages
 });
 

@@ -6,7 +6,7 @@ import store from "./store";
 import "./config/index";
 
 // 配置国际化
-import i18n from "./lang/index";
+import i18n from "@/lang/index";
 
 // 阻止显示生产模式的消息
 Vue.config.productionTip = false;
