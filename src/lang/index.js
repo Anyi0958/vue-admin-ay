@@ -17,6 +17,8 @@ import setting from "../config/settings";
 import Cookies from "js-cookie";
 
 let lang = (Cookies.get("language") || setting.lang).toLowerCase();
+lang = setting.langList.includes(lang) ? lang : setting.langList[0];
+Cookies.set("language", lang);
 
 // 设置语言
 Vue.use(VueI18n);

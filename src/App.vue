@@ -29,13 +29,14 @@ export default {
 <style lang="scss">
 #app {
   height: 100vh;
+  font-family: Arial, serif;
+
   footer {
     position: absolute;
     bottom: 30px;
     z-index: 10;
     width: 100%;
     height: 10px;
-    font-family: Arial, serif;
     font-size: 12px;
     color: #fff;
     text-align: center;

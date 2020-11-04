@@ -25,6 +25,8 @@
       <i-date-picker type="date" style="width: 200px"></i-date-picker>
     </i-col>
 
+    <svg-icon icon-class="language" />
+
     <img alt="Vue logo" src="../assets/logo.png" />
 
     <HelloWorld msg="Welcome to Your Vue.js App" />

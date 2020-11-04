@@ -8,6 +8,7 @@ import nprogress from "nprogress";
 import "nprogress/nprogress.css";
 
 import Util from "@/libs/util";
+import setting from "@/config/settings";
 
 import { routers, otherRouter } from "./router";
 
@@ -33,10 +34,16 @@ router.beforeEach((to, from, next) => {
   Util.title(to.meta.title);
 
   // 对路由变化作出响应...
-  console.log("==============路由变化开始===============");
-  console.warn("当前路由", to);
-  console.warn("跳转路由", from);
-  console.log("==============路由变化结束===============");
+  if (setting.donation) {
+    console.log(
+      `%c 路由变化 %c 当前路由 ${to.name} %c 跳转路由 ${from.name}  %c`,
+      "background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
+      "background:#41b883 ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
+      "background:#E6A23C ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff",
+      "background:transparent"
+    );
+  }
+  console.log(to, from);
 
   let name = to.name;
 

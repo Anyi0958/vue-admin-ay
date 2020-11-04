@@ -87,6 +87,7 @@ export default {
   mounted() {
     this.$notify({
       title: this.$t("login.welcome"),
+      offset: 60,
       message:
         "这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案",
     });
@@ -105,10 +106,14 @@ export default {
         if (valid) {
           this.loading = true;
           let data = Object.assign({}, this.form);
-          login(this.form).then(res => {
+
+          login(data).then(res => {
             console.log(res);
             this.loading = false;
             if (res.success) {
+              Cookies.set("accessToken", "accessToken");
+              Cookies.set("userInfo", data);
+
               this.$router.push({ name: "Home" });
             }
           });
@@ -127,6 +132,16 @@ $min-width: 500px;
   @include flex;
   background: url("http://api.neweb.top/bing.php?type=rand") center center fixed no-repeat;
   background-size: cover;
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5);
+  }
   .content {
     position: relative;
     z-index: 12;

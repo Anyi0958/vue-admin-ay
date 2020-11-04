@@ -75,8 +75,8 @@ export default {
     size: "布局大小",
   },
   login: {
-    welcome: `欢迎来到${defaultSettings.title} 后台管理系统`,
-    title: defaultSettings.title + " 后台管理系统",
+    welcome: `欢迎来到${defaultSettings.title}`,
+    title: defaultSettings.title,
     logIn: "登录",
     username: "账号",
     password: "密码",

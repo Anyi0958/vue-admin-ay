@@ -27,7 +27,6 @@ Mock.mock(base + "/login", (req, res) => {
 
   if (params.username == "admin" && params.password == "123456") {
     res.message = "登录成功";
-    Cookies.set("userInfo", params);
   } else {
     res.message = "用户名或密码错误";
     res.code = 500;
