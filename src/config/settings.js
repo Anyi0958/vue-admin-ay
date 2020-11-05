@@ -8,6 +8,9 @@ module.exports = {
   // 统一网络请求前缀
   base: "/xboot",
 
+  // 使用Mock
+  useMock: true,
+
   //是否显示页面底部版权信息
   footerCopy: process.env.NODE_ENV == "development",
 

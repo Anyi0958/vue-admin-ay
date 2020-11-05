@@ -5,7 +5,11 @@
         <LangSwitch />
 
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
-          <h2>{{ $t("login.title") }}</h2>
+          <h2>
+            <router-link to="/login">
+              {{ $t("login.title") }}
+            </router-link>
+          </h2>
           <br />
 
           <el-form-item prop="username">
@@ -47,7 +51,7 @@
 let name = "注册";
 import Cookies from "js-cookie";
 import { regist } from "@/api/user";
-import LangSwitch from "@/components/user/lang-switch";
+import LangSwitch from "@/components/user/LangSwitch";
 export default {
   name: "Register",
   directives: {
@@ -66,8 +70,8 @@ export default {
     return {
       loading: false,
       form: {
-        username: "admin",
-        password: "123456",
+        username: "",
+        password: "",
       },
     };
   },

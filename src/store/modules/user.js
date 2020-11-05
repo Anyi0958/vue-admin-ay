@@ -17,11 +17,6 @@ const mutations = {
   },
   SET_INFO: (state, data) => {
     state.userInfo = data;
-    if (data) {
-      Cookies.set("userInfo", data);
-    } else {
-      Cookies.remove("userInfo");
-    }
   },
 };
 
@@ -35,8 +30,10 @@ const actions = {
           let data = response;
           if (data.success) {
             commit("SET_TOKEN", data.result);
+            resolve();
+          } else {
+            reject(error);
           }
-          resolve(data);
         })
         .catch(error => {
           reject(error);
@@ -50,8 +47,12 @@ const actions = {
       userInfo()
         .then(response => {
           let data = response;
-          commit("SET_INFO", data.result);
-          resolve(data);
+          if (data.success) {
+            commit("SET_INFO", data.result);
+            resolve(data);
+          } else {
+            reject(error);
+          }
         })
         .catch(error => {
           reject(error);
@@ -64,28 +65,10 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit("SET_TOKEN", "");
       commit("SET_INFO", "");
+      localStorage.clear();
+      Cookies.remove("accessToken");
       resolve();
     });
-  },
-
-  // dynamically modify permissions
-  async changeRoles({ commit, dispatch }, role) {
-    const token = role + "-token";
-
-    commit("SET_TOKEN", token);
-    setToken(token);
-
-    const { roles } = await dispatch("getInfo");
-
-    resetRouter();
-
-    // generate accessible routes map based on roles
-    const accessRoutes = await dispatch("permission/generateRoutes", roles, { root: true });
-    // dynamically add accessible routes
-    router.addRoutes(accessRoutes);
-
-    // reset visited views and cached views
-    dispatch("tagsView/delAllViews", null, { root: true });
   },
 };
 

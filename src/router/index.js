@@ -53,17 +53,18 @@ router.beforeEach((to, from, next) => {
     if (name == "login") {
       next({ path: "/" });
     } else {
-      const hasRoles = store.state.user.roles && store.state.user.roles.length > 0;
-      if (hasRoles) {
+      const hasUserInfo = store.state.user.userInfo;
+      if (hasUserInfo) {
         next();
       } else {
-        store.dispatch("user/getInfo").then(res => {
-          if (res.success) {
+        store
+          .dispatch("user/getInfo")
+          .then(res => {
             next();
-          } else {
+          })
+          .catch(() => {
             nprogress.done();
-          }
-        });
+          });
       }
     }
   } else {

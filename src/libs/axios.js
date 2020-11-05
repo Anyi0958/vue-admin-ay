@@ -49,7 +49,6 @@ axios.interceptors.response.use(
     switch (data.code) {
       case 401:
         // 未登录 清除已登录状态
-        Cookies.remove("userInfo");
         Cookies.remove("accessToken", "");
 
         if (router.history.current.name != "login") {

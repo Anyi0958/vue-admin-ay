@@ -18,13 +18,11 @@ switch (process.env.NODE_ENV) {
   // 线上环境
   case "production":
     BASE_URL = "http://47.102.96.85:8888";
-    console.info("项目运行环境：线上环境");
     break;
 
   // 开发环境
   case "development":
     BASE_URL = "http://47.102.96.85:8888";
-    console.info("项目运行环境：开发环境");
     break;
   default:
     break;

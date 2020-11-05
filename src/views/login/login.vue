@@ -5,7 +5,11 @@
         <LangSwitch />
 
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
-          <h2>{{ $t("login.title") }}</h2>
+          <h2>
+            <router-link to="/register">
+              {{ $t("login.title") }}
+            </router-link>
+          </h2>
           <br />
 
           <el-form-item prop="username">
@@ -46,7 +50,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 let name = "登录";
 import { login } from "@/api/user";
-import LangSwitch from "@/components/user/lang-switch";
+import LangSwitch from "@/components/user/LangSwitch";
 export default {
   name: "Login",
   directives: {
@@ -84,14 +88,7 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    this.$notify({
-      title: this.$t("login.welcome"),
-      offset: 60,
-      message:
-        "这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案",
-    });
-  },
+  mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -110,11 +107,8 @@ export default {
           this.$store
             .dispatch("user/login", data)
             .then(res => {
-              console.log(res);
               this.loading = false;
-              if (res.success) {
-                this.$router.push({ name: "Home" });
-              }
+              this.$router.push({ name: "Home" });
             })
             .catch(() => {
               this.loading = false;
