@@ -17,7 +17,6 @@ Vue.prototype.dayjs = dayjs;
 
 // 网络请求
 import {
-  request,
   getRequest,
   postRequest,
   putRequest,
@@ -31,7 +30,6 @@ import {
 
 import { setStore, getStore, removeStore } from "@/libs/storage";
 
-Vue.prototype.request = request;
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.putRequest = putRequest;

@@ -11,6 +11,8 @@ import "nprogress/nprogress.css";
 import Util from "@/libs/util";
 import setting from "@/config/settings";
 
+let tokenName = setting.tokenName;
+
 import { routers, otherRouter } from "./router";
 
 Vue.use(VueRouter);
@@ -23,14 +25,14 @@ nprogress.configure({
 });
 
 export const router = new VueRouter({
-  mode: "history",
+  mode: setting.routerMode,
   routes: routers,
 });
 
 export default router;
 
 router.beforeEach((to, from, next) => {
-  nprogress.start();
+  if (setting.progressBar) nprogress.start();
   // 设置浏览器title
   Util.title(to.meta.title);
 
@@ -43,13 +45,13 @@ router.beforeEach((to, from, next) => {
       "background:#E6A23C ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff",
       "background:transparent"
     );
+    console.log("路由变化", to, from);
   }
-  console.log(to, from);
 
   let name = to.name;
 
   // 是否已登录
-  if (Cookies.get("accessToken")) {
+  if (Cookies.get(tokenName)) {
     if (name == "login") {
       next({ path: "/" });
     } else {
@@ -63,13 +65,13 @@ router.beforeEach((to, from, next) => {
             next();
           })
           .catch(() => {
-            nprogress.done();
+            if (setting.progressBar) nprogress.done();
           });
       }
     }
   } else {
     // 跳转路由是否在白名单
-    if (Util.whiteListRoutes.includes(to.name)) {
+    if (setting.routesWhiteList.includes(to.name)) {
       next();
     } else {
       next({ name: "login" });
@@ -78,6 +80,6 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach(to => {
-  nprogress.done();
+  if (setting.progressBar) nprogress.done();
   window.scrollTo(0, 0);
 });

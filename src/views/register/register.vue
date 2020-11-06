@@ -106,7 +106,6 @@ export default {
           let data = Object.assign({}, this.form);
 
           regist(data).then(res => {
-            console.log(res);
             this.loading = false;
             if (res.success) {
               this.$router.push({ name: "login" });

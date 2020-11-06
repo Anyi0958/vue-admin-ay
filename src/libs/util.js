@@ -10,9 +10,6 @@ util.title = function (title) {
   window.document.title = title;
 };
 
-// 路由白名单
-util.whiteListRoutes = ["login", "register", "about"];
-
 util.inOf = function (arr, targetArr) {
   let res = true;
   arr.forEach(item => {

@@ -1,10 +1,7 @@
 //axios 使用文档  https://www.kancloud.cn/yunye/axios/234845
 import axios from "axios";
-
-import { getStore, setStore } from "./storage";
-
 import { router } from "@/router";
-
+import store from "@/store";
 import { Message as iviewMessage } from "view-design";
 import { Message } from "element-ui";
 import setting from "@/config/settings";
@@ -15,13 +12,37 @@ let $_Message = uType == "element" ? Message : iviewMessage;
 
 // 统一请求路径前缀
 let base = setting.base;
+
+let tokenName = setting.tokenName;
+let token = "";
+
 // 超时设定
-axios.defaults.timeout = 20000;
+axios.defaults.timeout = setting.requestTimeout;
 
 // 添加请求拦截器
 axios.interceptors.request.use(
   config => {
     // 在发送请求之前做些什么
+
+    // 设置请求头 token  数据类型
+    token = store.getters.token;
+    let contentType = (config.ayDataType || setting.contentType).toLowerCase();
+    if (contentType == "json") {
+      config.headers["Content-Type"] = "application/json;charset=UTF-8";
+    } else if (contentType == "form") {
+      config.headers["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
+    } else if (contentType == "blob") {
+      config["responseType"] = "blob";
+    }
+
+    if (config.hasToken) {
+      config.headers[tokenName] = token;
+    }
+
+    delete config.ayDataType;
+    delete config.hasToken;
+
+    if (setting.donation) console.log("请求数据", config);
 
     //这里会过滤所有为空、0、false的key，如果不需要请自行注释
     // if (config.data)
@@ -42,14 +63,14 @@ axios.interceptors.request.use(
 // 添加响应拦截器
 axios.interceptors.response.use(
   response => {
-    console.log("响应数据", response);
+    if (setting.donation) console.log("响应数据", response.data);
     // 对响应数据做点什么
     const data = response.data;
     // 根据返回的code值来做不同的处理(和后端约定)
     switch (data.code) {
-      case 401:
+      case setting.invalidCode:
         // 未登录 清除已登录状态
-        Cookies.remove("accessToken", "");
+        Cookies.remove(tokenName);
 
         if (router.history.current.name != "login") {
           router.push("/login");
@@ -61,7 +82,7 @@ axios.interceptors.response.use(
           $_Message.error("未知错误，请重新登录");
         }
         break;
-      case 403:
+      case setting.noPermissionCode:
         // 没有权限
         if (data.message !== null) {
           $_Message.error(data.message);
@@ -107,28 +128,16 @@ axios.interceptors.response.use(
  * @param {*} method   请求方法，必填
  * @param {*} url      请求地址，必填
  * @param {*} params   请求参数
- * @param {*} type     请求数据类型，默认form
+ * @param {*} type     请求数据类型，默认 根据 setting.js 配置
  * @param {*} auth     是否携带凭证，默认携带
  */
 export const request = obj => {
   let { method, url, params, type, auth } = obj;
-  let accessToken = getStore("accessToken");
-  let headers = {
-    "Content-Type": "application/x-www-form-urlencoded",
-  };
-  if (type) {
-    headers["Content-Type"] =
-      type == "form"
-        ? "application/x-www-form-urlencoded"
-        : type == "json"
-        ? "application/json;charset=UTF-8"
-        : "";
-  }
-  if (auth === undefined || auth) {
-    headers["accessToken"] = accessToken;
-  }
 
   return axios({
+    ayDataType: type,
+    hasToken: auth || true,
+
     method: method,
     url: `${base}${url}`,
 
@@ -165,9 +174,6 @@ export const request = obj => {
         return JSON.parse(data);
       },
     ],
-
-    // `headers` 是即将被发送的自定义请求头
-    headers: headers,
   });
 };
 
@@ -179,25 +185,23 @@ export const request = obj => {
  */
 
 export const getRequest = (url, params) => {
-  let accessToken = getStore("accessToken");
   return axios({
     method: "get",
     url: `${base}${url}`,
     params: params,
-    headers: {
-      accessToken: accessToken,
-    },
+    hasToken: true,
   });
 };
 
 export const postRequest = (url, params, type) => {
-  let accessToken = getStore("accessToken");
   if (!type) type = "form";
   return axios({
+    ayDataType: type,
+    hasToken: true,
+
     method: "post",
     url: `${base}${url}`,
     data: params,
-    responseType: type == "blob" ? "blob" : "",
     transformRequest: [
       function (data) {
         if (type == "json") return JSON.stringify(data);
@@ -209,22 +213,14 @@ export const postRequest = (url, params, type) => {
         return ret;
       },
     ],
-    headers: {
-      "Content-Type":
-        type == "form"
-          ? "application/x-www-form-urlencoded;charset=UTF-8"
-          : type == "json"
-          ? "application/json;charset=UTF-8"
-          : "",
-      accessToken: accessToken,
-    },
   });
 };
 
 export const putRequest = (url, params, type) => {
-  let accessToken = getStore("accessToken");
-  if (!type) type = "form";
   return axios({
+    ayDataType: type,
+    hasToken: true,
+
     method: "put",
     url: `${base}${url}`,
     data: params,
@@ -240,52 +236,37 @@ export const putRequest = (url, params, type) => {
         return ret;
       },
     ],
-    headers: {
-      "Content-Type":
-        type == "form"
-          ? "application/x-www-form-urlencoded;charset=UTF-8"
-          : type == "json"
-          ? "application/json;charset=UTF-8"
-          : "",
-      accessToken: accessToken,
-    },
   });
 };
 
 export const deleteRequest = (url, params) => {
-  let accessToken = getStore("accessToken");
   return axios({
+    hasToken: true,
+
     method: "delete",
     url: `${base}${url}`,
     params: params,
     data: params,
-    headers: {
-      accessToken: accessToken,
-    },
   });
 };
 
 export const importRequest = (url, params) => {
-  let accessToken = getStore("accessToken");
   return axios({
+    hasToken: true,
+
     method: "post",
     url: `${base}${url}`,
     data: params,
-    headers: {
-      accessToken: accessToken,
-    },
   });
 };
 
 export const uploadFileRequest = (url, params) => {
-  let accessToken = getStore("accessToken");
   return axios({
+    hasToken: true,
+
     method: "post",
     url: `${base}${url}`,
     params: params,
-    headers: {
-      accessToken: accessToken,
-    },
   });
 };
 
@@ -305,17 +286,11 @@ export const getRequestWithNoToken = (url, params) => {
 
 export const postRequestWithNoToken = (url, params, type) => {
   return axios({
+    ayDataType: type,
+
     method: "post",
     url: `${base}${url}`,
     data: params,
-    headers: {
-      "Content-Type":
-        type == "form"
-          ? "application/x-www-form-urlencoded;charset=UTF-8"
-          : type == "json"
-          ? "application/json;charset=UTF-8"
-          : "",
-    },
   });
 };
 

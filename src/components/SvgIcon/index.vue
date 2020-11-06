@@ -5,7 +5,13 @@
     class="svg-external-icon svg-icon"
     v-on="$listeners"
   />
-  <svg v-else :class="svgClass" aria-hidden="true" v-on="$listeners">
+  <svg
+    v-else
+    :class="svgClass"
+    aria-hidden="true"
+    :style="{ color: color, 'font-size': size }"
+    v-on="$listeners"
+  >
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -17,6 +23,14 @@ import { isExternal } from "@/libs/validate";
 export default {
   name: "SvgIcon",
   props: {
+    color: {
+      type: String,
+      default: "",
+    },
+    size: {
+      type: String,
+      default: "28",
+    },
     iconClass: {
       type: String,
       required: true,
@@ -55,7 +69,6 @@ export default {
   width: 1em;
   height: 1em;
   overflow: hidden;
-  font-size: 28px;
   vertical-align: -0.15em;
   fill: currentColor;
 }

@@ -104,7 +104,7 @@ Mock.mock(base + "/user/info", (req, res) => {
     success: true,
   };
 
-  if (Cookies.get("accessToken")) {
+  if (Cookies.get(defaultSettings.tokenName)) {
     res.result = {
       lang: "zh",
       name: "Ay-Vue",
@@ -115,7 +115,7 @@ Mock.mock(base + "/user/info", (req, res) => {
     };
   } else {
     res.message = "登录已失效";
-    res.code = 401;
+    res.code = defaultSettings.invalidCode;
     res.success = false;
   }
 

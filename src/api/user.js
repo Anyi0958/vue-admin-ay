@@ -3,7 +3,6 @@ const defaultSettings = require("@/config/settings.js");
 let base = defaultSettings.base;
 
 import {
-  request,
   getRequest,
   postRequest,
   putRequest,

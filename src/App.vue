@@ -8,8 +8,6 @@
 const defaultSettings = require("@/config/settings.js");
 
 import FooterBar from "@/components/FooterBar";
-import Cookies from "js-cookie";
-import { mapState } from "vuex";
 
 export default {
   components: {
@@ -20,22 +18,17 @@ export default {
     footerCopy() {
       return defaultSettings.footerCopy;
     },
-    ...mapState({
-      lang: state => state.user.userInfo.lang,
-    }),
   },
-  watch: {
-    lang() {
-      Cookies.set("language", this.lang);
-    },
-  },
+  watch: {},
   mounted() {
-    this.$notify({
-      title: this.$t("login.welcome"),
-      offset: 60,
-      message:
-        "这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案",
-    });
+    if (this.$route.name == "login")
+      this.$notify({
+        title: this.$t("login.welcome"),
+        offset: 60,
+        duration: defaultSettings.messageDuration,
+        message:
+          "这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案",
+      });
   },
 };
 </script>

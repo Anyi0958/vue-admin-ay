@@ -8,6 +8,13 @@ module.exports = {
   // 统一网络请求前缀
   base: "/xboot",
 
+  //token名称
+  tokenName: "accessToken",
+
+  // 配后端数据的默认接收方式 json/form
+  // application/json;charset=UTF-8或者application/x-www-form-urlencoded;charset=UTF-8
+  contentType: "form",
+
   // 使用Mock
   useMock: true,
 
@@ -23,34 +30,42 @@ module.exports = {
   //ui尺寸( default small  large)
   uiSize: "default",
 
-  //语言（默认中文）
+  // 当前语言（默认中文）
   lang: "en",
-
+  // 可选语言
   langList: ["zh", "en"],
 
   //是否显示顶部进度条
   progressBar: true,
 
-  //缓存路由的最大数量
-  keepAliveMaxNum: 99,
+  //消息框消失时间
+  messageDuration: 3000,
+
+  //最长请求时间
+  requestTimeout: 5000,
 
   // 路由模式，可选值为 history 或 hash
   routerMode: "history",
 
   //不经过token校验的路由
-  routesWhiteList: ["/login", "/register", "/404", "/401"],
+  routesWhiteList: ["login", "register", "about", "/404", "/401"],
+
+  //操作正常code，支持String、Array、int多种类型
+  successCode: [200, 0],
+
+  //登录失效code
+  invalidCode: 402,
+
+  //无权限code
+  noPermissionCode: 401,
+
+  /////////////////
+
+  //缓存路由的最大数量
+  keepAliveMaxNum: 99,
 
   //加载时显示文字
   loadingText: "正在加载中...",
-
-  //token名称
-  tokenName: "accessToken",
-
-  //token在localStorage、sessionStorage、cookie存储的key的名称
-  tokenTableName: "vue-admin-ay",
-
-  //token存储位置localStorage sessionStorage cookie
-  storage: "localStorage",
 
   //token失效回退到登录页时是否记录本次的路由
   recordRoute: true,
@@ -72,24 +87,6 @@ module.exports = {
 
   //是否显示骨架屏
   skeleton: false,
-
-  //配后端数据的接收方式application/json;charset=UTF-8或者application/x-www-form-urlencoded;charset=UTF-8
-  contentType: "application/json;charset=UTF-8",
-
-  //消息框消失时间
-  messageDuration: 3000,
-
-  //最长请求时间
-  requestTimeout: 5000,
-
-  //操作正常code，支持String、Array、int多种类型
-  successCode: [200, 0],
-
-  //登录失效code
-  invalidCode: 402,
-
-  //无权限code
-  noPermissionCode: 401,
 
   //是否显示在页面高亮错误
   errorLog: ["development", "test", "production"],
@@ -114,15 +111,6 @@ module.exports = {
 
   //需要加loading层的请求，防止重复提交
   debounce: ["doEdit"],
-
-  //需要自动注入并加载的模块
-  providePlugin: { maptalks: "maptalks", "window.maptalks": "maptalks" },
-
-  //npm run build时是否自动生成7z压缩包
-  build7z: false,
-
-  //代码生成机生成在view下的文件夹名称
-  templateFolder: "project",
 
   //是否显示终端donation打印
   donation: true,
