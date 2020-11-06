@@ -99,6 +99,7 @@ export default {
   //监听属性 类似于data概念
   computed: {
     ...mapState({
+      AyVueAdmin1: "AyVueAdmin",
       token1: state => state.user.token,
       token2: "user.token",
       token3: state => state.token,
@@ -107,6 +108,9 @@ export default {
       ccc() {
         return this.currentPage1;
       },
+    }),
+    ...mapGetters({
+      AyVueAdmin2: "AyVueAdmin",
     }),
   },
 
@@ -126,6 +130,13 @@ export default {
   mounted() {
     console.log(this.$store.state.user.token);
     console.log(this.token1, this.token2, this.token3, this.token4, this.ccc);
+    console.log(this.AyVueAdmin1);
+    console.log(this.AyVueAdmin2);
+    this.AyVueAdmin3("AyVueAdmin3");
+    console.log(this.AyVueAdmin1);
+    this.AyVueAdmin4().then(res => {
+      console.log(res);
+    });
   },
 
   //生命周期 - 更新之前
@@ -145,8 +156,12 @@ export default {
 
   //方法集合
   methods: {
-    ...mapMutations({}),
-    ...mapActions({}),
+    ...mapMutations({
+      AyVueAdmin3: "AyVueAdmin1",
+    }),
+    ...mapActions({
+      AyVueAdmin4: "AyVueAdmin3",
+    }),
     async loginOut() {
       await this.$store.dispatch("user/logout");
       this.$router.push("/login");

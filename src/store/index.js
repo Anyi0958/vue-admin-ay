@@ -40,7 +40,7 @@ const store = new Vuex.Store({
   getters: {
     ...getters,
     AyVueAdmin(state, getters) {
-      return state.AyVueAdmin;
+      return state.AyVueAdmin + "getters";
     },
   },
   mutations: {
@@ -55,23 +55,18 @@ const store = new Vuex.Store({
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           context.commit("AyVueAdmin1", data);
-          resolve();
+          resolve(context.state.AyVueAdmin);
         }, 1000);
       });
     },
 
     async AyVueAdmin3({ state, getters, commit, dispatch }, products) {
-      await dispatch("AyVueAdmin1", products);
+      await dispatch("AyVueAdmin2", products);
     },
   },
   modules: modules,
   // 严格模式
   strict: process.env.NODE_ENV !== "production",
 });
-
-//  store.state,
-//  store.getters,
-//  store.commit(AyVueAdmin1,'data1'),
-//  store.dispatch(AyVueAdmin2,'data2').then(res=>{}),
 
 export default store;
