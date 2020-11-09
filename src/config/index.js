@@ -5,8 +5,8 @@ import setting from "./settings";
 setting.useMock && require("../../Mock/index.js");
 
 // 按需引入ui组件以及全局配置
+// import "@/ui/iview";
 import "@/ui/element";
-import "@/ui/iview";
 
 // 引入icon
 import "@/icons";

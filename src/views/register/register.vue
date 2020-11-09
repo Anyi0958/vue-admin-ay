@@ -42,6 +42,8 @@
         </el-form>
       </el-col>
     </el-row>
+
+    <footer-bar v-if="footerCopy"></footer-bar>
   </div>
 </template>
 
@@ -52,6 +54,8 @@ let name = "注册";
 import Cookies from "js-cookie";
 import { regist } from "@/api/user";
 import LangSwitch from "@/components/user/LangSwitch";
+const defaultSettings = require("@/config/settings.js");
+import FooterBar from "@/components/FooterBar";
 export default {
   name: "Register",
   directives: {
@@ -64,6 +68,7 @@ export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
     LangSwitch,
+    FooterBar,
   },
   data() {
     //这里存放数据
@@ -82,6 +87,9 @@ export default {
         username: [{ required: true, message: this.$t("login.usererr"), trigger: "blur" }],
         password: [{ required: true, message: this.$t("login.passerr"), trigger: "blur" }],
       };
+    },
+    footerCopy() {
+      return defaultSettings.footerCopy;
     },
   },
   //监控data中的数据变化
@@ -139,15 +147,13 @@ $min-width: 500px;
   .content {
     position: relative;
     z-index: 12;
-    width: 400px;
-    height: 320px;
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px #ccc;
     .login-form {
       flex-direction: column;
-      width: 100%;
-      height: 100%;
+      width: 360px;
+      height: 320px;
       padding: 10px;
       @include flex;
       div {

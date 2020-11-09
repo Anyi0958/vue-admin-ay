@@ -3,13 +3,19 @@ import Home from "../views/Home.vue";
 export const commonRouter = [
   {
     path: "/",
-    name: "Home",
     redirect: "/Ay-Admin-Vue",
   },
   {
     path: "/Ay-Admin-Vue",
     name: "Ay-Admin-Vue",
-    component: Home,
+    component: () => import("@/views/layout/index.vue"),
+    children: [
+      {
+        path: "",
+        name: "Home",
+        component: Home,
+      },
+    ],
   },
   {
     path: "/login",

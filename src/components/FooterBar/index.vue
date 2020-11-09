@@ -1,10 +1,8 @@
 <template>
-  <footer>
+  <div class="footBar">
     Copyright © 2020 安逸 All Rights Reserved. 备案号：
-    <a href="http://www.beian.miit.gov.cn" target="_blank" style="color: #fff" one-link-mark="yes">
-      豫ICP备20009066号
-    </a>
-  </footer>
+    <a href="http://www.beian.miit.gov.cn" target="_blank" one-link-mark="yes">豫ICP备20009066号</a>
+  </div>
 </template>
 
 <script>
@@ -77,7 +75,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-footer {
+.footBar {
   position: absolute;
   bottom: 30px;
   z-index: 10;
@@ -86,5 +84,8 @@ footer {
   font-size: 12px;
   color: #fff;
   text-align: center;
+  a {
+    color: #fff;
+  }
 }
 </style>

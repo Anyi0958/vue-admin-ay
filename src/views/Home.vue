@@ -16,16 +16,7 @@
       <el-button type="info">信息按钮</el-button>
       <el-button type="warning">警告按钮</el-button>
       <el-button type="danger">危险按钮</el-button>
-
-      <i-button type="info">{{ $t("route.dashboard") }}</i-button>
-      <i-button type="primary">primary</i-button>
-      <i-button type="warning">Warning</i-button>
-      <i-button type="error">Error</i-button>
     </el-row>
-
-    <i-col>
-      <i-date-picker type="date" style="width: 200px"></i-date-picker>
-    </i-col>
 
     <svg-icon icon-class="yun" color="#1296db" size="50" />
 
@@ -44,8 +35,6 @@
         :total="1000"
       ></el-pagination>
     </div>
-
-    <i-page :total="100" show-total />
   </div>
 </template>
 

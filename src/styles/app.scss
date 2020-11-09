@@ -1,0 +1,42 @@
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #fff;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+a {
+  color: #2d8cf0;
+  text-decoration: none;
+  cursor: pointer;
+  background: 0 0;
+  outline: 0;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #57a3f3;
+}
+a:active {
+  color: #2b85e4;
+}
+a:active,
+a:hover {
+  text-decoration: none;
+  outline: 0;
+}
+a[disabled] {
+  color: #ccc;
+  pointer-events: none;
+  cursor: not-allowed;
+}
