@@ -116,7 +116,7 @@ export default {
             .dispatch("user/login", data)
             .then(res => {
               this.loading = false;
-              this.$router.push({ name: "Home" });
+              this.$router.push("/");
             })
             .catch(() => {
               this.loading = false;
