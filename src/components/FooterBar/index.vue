@@ -85,7 +85,7 @@ export default {
   color: #fff;
   text-align: center;
   a {
-    color: #fff;
+    color: #2d8cf0;
   }
 }
 </style>

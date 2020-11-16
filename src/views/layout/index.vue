@@ -1,6 +1,6 @@
 <template>
   <div class="layout-container">
-    <el-container style="height: 500px; border: 1px solid #eee">
+    <el-container v-if="themeType == 1" class="layout">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)"></el-aside>
 
       <el-container>
@@ -16,25 +16,21 @@
       </el-container>
     </el-container>
 
-    <hr />
-
-    <el-container>
+    <el-container v-if="themeType == 2" class="layout">
       <el-header>Header</el-header>
       <el-container>
         <el-aside width="200px" style="background-color: rgb(238, 241, 246)">Aside</el-aside>
         <el-container>
           <el-main><router-view /></el-main>
-          <el-footer>Footer</el-footer>
+          <el-footer><footer-bar></footer-bar></el-footer>
         </el-container>
       </el-container>
     </el-container>
 
-    <hr />
-
-    <el-container>
+    <el-container v-if="themeType == 3" class="layout">
       <el-header>Header</el-header>
       <el-main><router-view /></el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer><footer-bar></footer-bar></el-footer>
     </el-container>
   </div>
 </template>
@@ -79,6 +75,7 @@ export default {
       address: "上海市普陀区金沙江路 1518 弄",
     };
     return {
+      themeType: 1,
       tableData: Array(20).fill(item),
     };
   },
@@ -157,6 +154,10 @@ export default {
       overflow: hidden;
       color: #000;
     }
+  }
+  .layout {
+    width: 100%;
+    height: 100vh;
   }
 }
 </style>
