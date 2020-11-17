@@ -1,60 +1,18 @@
 <template>
-  <div class="layout-container">
-    <el-container v-if="themeType == 1" class="layout">
-      <!-- 侧边栏 -->
-      <an-aside></an-aside>
-
-      <el-container>
-        <!-- 头部 -->
-        <el-header style="font-size: 12px; text-align: right">头部</el-header>
-
-        <!-- 主体 -->
-        <el-main>
-          <router-view />
-        </el-main>
-
-        <!--  底部 -->
-        <el-footer>
-          <footer-bar></footer-bar>
-        </el-footer>
-      </el-container>
-    </el-container>
-
-    <el-container v-if="themeType == 2" class="layout">
-      <el-header>Header</el-header>
-      <el-container>
-        <el-aside width="200px" style="background-color: rgb(238, 241, 246)">Aside</el-aside>
-        <el-container>
-          <el-main><router-view /></el-main>
-          <el-footer><footer-bar></footer-bar></el-footer>
-        </el-container>
-      </el-container>
-    </el-container>
-
-    <el-container v-if="themeType == 3" class="layout">
-      <el-header>Header</el-header>
-      <el-main><router-view /></el-main>
-      <el-footer><footer-bar></footer-bar></el-footer>
-    </el-container>
-  </div>
+  <div class="-container"></div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 
-let name = "layout";
-import FooterBar from "@/components/FooterBar";
-import AnAside from "./components/AsideBar/index";
+let name = "";
 
 export default {
-  name: "Layout",
+  name: "",
 
   //import引入的组件需要注入到对象中才能使用
-  components: {
-    FooterBar,
-    AnAside,
-  },
+  components: {},
 
   props: {
     msg: {
@@ -75,15 +33,8 @@ export default {
   },
 
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-    };
-    return {
-      themeType: 1,
-      tableData: Array(20).fill(item),
-    };
+    //这里存放数据
+    return {};
   },
   //监听属性 类似于data概念
   computed: {},
@@ -136,38 +87,4 @@ export default {
 //  有引号的文本字符串中使用 #{} 插值语句可以添加动态的值
 //  使用@extend命令 可以继承是基于类class
 //  使用@mixin命令，定义一个代码块。 用@include命令，调用这个mixin。
-.el-header {
-  line-height: 60px;
-  color: #333;
-  background-color: #b3c0d1;
-}
-
-.el-aside {
-  color: #333;
-}
-.layout-container {
-  footer {
-    position: relative;
-
-    height: 30px !important;
-    font-family: Arial, serif;
-    line-height: 30px;
-    text-align: center !important;
-    .footBar {
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      color: #000;
-    }
-  }
-  .layout {
-    width: 100%;
-    height: 100vh;
-  }
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-}
 </style>

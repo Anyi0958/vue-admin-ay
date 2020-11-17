@@ -153,7 +153,7 @@ export default {
     }),
     async loginOut() {
       await this.$store.dispatch("user/logout");
-      this.$router.push("/login");
+      this.$router.push("/Login");
     },
   },
 };

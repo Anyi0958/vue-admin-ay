@@ -52,7 +52,7 @@ router.beforeEach((to, from, next) => {
 
   // 是否已登录
   if (Cookies.get(tokenName)) {
-    if (name == "login") {
+    if (name == "Login") {
       next({ path: "/" });
     } else {
       const hasUserInfo = store.state.user.userInfo;
@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
     if (setting.routesWhiteList.includes(to.name)) {
       next();
     } else {
-      next({ name: "login" });
+      next({ name: "Login" });
     }
   }
 });

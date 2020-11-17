@@ -48,7 +48,7 @@ module.exports = {
   routerMode: "history",
 
   //不经过token校验的路由
-  routesWhiteList: ["login", "register", "about", "/404", "/401"],
+  routesWhiteList: ["Login", "Register", "About", "/404", "/401"],
 
   //操作正常code，支持String、Array、int多种类型
   successCode: [200, 0],

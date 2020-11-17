@@ -8,7 +8,7 @@ export default {
   components: {},
   watch: {},
   mounted() {
-    if (this.$route.name == "login")
+    if (this.$route.name == "Login")
       this.$notify({
         title: this.$t("login.welcome"),
         offset: 60,
