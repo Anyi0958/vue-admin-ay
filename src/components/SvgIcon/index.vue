@@ -1,6 +1,15 @@
+/* 组件示例
+<svg-icon icon-class="el-icon-edit" class-name="class" color="red" size="30" />
+*/
+
 <template>
+  <i
+    v-if="iconType == 'element'"
+    :style="{ color: color, 'font-size': size + 'px' }"
+    :class="svgClass"
+  ></i>
   <div
-    v-if="isExternal"
+    v-else-if="isExternal"
     :style="styleExternalIcon"
     class="svg-external-icon svg-icon"
     v-on="$listeners"
@@ -41,6 +50,12 @@ export default {
     },
   },
   computed: {
+    iconType() {
+      if (this.iconClass.indexOf("el-icon") != -1) {
+        return "element";
+      }
+      return "svg";
+    },
     isExternal() {
       return isExternal(this.iconClass);
     },
@@ -48,10 +63,10 @@ export default {
       return `#icon-${this.iconClass}`;
     },
     svgClass() {
-      if (this.className) {
-        return "svg-icon " + this.className;
+      if (this.iconClass.indexOf("el-icon") != -1) {
+        return this.iconClass + " " + this.className;
       } else {
-        return "svg-icon";
+        return "svg-icon " + this.className;
       }
     },
     styleExternalIcon() {

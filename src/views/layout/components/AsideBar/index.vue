@@ -1,14 +1,17 @@
 <template>
   <el-aside :width="asideWidth" class="aside-container">
-    <div class="logo">
+    <div class="logo" :style="{ width: asideWidth }">
       <svg-icon icon-class="yun" color="#1296db" size="50" />
       <span v-if="!isCollapse">Ay-Admin-Vue</span>
     </div>
-    <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group>
-    <el-menu default-active="1-4-1" :collapse="isCollapse">
+
+    <el-menu
+      default-active="1-4-1"
+      :collapse="isCollapse"
+      background-color="#282c34"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+    >
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -71,28 +74,31 @@ export default {
         return ["success", "warning", "danger"].indexOf(value) !== -1;
       },
     },
+    asideWidth: {
+      // 数据类型
+      type: [String],
+      // 是否必填
+      required: true,
+      // 默认值
+      default: () => {
+        return "260px";
+      },
+    },
   },
 
   data() {
     //这里存放数据
-    return {
-      isCollapse: false,
-      asideWidth: "260px",
-    };
+    return {};
   },
   //监听属性 类似于data概念
-  computed: {},
-
-  //监控data中的数据变化
-  watch: {
+  computed: {
     isCollapse() {
-      if (this.isCollapse) {
-        this.asideWidth = "60px";
-      } else {
-        this.asideWidth = "260px";
-      }
+      return this.asideWidth == "260px" ? false : true;
     },
   },
+
+  //监控data中的数据变化
+  watch: {},
 
   //生命周期 - 创建之前
   beforeCreate() {},
@@ -127,19 +133,53 @@ export default {
 </script>
 <style lang="scss" scoped>
 .aside-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
   .logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 997;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 50px;
+    overflow: hidden;
     font-size: 20px;
     font-weight: bold;
     color: #1296db;
+    background: #282c34;
     span {
       margin-left: 10px;
     }
   }
+  .el-menu {
+    height: 100vh;
+    margin-top: 50px;
+    overflow-y: auto;
+    border-right: none !important;
+  }
 }
 .horizontal-collapse-transition {
   transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 0 !important;
+  background-color: #fff;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  border-radius: 0 !important;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 0 !important;
 }
 </style>

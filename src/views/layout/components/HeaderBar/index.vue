@@ -1,5 +1,16 @@
 <template>
-  <el-header class="header-container">头部</el-header>
+  <div class="header-container">
+    <!-- 菜单 -->
+    <div class="header-nav">
+      <!-- 菜单展开按钮 -->
+      <div>
+        <svg-icon icon-class="menu-open" color="" size="30" />
+        <svg-icon icon-class="menu-close" class-name="menuIcon" />
+      </div>
+    </div>
+    <!-- 标签栏 -->
+    <div class="header-tigs"></div>
+  </div>
 </template>
 
 <script>
@@ -74,17 +85,29 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-//  @import 'foo.scss'; //都会导入文件 foo.scss
-//  @import 'foo'; //都会导入文件 foo.scss
-//  @import 'http://foo.com/bar';  // 插入外部文件
-//  @import 'foo.css'; // 等同于css的import命令。
-//  多行注释 - 这些使用 /**/ 写入。多行注释都保留在CSS输出。 快捷键ctrl+shift+/
-//  单行注释 - 这些是使用 // 跟着注释。单行注释不会保留在CSS输出。快捷键ctrl+/
-//  $ 符号来标识变量；把反复使用的css属性值定义成变量
-//  在嵌套的代码块内，可以使用 & 引用父元素
-//  所有数据类型均支持相等运算 == 或 !=，此外，每种数据类型也有其各自支持的运算方式。
-//  数字运算: 支持数字的加减乘除、取整等运算 (+, -, *, /, %)
-//  有引号的文本字符串中使用 #{} 插值语句可以添加动态的值
-//  使用@extend命令 可以继承是基于类class
-//  使用@mixin命令，定义一个代码块。 用@include命令，调用这个mixin。
+.header-container {
+  position: relative;
+  height: auto;
+  user-select: none;
+  .header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 10px;
+    background: #e6a23c;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    .menuIcon {
+      font-size: 30px;
+      color: rgba(0, 0, 0, 0.65);
+      cursor: pointer;
+    }
+  }
+  .header-tigs {
+    height: 50px;
+    background: #67c23a;
+    border-top: 1px solid #f6f6f6;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+}
 </style>

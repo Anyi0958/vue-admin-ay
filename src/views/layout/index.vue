@@ -1,40 +1,26 @@
 <template>
   <div class="layout-container">
-    <el-container v-if="themeType == 1" class="layout">
-      <!-- 侧边栏 -->
-      <aside-bar></aside-bar>
+    <!-- 侧边栏 -->
+    <div class="layout-aside">
+      <aside-bar :aside-width="asideWidth"></aside-bar>
+    </div>
 
-      <el-container>
-        <!-- 头部 -->
-        <header-bar></header-bar>
-        <!-- 主体 -->
-        <el-main>
-          <router-view />
-        </el-main>
+    <div class="layout-main">
+      <!-- 头部 -->
+      <div class="layout-header">
+        <header-bar :style="{ 'margin-left': asideWidth }"></header-bar>
+      </div>
 
-        <!--  底部 -->
-        <el-footer>
-          <footer-bar></footer-bar>
-        </el-footer>
-      </el-container>
-    </el-container>
+      <!-- 主体 -->
+      <div class="layout-app">
+        <router-view />
+      </div>
 
-    <el-container v-if="themeType == 2" class="layout">
-      <el-header>Header</el-header>
-      <el-container>
-        <el-aside width="200px" style="background-color: rgb(238, 241, 246)">Aside</el-aside>
-        <el-container>
-          <el-main><router-view /></el-main>
-          <el-footer><footer-bar></footer-bar></el-footer>
-        </el-container>
-      </el-container>
-    </el-container>
-
-    <el-container v-if="themeType == 3" class="layout">
-      <el-header>Header</el-header>
-      <el-main><router-view /></el-main>
-      <el-footer><footer-bar></footer-bar></el-footer>
-    </el-container>
+      <!--  底部 -->
+      <div class="layout-footer">
+        <footer-bar></footer-bar>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -77,6 +63,7 @@ export default {
   data() {
     return {
       themeType: 1,
+      asideWidth: "260px",
     };
   },
   //监听属性 类似于data概念
@@ -117,47 +104,74 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-//  @import 'foo.scss'; //都会导入文件 foo.scss
-//  @import 'foo'; //都会导入文件 foo.scss
-//  @import 'http://foo.com/bar';  // 插入外部文件
-//  @import 'foo.css'; // 等同于css的import命令。
-//  多行注释 - 这些使用 /**/ 写入。多行注释都保留在CSS输出。 快捷键ctrl+shift+/
-//  单行注释 - 这些是使用 // 跟着注释。单行注释不会保留在CSS输出。快捷键ctrl+/
-//  $ 符号来标识变量；把反复使用的css属性值定义成变量
-//  在嵌套的代码块内，可以使用 & 引用父元素
-//  所有数据类型均支持相等运算 == 或 !=，此外，每种数据类型也有其各自支持的运算方式。
-//  数字运算: 支持数字的加减乘除、取整等运算 (+, -, *, /, %)
-//  有引号的文本字符串中使用 #{} 插值语句可以添加动态的值
-//  使用@extend命令 可以继承是基于类class
-//  使用@mixin命令，定义一个代码块。 用@include命令，调用这个mixin。
-.el-header {
-  line-height: 60px;
-  color: #333;
-  background-color: #b3c0d1;
-}
-
-.el-aside {
-  color: #333;
-}
 .layout-container {
-  footer {
-    position: relative;
-
-    height: 30px !important;
-    font-family: Arial, serif;
-    line-height: 30px;
-    text-align: center !important;
-    .footBar {
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      color: #000;
-    }
-  }
-  .layout {
-    width: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .layout-aside {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: auto;
     height: 100vh;
+    // overflow-y: auto;
+    user-select: none;
+    background: #282c34;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    transition: width 0.3s;
+  }
+  .layout-main {
+    position: relative;
+    width: auto;
+    height: 100vh;
+    margin-left: 260px;
+    overflow-y: auto;
+    background: #f6f8f9;
+
+    .layout-header {
+      position: fixed;
+      // position: relative;
+      top: 0;
+      left: 0;
+      z-index: 997;
+      width: 100%;
+      height: auto;
+    }
+    .layout-app {
+      position: relative;
+      display: block;
+      flex: 1;
+      flex-basis: auto;
+      height: auto;
+      padding: 20px;
+      margin-top: calc(60px + 50px);
+      overflow-y: auto;
+    }
+
+    .layout-footer {
+      position: fixed;
+      // position: relative;
+      bottom: 0;
+      left: 0;
+      z-index: 997;
+      width: 100%;
+      height: auto;
+      height: 30px !important;
+      font-family: Arial, serif;
+      line-height: 30px;
+      text-align: center !important;
+      background: #f6f8f9;
+      .footBar {
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: #000;
+      }
+    }
   }
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {

@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <LangSwitch :color="'#ccc'" />
+    <!-- <LangSwitch :color="'#ccc'" /> -->
 
     <el-row>
       <el-time-select
@@ -55,7 +55,7 @@ export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
     HelloWorld,
-    LangSwitch,
+    // LangSwitch,
   },
 
   props: {
@@ -161,6 +161,7 @@ export default {
 
 <style lang="scss" scoped>
 .home-container {
+  height: 200vh;
 }
 //  @import 'foo.scss'; //都会导入文件 foo.scss
 //  @import 'foo'; //都会导入文件 foo.scss
