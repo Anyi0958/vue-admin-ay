@@ -2,12 +2,11 @@
   <div class="layout-container">
     <el-container v-if="themeType == 1" class="layout">
       <!-- 侧边栏 -->
-      <an-aside></an-aside>
+      <aside-bar></aside-bar>
 
       <el-container>
         <!-- 头部 -->
-        <el-header style="font-size: 12px; text-align: right">头部</el-header>
-
+        <header-bar></header-bar>
         <!-- 主体 -->
         <el-main>
           <router-view />
@@ -45,15 +44,16 @@
 
 let name = "layout";
 import FooterBar from "@/components/FooterBar";
-import AnAside from "./components/AsideBar/index";
-
+import AsideBar from "./components/AsideBar/index";
+import HeaderBar from "./components/HeaderBar/index";
 export default {
   name: "Layout",
 
   //import引入的组件需要注入到对象中才能使用
   components: {
     FooterBar,
-    AnAside,
+    AsideBar,
+    HeaderBar,
   },
 
   props: {
@@ -75,14 +75,8 @@ export default {
   },
 
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-    };
     return {
       themeType: 1,
-      tableData: Array(20).fill(item),
     };
   },
   //监听属性 类似于data概念

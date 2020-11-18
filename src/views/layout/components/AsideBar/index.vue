@@ -1,5 +1,9 @@
 <template>
   <el-aside :width="asideWidth" class="aside-container">
+    <div class="logo">
+      <svg-icon icon-class="yun" color="#1296db" size="50" />
+      <span v-if="!isCollapse">Ay-Admin-Vue</span>
+    </div>
     <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
       <el-radio-button :label="false">展开</el-radio-button>
       <el-radio-button :label="true">收起</el-radio-button>
@@ -123,6 +127,17 @@ export default {
 </script>
 <style lang="scss" scoped>
 .aside-container {
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1296db;
+    span {
+      margin-left: 10px;
+    }
+  }
 }
 .horizontal-collapse-transition {
   transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;

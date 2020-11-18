@@ -1,5 +1,5 @@
 <template>
-  <div class="-container"></div>
+  <el-header class="header-container">头部</el-header>
 </template>
 
 <script>
