@@ -150,9 +150,9 @@ export default {
     overflow: hidden;
     font-size: 20px;
     font-weight: bold;
-    color: #1296db;
+    color: $base-color-blue;
     white-space: nowrap;
-    background: #282c34;
+    background: $base-menu-background;
     transition: all 0.3s;
     span {
       margin-left: 10px;

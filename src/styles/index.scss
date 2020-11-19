@@ -50,11 +50,11 @@ $base-logo-height: 75px;
 /* 顶部nav-bar的高度*/
 $base-nav-bar-height: 60px;
 /* 顶部多标签页tags-bar的高度*/
-$base-tabs-bar-height: 55px;
+$base-tabs-bar-height: 45px;
 /* 顶部多标签页tags-bar中每一个item的高度*/
-$base-tag-item-height: 34px;
+$base-tag-item-height: 25px;
 /* 菜单li标签的高度*/
-$base-menu-item-height: 50px;
+$base-menu-item-height: 40px;
 /* app-main的高度*/
 $base-app-main-height: calc(
   100vh - #{$base-nav-bar-height} - #{$base-tabs-bar-height} - #{$base-padding} - #{$base-padding} -

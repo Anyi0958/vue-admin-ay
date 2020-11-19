@@ -22,12 +22,15 @@
         </el-breadcrumb>
       </el-col>
       <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
+        <!-- <span class="user-icon">
+          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="compress" />
+        </span> -->
         <span class="user-icon">
-          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="404" />
+          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="expend" />
         </span>
 
         <span class="user-icon">
-          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="bug" />
+          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="bell" />
         </span>
 
         <span class="user-icon">
@@ -38,13 +41,13 @@
           <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="reload" />
         </span>
 
+        <span class="user-icon">
+          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="help" />
+        </span>
+
         <el-dropdown>
           <span class="el-dropdown-link">
-            <img
-              class="user-avatar"
-              :src="'https://i.gtimg.cn/club/item/face/img/8/15918_100.gif'"
-              alt=""
-            />
+            <img class="user-avatar" :src="'http://dwz.date/dpFJ'" alt="" />
             <div class="user-name">
               admin
               <i class="el-icon-arrow-down el-icon--right"></i>
@@ -60,7 +63,7 @@
     </el-row>
 
     <!-- 标签栏 -->
-    <div class="header-tigs"></div>
+    <TagsBar></TagsBar>
   </div>
 </template>
 
@@ -69,13 +72,17 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "header";
+
 import LangSwitch from "@/components/user/LangSwitch";
+import TagsBar from "../TagsBar/index";
+
 export default {
   name: "Header",
 
   //import引入的组件需要注入到对象中才能使用
   components: {
     LangSwitch,
+    TagsBar,
   },
 
   props: {
@@ -209,7 +216,7 @@ export default {
 
   .header-nav {
     padding: 0 15px;
-    background: #fff;
+    background: $base-color-white;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     .menuIcon {
       font-size: 30px;
@@ -221,7 +228,7 @@ export default {
       flex-wrap: nowrap;
       align-items: center;
       justify-items: center;
-      height: 60px;
+      height: $base-nav-bar-height;
       overflow: hidden;
       white-space: nowrap;
     }
@@ -231,7 +238,7 @@ export default {
       align-content: center;
       align-items: center;
       justify-content: flex-end;
-      height: 60px;
+      height: $base-nav-bar-height;
       ::v-deep {
         .lang-icon {
           position: relative !important;
@@ -242,6 +249,7 @@ export default {
       .user-icon {
         display: inline-block;
         margin-left: 10px;
+        cursor: pointer;
       }
       .el-dropdown-link {
         display: flex;
@@ -271,12 +279,6 @@ export default {
         font-size: 12px;
       }
     }
-  }
-  .header-tigs {
-    height: 50px;
-    background: #67c23a;
-    border-top: 1px solid #f6f6f6;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 }
 </style>

@@ -133,7 +133,7 @@ export default {
     height: 100vh;
     // overflow-y: auto;
     user-select: none;
-    background: #282c34;
+    background: $base-menu-background;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     transition: width 0.3s;
   }
@@ -142,7 +142,7 @@ export default {
     width: auto;
     height: 100vh;
     overflow-y: auto;
-    background: #f6f8f9;
+    background: $base-color-white;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     .layout-header {
       position: fixed;
@@ -152,6 +152,7 @@ export default {
       z-index: 997;
       width: 100%;
       height: auto;
+      box-shadow: $base-box-shadow;
     }
     .layout-app {
       position: relative;
@@ -161,7 +162,7 @@ export default {
       width: 100%;
       height: auto;
       padding: 20px;
-      margin-top: calc(60px + 50px);
+      margin-top: $base-nav-bar-height + $base-tabs-bar-height;
       overflow-y: auto;
     }
 

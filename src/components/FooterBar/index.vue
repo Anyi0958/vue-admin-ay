@@ -84,6 +84,7 @@ export default {
   font-size: 12px;
   color: #fff;
   text-align: center;
+  user-select: none;
   a {
     color: #2d8cf0;
   }

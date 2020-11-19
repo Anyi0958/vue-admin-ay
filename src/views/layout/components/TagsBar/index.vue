@@ -1,0 +1,248 @@
+<template>
+  <div id="tabs-bar-container" class="tabs-bar-container">
+    <el-tabs
+      v-model="tabActive"
+      type="card"
+      class="tabs-content"
+      @tab-click="handleTabClick"
+      @tab-remove="handleTabRemove"
+    >
+      <el-tab-pane
+        v-for="item in visitedRoutes"
+        :key="item.path"
+        :label="item.title"
+        :name="item.path"
+        :closable="!isAffix(item)"
+      ></el-tab-pane>
+    </el-tabs>
+
+    <el-dropdown @command="handleCommand">
+      <span style="cursor: pointer">
+        更多操作
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown" class="tabs-more">
+        <!-- <el-dropdown-item command="refreshRoute">
+          <vab-icon :icon="['fas', 'circle-notch']" />
+          刷新
+        </el-dropdown-item> -->
+        <el-dropdown-item command="closeOtherstabs">关闭其他</el-dropdown-item>
+        <el-dropdown-item command="closeLefttabs">关闭左侧</el-dropdown-item>
+        <el-dropdown-item command="closeRighttabs">关闭右侧</el-dropdown-item>
+        <el-dropdown-item command="closeAlltabs">关闭全部</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </div>
+</template>
+<script>
+//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+//例如：import 《组件名称》 from '《组件路径》';
+
+let name = "";
+
+export default {
+  name: "",
+
+  //import引入的组件需要注入到对象中才能使用
+  components: {},
+
+  props: {
+    msg: {
+      // 数据类型
+      type: [String, Number, Boolean, Function, Object, Array, Symbol],
+      // 是否必填
+      required: false,
+      // 默认值
+      default: () => {
+        return null;
+      },
+      // 验证函数
+      validator: function (value) {
+        // 这个值必须匹配下列字符串中的一个
+        return ["success", "warning", "danger"].indexOf(value) !== -1;
+      },
+    },
+  },
+
+  data() {
+    //这里存放数据
+    return {
+      tabActive: "Tab 16",
+      visitedRoutes: [
+        {
+          path: "Tab 1",
+          title: "Tab 1",
+        },
+        {
+          path: "Tab 2",
+          title: "Tab 2",
+        },
+        {
+          path: "Tab 3",
+          title: "Tab 3",
+        },
+        {
+          path: "Tab 4",
+          title: "Tab 4",
+        },
+        {
+          path: "Tab 5",
+          title: "Tab 5",
+        },
+        {
+          path: "Tab 6",
+          title: "Tab 6",
+        },
+        {
+          path: "Tab 7",
+          title: "Tab 7",
+        },
+        {
+          path: "Tab 8",
+          title: "Tab 8",
+        },
+        {
+          path: "Tab 9",
+          title: "Tab 9",
+        },
+        {
+          path: "Tab 10",
+          title: "Tab 10",
+        },
+        {
+          path: "Tab 11",
+          title: "Tab 11",
+        },
+
+        {
+          path: "Tab 12",
+          title: "Tab 12",
+        },
+        {
+          path: "Tab 13",
+          title: "Tab 13",
+        },
+        {
+          path: "Tab 14",
+          title: "Tab 14",
+        },
+        {
+          path: "Tab 15",
+          title: "Tab 15",
+        },
+        {
+          path: "Tab 16",
+          title: "Tab 16",
+        },
+      ],
+    };
+  },
+  //监听属性 类似于data概念
+  computed: {},
+
+  //监控data中的数据变化
+  watch: {},
+
+  //生命周期 - 创建之前
+  beforeCreate() {},
+
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+
+  //生命周期 - 挂载之前
+  beforeMount() {},
+
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {},
+
+  //生命周期 - 更新之前
+  beforeUpdate() {},
+
+  //生命周期 - 更新之后
+  updated() {},
+
+  //生命周期 - 销毁之前
+  beforeDestroy() {},
+
+  //生命周期 - 销毁完成
+  destroyed() {},
+
+  //如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {},
+
+  //方法集合
+  methods: {
+    handleTabClick() {},
+    handleTabRemove() {},
+    handleCommand() {},
+    command() {},
+    isAffix(tag) {
+      return false;
+    },
+  },
+};
+</script>
+<style lang="scss" scoped>
+.tabs-bar-container {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: $base-tabs-bar-height;
+  padding-right: $base-padding;
+  padding-left: $base-padding;
+  user-select: none;
+  background: $base-color-white;
+  border-top: 1px solid #f6f6f6;
+
+  ::v-deep {
+    .fold-unfold {
+      margin-right: $base-padding;
+    }
+  }
+
+  .tabs-content {
+    width: calc(100% - 90px);
+    height: $base-tag-item-height;
+
+    ::v-deep {
+      .el-tabs__nav-next,
+      .el-tabs__nav-prev {
+        height: $base-tag-item-height;
+        line-height: $base-tag-item-height;
+      }
+
+      .el-tabs__header {
+        border-bottom: 0;
+
+        .el-tabs__nav {
+          border: 0;
+        }
+
+        .el-tabs__item {
+          box-sizing: border-box;
+          height: $base-tag-item-height;
+          margin-right: 5px;
+          line-height: $base-tag-item-height;
+          border: 1px solid $base-border-color;
+          border-radius: $base-border-radius;
+          transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+
+          &.is-active {
+            border: 1px solid $base-color-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .more {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+</style>
