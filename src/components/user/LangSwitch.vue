@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss">
 .lang-icon {
-  position: fixed;
+  position: absolute;
   top: 2vh;
   right: 1.5vw;
   z-index: 60;

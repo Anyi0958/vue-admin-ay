@@ -1,18 +1,64 @@
 <template>
   <div class="header-container">
     <!-- 菜单 -->
-    <div class="header-nav">
-      <!-- 菜单展开按钮 -->
-      <div>
-        <svg-icon
-          v-if="menuOpen"
-          icon-class="menu-close"
-          class-name="menuIcon"
-          @click="headerMenu"
-        />
-        <svg-icon v-else icon-class="menu-open" class-name="menuIcon" @click="headerMenu" />
-      </div>
-    </div>
+    <el-row :gutter="15" class="header-nav">
+      <el-col :xs="4" :sm="12" :md="12" :lg="12" :xl="12" class="left-panel">
+        <!-- 菜单展开按钮 -->
+        <div>
+          <svg-icon
+            v-if="menuOpen"
+            icon-class="menu-close"
+            class-name="menuIcon"
+            @click="headerMenu"
+          />
+          <svg-icon v-else icon-class="menu-open" class-name="menuIcon" @click="headerMenu" />
+        </div>
+        <!-- 面包屑 -->
+        <el-breadcrumb separator=">" class="breadcrumb-container">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
+          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        </el-breadcrumb>
+      </el-col>
+      <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
+        <span class="user-icon">
+          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="404" />
+        </span>
+
+        <span class="user-icon">
+          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="bug" />
+        </span>
+
+        <span class="user-icon">
+          <LangSwitch color="rgba(0,0,0,.65)" size="18" />
+        </span>
+
+        <span class="user-icon">
+          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="reload" />
+        </span>
+
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            <img
+              class="user-avatar"
+              :src="'https://i.gtimg.cn/club/item/face/img/8/15918_100.gif'"
+              alt=""
+            />
+            <div class="user-name">
+              admin
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </div>
+          </span>
+
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>个人资料</el-dropdown-item>
+            <el-dropdown-item>退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-col>
+    </el-row>
+
     <!-- 标签栏 -->
     <div class="header-tigs"></div>
   </div>
@@ -22,13 +68,15 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 
-let name = "";
-
+let name = "header";
+import LangSwitch from "@/components/user/LangSwitch";
 export default {
-  name: "",
+  name: "Header",
 
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    LangSwitch,
+  },
 
   props: {
     msg: {
@@ -114,24 +162,114 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.breadcrumb-container {
+  margin-left: 20px;
+
+  ::v-deep {
+    .el-breadcrumb__item {
+      .el-breadcrumb__inner {
+        a {
+          display: flex;
+          float: left;
+          font-weight: normal;
+          color: #515a6e;
+
+          i {
+            margin-right: 3px;
+          }
+        }
+      }
+      .el-breadcrumb__separator {
+        color: #515a6e;
+      }
+
+      &:last-child {
+        .el-breadcrumb__inner {
+          a {
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+}
+
 .header-container {
   position: relative;
   height: auto;
   user-select: none;
   transition: all 0.3s;
+  .el-dropdown-link {
+    color: #409eff;
+    cursor: pointer;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 
   .header-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    padding: 0 10px;
-    background: #e6a23c;
+    padding: 0 15px;
+    background: #fff;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     .menuIcon {
       font-size: 30px;
       color: rgba(0, 0, 0, 0.65);
       cursor: pointer;
+    }
+    .left-panel {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-items: center;
+      height: 60px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .right-panel {
+      position: relative;
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: flex-end;
+      height: 60px;
+      ::v-deep {
+        .lang-icon {
+          position: relative !important;
+          top: auto;
+          right: auto;
+        }
+      }
+      .user-icon {
+        display: inline-block;
+        margin-left: 10px;
+      }
+      .el-dropdown-link {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        height: 50px;
+        padding: 0;
+        margin-left: 15px;
+        color: #409eff;
+        cursor: pointer;
+        .user-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+        .user-name {
+          position: relative;
+          margin-left: 8px;
+          margin-left: 8px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+      }
+      .el-icon-arrow-down {
+        font-size: 12px;
+      }
     }
   }
   .header-tigs {

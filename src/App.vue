@@ -27,6 +27,6 @@ body,
   height: 100vh;
   padding: 0;
   margin: 0;
-  font-family: Arial, serif;
+  font-family: PingFang SC, Arial, Microsoft YaHei, sans-serif;
 }
 </style>

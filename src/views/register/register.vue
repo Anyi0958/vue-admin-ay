@@ -1,9 +1,9 @@
 <template>
   <div class="login-container" @keyup.enter="submitForm('form')">
+    <LangSwitch />
+
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
-        <LangSwitch />
-
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
           <h2>
             <router-link to="/login">
@@ -129,6 +129,7 @@ export default {
 <style lang="scss" scoped>
 $min-width: 500px;
 .login-container {
+  position: relative;
   width: 100%;
   height: 100%;
   @include flex;
