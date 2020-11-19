@@ -4,8 +4,13 @@
     <div class="header-nav">
       <!-- 菜单展开按钮 -->
       <div>
-        <svg-icon icon-class="menu-open" color="" size="30" />
-        <svg-icon icon-class="menu-close" class-name="menuIcon" />
+        <svg-icon
+          v-if="menuOpen"
+          icon-class="menu-close"
+          class-name="menuIcon"
+          @click="headerMenu"
+        />
+        <svg-icon v-else icon-class="menu-open" class-name="menuIcon" @click="headerMenu" />
       </div>
     </div>
     <!-- 标签栏 -->
@@ -41,17 +46,37 @@ export default {
         return ["success", "warning", "danger"].indexOf(value) !== -1;
       },
     },
+    asideWidth: {
+      // 数据类型
+      type: [String],
+      // 是否必填
+      required: true,
+      // 默认值
+      default: () => {
+        return "260px";
+      },
+    },
   },
 
   data() {
     //这里存放数据
-    return {};
+    return {
+      menuOpen: false,
+    };
   },
   //监听属性 类似于data概念
   computed: {},
 
   //监控data中的数据变化
-  watch: {},
+  watch: {
+    asideWidth() {
+      if (this.asideWidth == "260px") {
+        this.menuOpen = true;
+      } else {
+        this.menuOpen = false;
+      }
+    },
+  },
 
   //生命周期 - 创建之前
   beforeCreate() {},
@@ -81,7 +106,11 @@ export default {
   activated() {},
 
   //方法集合
-  methods: {},
+  methods: {
+    headerMenu() {
+      this.$emit("menuOpen");
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -89,6 +118,8 @@ export default {
   position: relative;
   height: auto;
   user-select: none;
+  transition: all 0.3s;
+
   .header-nav {
     display: flex;
     align-items: center;

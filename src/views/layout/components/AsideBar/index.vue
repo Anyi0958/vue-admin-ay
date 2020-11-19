@@ -136,6 +136,7 @@ export default {
   position: relative;
   width: 100%;
   overflow: hidden;
+  transition: width 0.3s;
 
   .logo {
     position: fixed;
@@ -150,7 +151,9 @@ export default {
     font-size: 20px;
     font-weight: bold;
     color: #1296db;
+    white-space: nowrap;
     background: #282c34;
+    transition: all 0.3s;
     span {
       margin-left: 10px;
     }

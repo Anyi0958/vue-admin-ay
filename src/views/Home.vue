@@ -162,6 +162,7 @@ export default {
 <style lang="scss" scoped>
 .home-container {
   height: 200vh;
+  transition: width 0.3s;
 }
 //  @import 'foo.scss'; //都会导入文件 foo.scss
 //  @import 'foo'; //都会导入文件 foo.scss

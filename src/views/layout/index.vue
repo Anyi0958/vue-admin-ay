@@ -5,10 +5,14 @@
       <aside-bar :aside-width="asideWidth"></aside-bar>
     </div>
 
-    <div class="layout-main">
+    <div class="layout-main" :style="{ 'margin-left': asideWidth }">
       <!-- 头部 -->
       <div class="layout-header">
-        <header-bar :style="{ 'margin-left': asideWidth }"></header-bar>
+        <header-bar
+          :aside-width="asideWidth"
+          :style="{ 'margin-left': asideWidth }"
+          @menuOpen="menuOpen"
+        ></header-bar>
       </div>
 
       <!-- 主体 -->
@@ -100,7 +104,17 @@ export default {
   activated() {},
 
   //方法集合
-  methods: {},
+  methods: {
+    // 菜单展开收起
+    menuOpen() {
+      console.log("ss");
+      if (this.asideWidth == "260px") {
+        this.asideWidth = "60px";
+      } else {
+        this.asideWidth = "260px";
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -127,10 +141,9 @@ export default {
     position: relative;
     width: auto;
     height: 100vh;
-    margin-left: 260px;
     overflow-y: auto;
     background: #f6f8f9;
-
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     .layout-header {
       position: fixed;
       // position: relative;
@@ -145,6 +158,7 @@ export default {
       display: block;
       flex: 1;
       flex-basis: auto;
+      width: 100%;
       height: auto;
       padding: 20px;
       margin-top: calc(60px + 50px);
