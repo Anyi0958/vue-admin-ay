@@ -10,10 +10,14 @@
       <el-tab-pane
         v-for="item in visitedRoutes"
         :key="item.path"
-        :label="item.title"
         :name="item.path"
         :closable="!isAffix(item)"
-      ></el-tab-pane>
+      >
+        <span slot="label">
+          <svg-icon :icon-class="item.icon" size="14"></svg-icon>
+          {{ item.title }}
+        </span>
+      </el-tab-pane>
     </el-tabs>
 
     <el-dropdown @command="handleCommand">
@@ -72,67 +76,83 @@ export default {
         {
           path: "Tab 1",
           title: "Tab 1",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 2",
           title: "Tab 2",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 3",
           title: "Tab 3",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 4",
           title: "Tab 4",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 5",
           title: "Tab 5",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 6",
           title: "Tab 6",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 7",
           title: "Tab 7",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 8",
           title: "Tab 8",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 9",
           title: "Tab 9",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 10",
           title: "Tab 10",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 11",
           title: "Tab 11",
+          icon: "el-icon-date",
         },
 
         {
           path: "Tab 12",
           title: "Tab 12",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 13",
           title: "Tab 13",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 14",
           title: "Tab 14",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 15",
           title: "Tab 15",
+          icon: "el-icon-date",
         },
         {
           path: "Tab 16",
           title: "Tab 16",
+          icon: "el-icon-date",
         },
       ],
     };
