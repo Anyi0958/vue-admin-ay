@@ -73,6 +73,15 @@ export default {
     profile: "个人中心",
     theme: "换肤",
     size: "布局大小",
+    help: "帮助",
+    reload: "刷新",
+  },
+  tagBar: {
+    action: "更多操作",
+    closeOther: "关闭其他",
+    closeLeft: "关闭左侧",
+    closeRight: "关闭右侧",
+    closeAll: "关闭全部",
   },
   login: {
     welcome: `欢迎来到${defaultSettings.title}`,

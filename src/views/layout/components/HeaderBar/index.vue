@@ -13,6 +13,7 @@
           />
           <svg-icon v-else icon-class="menu-open" class-name="menuIcon" @click="headerMenu" />
         </div>
+
         <!-- 面包屑 -->
         <el-breadcrumb separator=">" class="breadcrumb-container">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -21,10 +22,8 @@
           <el-breadcrumb-item>活动详情</el-breadcrumb-item>
         </el-breadcrumb>
       </el-col>
+
       <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
-        <!-- <span class="user-icon">
-          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="compress" />
-        </span> -->
         <span class="user-icon">
           <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="expend" />
         </span>
@@ -38,11 +37,15 @@
         </span>
 
         <span class="user-icon">
-          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="reload" />
+          <el-tooltip :content="reloadText" placement="top">
+            <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="reload" @click="reload" />
+          </el-tooltip>
         </span>
 
         <span class="user-icon">
-          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="help" />
+          <el-tooltip :content="helpText" placement="top">
+            <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="help" />
+          </el-tooltip>
         </span>
 
         <el-dropdown>
@@ -55,8 +58,8 @@
           </span>
 
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>个人资料</el-dropdown-item>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item>{{ $t("navbar.profile") }}</el-dropdown-item>
+            <el-dropdown-item>{{ $t("navbar.logOut") }}</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -120,7 +123,14 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+    helpText() {
+      return this.$t("navbar.help");
+    },
+    reloadText() {
+      return this.$t("navbar.reload");
+    },
+  },
 
   //监控data中的数据变化
   watch: {
@@ -162,6 +172,9 @@ export default {
 
   //方法集合
   methods: {
+    reload() {
+      this.$router.go(0);
+    },
     headerMenu() {
       this.$emit("menuOpen");
     },

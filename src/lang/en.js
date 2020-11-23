@@ -73,6 +73,15 @@ export default {
     profile: "Profile",
     theme: "Theme",
     size: "Global Size",
+    help: "Help",
+    reload: "Reload",
+  },
+  tagBar: {
+    action: "Operations",
+    closeOther: "Close the other",
+    closeLeft: "Close left side",
+    closeRight: "Close right side",
+    closeAll: "Close all",
   },
   login: {
     welcome: `Welcome to ${defaultSettings.title}`,

@@ -21,7 +21,7 @@
       </div>
 
       <!--  底部 -->
-      <div class="layout-footer">
+      <div class="layout-footer" :style="{ 'margin-left': asideWidth }">
         <footer-bar></footer-bar>
       </div>
     </div>

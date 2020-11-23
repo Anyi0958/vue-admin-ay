@@ -15,14 +15,16 @@
       >
         <span slot="label">
           <svg-icon :icon-class="item.icon" size="14"></svg-icon>
-          {{ item.title }}
+          {{ lange == "zh" ? item.zhTitle : item.enTitle }}
         </span>
       </el-tab-pane>
     </el-tabs>
 
     <el-dropdown @command="handleCommand">
-      <span style="cursor: pointer">
-        更多操作
+      <span class="tabAciton">
+        <span>
+          {{ $t("tagBar.action") }}
+        </span>
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown" class="tabs-more">
@@ -30,10 +32,10 @@
           <vab-icon :icon="['fas', 'circle-notch']" />
           刷新
         </el-dropdown-item> -->
-        <el-dropdown-item command="closeOtherstabs">关闭其他</el-dropdown-item>
-        <el-dropdown-item command="closeLefttabs">关闭左侧</el-dropdown-item>
-        <el-dropdown-item command="closeRighttabs">关闭右侧</el-dropdown-item>
-        <el-dropdown-item command="closeAlltabs">关闭全部</el-dropdown-item>
+        <el-dropdown-item command="closeOtherstabs">{{ $t("tagBar.closeOther") }}</el-dropdown-item>
+        <el-dropdown-item command="closeLefttabs">{{ $t("tagBar.closeLeft") }}</el-dropdown-item>
+        <el-dropdown-item command="closeRighttabs">{{ $t("tagBar.closeRight") }}</el-dropdown-item>
+        <el-dropdown-item command="closeAlltabs">{{ $t("tagBar.closeAll") }}</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -71,94 +73,114 @@ export default {
   data() {
     //这里存放数据
     return {
-      tabActive: "Tab 16",
+      tabActive: "Tab 8",
       visitedRoutes: [
         {
           path: "Tab 1",
-          title: "Tab 1",
+          zhTitle: " Zh Tab 1",
+          enTitle: "En Tab 1 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 2",
-          title: "Tab 2",
+          zhTitle: " Zh Tab 2",
+          enTitle: "En Tab 2 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 3",
-          title: "Tab 3",
+          zhTitle: " Zh Tab 3",
+          enTitle: "En Tab 3 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 4",
-          title: "Tab 4",
+          zhTitle: " Zh Tab 4",
+          enTitle: "En Tab 4 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 5",
-          title: "Tab 5",
+          zhTitle: " Zh Tab 5",
+          enTitle: "En Tab 5 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 6",
-          title: "Tab 6",
+          zhTitle: " Zh Tab 6",
+          enTitle: "En Tab 6 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 7",
-          title: "Tab 7",
+          zhTitle: " Zh Tab 7",
+          enTitle: "En Tab 7 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 8",
-          title: "Tab 8",
+          zhTitle: " Zh Tab 8",
+          enTitle: "En Tab 8 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 9",
-          title: "Tab 9",
+          zhTitle: " Zh Tab 9",
+          enTitle: "En Tab 9 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 10",
-          title: "Tab 10",
+          zhTitle: "Zh Tab 10",
+          enTitle: "En Tab 10 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 11",
-          title: "Tab 11",
+          zhTitle: "Zh Tab 11",
+          enTitle: "En Tab 11 ",
           icon: "el-icon-date",
         },
 
         {
           path: "Tab 12",
-          title: "Tab 12",
+          zhTitle: "Zh Tab 12",
+          enTitle: "En Tab 12 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 13",
-          title: "Tab 13",
+          zhTitle: "Zh Tab 13",
+          enTitle: "En Tab 13 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 14",
-          title: "Tab 14",
+          zhTitle: "Zh Tab 14",
+          enTitle: "En Tab 14 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 15",
-          title: "Tab 15",
+          zhTitle: "Zh Tab 15",
+          enTitle: "En Tab 15 ",
           icon: "el-icon-date",
         },
         {
           path: "Tab 16",
-          title: "Tab 16",
+          zhTitle: "Zh Tab 16",
+          enTitle: "En Tab 16 ",
           icon: "el-icon-date",
         },
       ],
     };
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+    lange() {
+      return this.$store.state.user.language;
+    },
+  },
 
   //监控data中的数据变化
   watch: {},
@@ -194,9 +216,37 @@ export default {
   methods: {
     handleTabClick() {},
     handleTabRemove() {},
-    handleCommand() {},
-    command() {},
+    handleCommand(v) {
+      let tagIndex = this.visitedRoutes.length;
+      switch (v) {
+        case "closeOtherstabs":
+          this.visitedRoutes = this.visitedRoutes.filter(item => {
+            return this.isAffix(item) || item.path == this.tabActive;
+          });
+          break;
+        case "closeLefttabs":
+          this.visitedRoutes = this.visitedRoutes.filter((item, index) => {
+            if (item.path == this.tabActive) tagIndex = index;
+            return this.isAffix(item) || tagIndex <= index;
+          });
+          break;
+        case "closeRighttabs":
+          this.visitedRoutes = this.visitedRoutes.filter((item, index) => {
+            if (item.path == this.tabActive) tagIndex = index;
+            return this.isAffix(item) || tagIndex >= index;
+          });
+          break;
+        case "closeAlltabs":
+          this.visitedRoutes = this.visitedRoutes.filter(item => {
+            return this.isAffix(item);
+          });
+          break;
+        default:
+          break;
+      }
+    },
     isAffix(tag) {
+      if (tag.path == "Tab 1" || tag.path == "Tab 3") return true;
       return false;
     },
   },
@@ -222,9 +272,21 @@ export default {
       margin-right: $base-padding;
     }
   }
+  .tabAciton {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:first-child span {
+      display: inline-block;
+      max-width: 70px;
+      margin-right: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 
   .tabs-content {
-    width: calc(100% - 90px);
+    width: calc(100% - 100px);
     height: $base-tag-item-height;
 
     ::v-deep {
