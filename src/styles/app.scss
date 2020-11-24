@@ -29,6 +29,8 @@ $base-ceshi-boder: 1px solid $base-color-blue;
 /* 框架默认主题色 */
 $base-color-default: $base-color-blue;
 
+/* 默认paddiing*/
+$base-padding: 20px;
 /* 默认阴影*/
 $base-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 /* 默认动画*/
@@ -52,12 +54,11 @@ $base-nav-text-color: rgba(0, 0, 0, 0.65);
 $base-tabs-bar-height: 45px;
 $base-tabs-background: $base-color-white;
 $base-tabs-text-color: rgba(0, 0, 0, 0.65);
-
 /* 顶部多标签页tags-bar中每一个item的高度*/
 $base-tag-item-height: 25px;
+
 /* 菜单li标签的高度*/
 $base-menu-item-height: 40px;
-
 /* 横向布局时top-bar、logo、一级菜单的高度*/
 $base-top-bar-height: 65px;
 /* 纵向布局时logo的高度*/
@@ -76,8 +77,7 @@ $base-title-color: #fff;
 
 /* 输入框高度*/
 $base-input-height: 32px;
-/* 默认paddiing*/
-$base-padding: 20px;
+
 
 /* app-main的高度*/
 $base-app-main-height: calc(

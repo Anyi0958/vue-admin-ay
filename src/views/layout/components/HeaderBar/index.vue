@@ -1,7 +1,11 @@
 <template>
   <div class="header-container">
     <!-- 菜单 -->
-    <el-row :gutter="15" class="header-nav" :style="{ 'margin-left': navWidth }">
+    <el-row
+      :gutter="15"
+      class="header-nav"
+      :style="{ 'margin-left': navWidth, background: navType == 1 ? '#fff' : 'rgb(40, 44, 52)' }"
+    >
       <el-col :xs="4" :sm="12" :md="12" :lg="12" :xl="12" class="left-panel">
         <!-- <div v-if="navType == 2" class="logo" :style="{ width: tagWidth }">
           <svg-icon icon-class="yun" color="#1296db" size="50" />
@@ -212,8 +216,8 @@ export default {
 
   //监控data中的数据变化
   watch: {
-    navWidth() {
-      if (this.navWidth == "260px") {
+    tagWidth() {
+      if (this.tagWidth == "260px") {
         this.menuOpen = true;
       } else {
         this.menuOpen = false;
@@ -330,25 +334,6 @@ export default {
   }
 }
 
-.logo {
-  z-index: 997;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: $base-nav-bar-height;
-  margin-right: 20px;
-  margin-left: -7px;
-  overflow: hidden;
-  font-size: 20px;
-  font-weight: bold;
-  color: $base-color-blue;
-  white-space: nowrap;
-  transition: all 0.3s;
-  span {
-    margin-left: 10px;
-  }
-}
-
 .header-container {
   position: relative;
   height: auto;
@@ -360,6 +345,22 @@ export default {
   }
   .el-icon-arrow-down {
     font-size: $base-font-size-small;
+  }
+  .logo {
+    z-index: $base-z-index;
+    @include flex;
+    height: $base-nav-bar-height;
+    margin-right: 20px;
+    margin-left: -7px;
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: bold;
+    color: $base-color-blue;
+    white-space: nowrap;
+    transition: $base-transition;
+    span {
+      margin-left: 10px;
+    }
   }
 
   .header-nav {

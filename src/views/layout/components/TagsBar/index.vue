@@ -290,7 +290,7 @@ export default {
   padding-right: $base-padding;
   padding-left: $base-padding;
   user-select: none;
-  background: $base-color-white;
+  background: $base-tabs-background;
   border-top: 1px solid #f6f6f6;
 
   ::v-deep {
@@ -312,7 +312,7 @@ export default {
   }
 
   .tabs-content {
-    width: calc(100% - 100px);
+    width: calc(100% - 130px);
     height: $base-tag-item-height;
 
     ::v-deep {
