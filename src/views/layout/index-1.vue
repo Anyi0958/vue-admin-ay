@@ -4,14 +4,14 @@
       <!-- 头部 -->
       <div class="layout-header">
         <header-bar
-          :nav-width="navType == 1 ? asideWidth : 0"
-          :tag-width="asideWidth"
+          :aside-width="asideWidth"
+          :style="{ 'margin-left': asideWidth }"
           @menuOpen="menuOpen"
         ></header-bar>
       </div>
 
       <!-- 侧边栏 -->
-      <div class="layout-aside" :style="{ top: navType == 2 ? '60px' : 0 }">
+      <div class="layout-aside">
         <aside-bar :aside-width="asideWidth"></aside-bar>
       </div>
 
@@ -71,11 +71,7 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {
-    navType() {
-      return this.$store.getters.navType;
-    },
-  },
+  computed: {},
 
   //监控data中的数据变化
   watch: {},
@@ -111,6 +107,7 @@ export default {
   methods: {
     // 菜单展开收起
     menuOpen() {
+      console.log("ss");
       if (this.asideWidth == "260px") {
         this.asideWidth = "60px";
       } else {

@@ -129,9 +129,7 @@ export default {
 <style lang="scss" scoped>
 $min-width: 500px;
 .login-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  @include relative;
   @include flex;
   background: url("http://api.neweb.top/bing.php?type=rand") center center fixed no-repeat;
   background-size: cover;

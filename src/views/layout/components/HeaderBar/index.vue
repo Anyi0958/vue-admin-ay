@@ -1,21 +1,46 @@
 <template>
   <div class="header-container">
     <!-- 菜单 -->
-    <el-row :gutter="15" class="header-nav">
+    <el-row
+      :gutter="15"
+      class="header-nav"
+      :style="{ 'margin-left': navWidth, background: navType == 1 ? '#fff' : 'rgb(40, 44, 52)' }"
+    >
       <el-col :xs="4" :sm="12" :md="12" :lg="12" :xl="12" class="left-panel">
+        <!-- <div v-if="navType == 2" class="logo" :style="{ width: tagWidth }">
+          <svg-icon icon-class="yun" color="#1296db" size="50" />
+          <span v-if="!isCollapse">{{ $t("login.title") }}</span>
+        </div> -->
+
+        <div v-if="navType == 2" class="logo" :style="{ width: '260px' }">
+          <svg-icon icon-class="yun" color="#1296db" size="50" />
+          <span>{{ $t("login.title") }}</span>
+        </div>
+
         <!-- 菜单展开按钮 -->
-        <div>
+        <div v-if="navType == 1">
           <svg-icon
             v-if="menuOpen"
             icon-class="menu-close"
             class-name="menuIcon"
+            :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'"
             @click="headerMenu"
           />
-          <svg-icon v-else icon-class="menu-open" class-name="menuIcon" @click="headerMenu" />
+          <svg-icon
+            v-else
+            :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'"
+            icon-class="menu-open"
+            class-name="menuIcon"
+            @click="headerMenu"
+          />
         </div>
 
         <!-- 面包屑 -->
-        <el-breadcrumb separator=">" class="breadcrumb-container">
+        <el-breadcrumb
+          v-if="navType == 1"
+          separator=">"
+          :class="navType == 1 ? 'breadcrumb-container-light' : 'breadcrumb-container-dark'"
+        >
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
@@ -25,26 +50,57 @@
 
       <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
         <span class="user-icon">
-          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="expend" />
+          <el-dropdown @command="themeSwitch">
+            <svg-icon
+              :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'"
+              size="20"
+              icon-class="theme"
+            />
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="1">左右</el-dropdown-item>
+              <el-dropdown-item command="2">上下</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </span>
 
         <span class="user-icon">
-          <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="bell" />
+          <svg-icon
+            :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'"
+            size="18"
+            icon-class="expend"
+          />
         </span>
 
         <span class="user-icon">
-          <LangSwitch color="rgba(0,0,0,.65)" size="18" />
+          <svg-icon
+            :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'"
+            size="18"
+            icon-class="bell"
+          />
+        </span>
+
+        <span class="user-icon">
+          <LangSwitch :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'" size="18" />
         </span>
 
         <span class="user-icon">
           <el-tooltip :content="reloadText" placement="top">
-            <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="reload" @click="reload" />
+            <svg-icon
+              :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'"
+              size="18"
+              icon-class="reload"
+              @click="reload"
+            />
           </el-tooltip>
         </span>
 
         <span class="user-icon">
           <el-tooltip :content="helpText" placement="top">
-            <svg-icon color="rgba(0,0,0,.65)" size="18" icon-class="help" />
+            <svg-icon
+              :color="navType == 1 ? 'rgba(0,0,0,.65)' : '#fff'"
+              size="18"
+              icon-class="help"
+            />
           </el-tooltip>
         </span>
 
@@ -66,7 +122,7 @@
     </el-row>
 
     <!-- 标签栏 -->
-    <TagsBar></TagsBar>
+    <TagsBar :style="{ 'margin-left': tagWidth }" :menu-open.sync="menuOpen"></TagsBar>
   </div>
 </template>
 
@@ -104,9 +160,19 @@ export default {
         return ["success", "warning", "danger"].indexOf(value) !== -1;
       },
     },
-    asideWidth: {
+    navWidth: {
       // 数据类型
-      type: [String],
+      type: [String, Number],
+      // 是否必填
+      required: true,
+      // 默认值
+      default: () => {
+        return "260px";
+      },
+    },
+    tagWidth: {
+      // 数据类型
+      type: [String, Number],
       // 是否必填
       required: true,
       // 默认值
@@ -119,23 +185,29 @@ export default {
   data() {
     //这里存放数据
     return {
-      menuOpen: false,
+      menuOpen: true,
     };
   },
   //监听属性 类似于data概念
   computed: {
+    navType() {
+      return this.$store.getters.navType;
+    },
     helpText() {
       return this.$t("navbar.help");
     },
     reloadText() {
       return this.$t("navbar.reload");
     },
+    isCollapse() {
+      return this.tagWidth == "260px" ? false : true;
+    },
   },
 
   //监控data中的数据变化
   watch: {
-    asideWidth() {
-      if (this.asideWidth == "260px") {
+    navWidth() {
+      if (this.navWidth == "260px") {
         this.menuOpen = true;
       } else {
         this.menuOpen = false;
@@ -178,11 +250,15 @@ export default {
     headerMenu() {
       this.$emit("menuOpen");
     },
+    themeSwitch(v) {
+      this.$store.commit("app/switchNavType", v);
+      console.log(this.navType);
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
-.breadcrumb-container {
+.breadcrumb-container-light {
   margin-left: 20px;
 
   ::v-deep {
@@ -214,6 +290,58 @@ export default {
   }
 }
 
+.breadcrumb-container-dark {
+  margin-left: 20px;
+
+  ::v-deep {
+    .el-breadcrumb__item {
+      .el-breadcrumb__inner {
+        color: #fff;
+        a {
+          display: flex;
+          float: left;
+          font-weight: normal;
+          color: #fff;
+
+          i {
+            margin-right: 3px;
+          }
+        }
+      }
+      .el-breadcrumb__separator {
+        color: #fff;
+      }
+
+      &:last-child {
+        .el-breadcrumb__inner {
+          a {
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  z-index: 997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $base-nav-bar-height;
+  margin-right: 20px;
+  margin-left: -7px;
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: bold;
+  color: $base-color-blue;
+  white-space: nowrap;
+  transition: all 0.3s;
+  span {
+    margin-left: 10px;
+  }
+}
+
 .header-container {
   position: relative;
   height: auto;
@@ -228,7 +356,7 @@ export default {
   }
 
   .header-nav {
-    padding: 0 15px;
+    padding-right: 15px;
     background: $base-color-white;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     .menuIcon {

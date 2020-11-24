@@ -19,14 +19,4 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-body,
-#app {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-  font-family: PingFang SC, Arial, Microsoft YaHei, sans-serif;
-}
-</style>
+<style lang="scss"></style>

@@ -1,5 +1,11 @@
 <template>
   <div id="tabs-bar-container" class="tabs-bar-container">
+    <!-- 菜单展开按钮 -->
+    <div v-if="navType == 2">
+      <svg-icon v-if="menuOpen" icon-class="menu-close" class-name="menuIcon" @click="headerMenu" />
+      <svg-icon v-else icon-class="menu-open" class-name="menuIcon" @click="headerMenu" />
+    </div>
+
     <el-tabs
       v-model="tabActive"
       type="card"
@@ -66,6 +72,16 @@ export default {
       validator: function (value) {
         // 这个值必须匹配下列字符串中的一个
         return ["success", "warning", "danger"].indexOf(value) !== -1;
+      },
+    },
+    menuOpen: {
+      // 数据类型
+      type: [String, Number, Boolean],
+      // 是否必填
+      required: false,
+      // 默认值
+      default: () => {
+        return false;
       },
     },
   },
@@ -180,10 +196,17 @@ export default {
     lange() {
       return this.$store.state.user.language;
     },
+    navType() {
+      return this.$store.getters.navType;
+    },
   },
 
   //监控data中的数据变化
-  watch: {},
+  watch: {
+    menuOpen() {
+      console.log(this.menuOpen);
+    },
+  },
 
   //生命周期 - 创建之前
   beforeCreate() {},
@@ -214,6 +237,9 @@ export default {
 
   //方法集合
   methods: {
+    headerMenu() {
+      this.$parent.$emit("menuOpen");
+    },
     handleTabClick() {},
     handleTabRemove() {},
     handleCommand(v) {

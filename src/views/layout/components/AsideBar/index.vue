@@ -1,11 +1,12 @@
 <template>
   <el-aside :width="asideWidth" class="aside-container">
-    <div class="logo" :style="{ width: asideWidth }">
+    <div v-if="navType == 1" class="logo" :style="{ width: asideWidth }">
       <svg-icon icon-class="yun" color="#1296db" size="50" />
-      <span v-if="!isCollapse">Ay-Admin-Vue</span>
+      <span v-if="!isCollapse">{{ $t("login.title") }}</span>
     </div>
 
     <el-menu
+      :style="{ 'margin-top': navType == 1 ? '60px' : '0' }"
       default-active="1-4-1"
       :collapse="isCollapse"
       background-color="#282c34"
@@ -95,6 +96,9 @@ export default {
     isCollapse() {
       return this.asideWidth == "260px" ? false : true;
     },
+    navType() {
+      return this.$store.getters.navType;
+    },
   },
 
   //监控data中的数据变化
@@ -139,14 +143,14 @@ export default {
   transition: width 0.3s;
 
   .logo {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 997;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: $base-nav-bar-height;
     overflow: hidden;
     font-size: 20px;
     font-weight: bold;
@@ -160,29 +164,8 @@ export default {
   }
   .el-menu {
     height: 100vh;
-    margin-top: 50px;
     overflow-y: auto;
     border-right: none !important;
   }
-}
-.horizontal-collapse-transition {
-  transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
-}
-
-/* 设置滚动条的样式 */
-::-webkit-scrollbar {
-  width: 0 !important;
-  background-color: #fff;
-}
-
-/* 滚动槽 */
-::-webkit-scrollbar-track {
-  border-radius: 0 !important;
-}
-
-/* 滚动条滑块 */
-::-webkit-scrollbar-thumb {
-  background: #ddd;
-  border-radius: 0 !important;
 }
 </style>
