@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 @mixin clearfix {
   &:after {
     display: table;
@@ -12,16 +14,16 @@
   justify-content: center;
 }
 
-@mixin scrollBar {
-  &::-webkit-scrollbar-track-piece {
+@mixin scrollBar($width: 6px) {
+  ::-webkit-scrollbar-track-piece {
     background: #d3dce6;
   }
 
-  &::-webkit-scrollbar {
-    width: 6px;
+  ::-webkit-scrollbar {
+    width: $width;
   }
 
-  &::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: #99a9bf;
     border-radius: 20px;
   }

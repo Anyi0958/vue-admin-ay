@@ -334,8 +334,6 @@ export default {
           height: $base-tag-item-height;
           margin-right: 5px;
           line-height: $base-tag-item-height;
-          border: 1px solid $base-border-color;
-          border-radius: $base-border-radius;
           transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
 
           &.is-active {

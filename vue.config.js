@@ -198,8 +198,8 @@ module.exports = {
         additionalData(content, loaderContext) {
           const { resourcePath, rootContext } = loaderContext;
           const relativePath = path.relative(rootContext, resourcePath);
-          if (relativePath.replace(/\\/g, "/") !== "src/styles/index.scss") {
-            return '@import "~@/styles/index.scss";' + content;
+          if (relativePath.replace(/\\/g, "/") !== "src/styles/app.scss") {
+            return '@import "~@/styles/app.scss";' + content;
           }
           return content;
         },

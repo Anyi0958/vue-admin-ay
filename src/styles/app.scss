@@ -1,3 +1,7 @@
+@charset "utf-8";
+
+@import "./mixin.scss";
+
 /* 颜色 */
 $base-color-blue: #1890ff;
 $base-color-green: #13ce66;
@@ -25,9 +29,13 @@ $base-ceshi-boder: 1px solid $base-color-blue;
 /* 框架默认主题色 */
 $base-color-default: $base-color-blue;
 
-$base-main-width: 1279px;
-$base-border-radius: 2px;
-$base-border-color: #dcdfe6;
+/* 侧边栏 */
+$base-aside-width-open: 260px;
+$base-aside-width-close: 60px;
+
+$base-aside-background: #282c34;
+$base-aside-text-color: #fff;
+$base-aside-active-text-color: #ffd04b;
 
 /* 横向布局纵向布局时菜单背景色*/
 $base-menu-background: rgb(40, 44, 52);
@@ -77,3 +85,9 @@ $base-right-content-width-min: calc(100% - #{$base-left-menu-width-min});
 $base-transition: all 0.2s;
 /* 默认动画时长*/
 $base-transition-time: 0.2s;
+
+:export {
+  asideBackground: $base-aside-background;
+  asideTextColor: $base-aside-text-color;
+  asideActiveTextColor: $base-aside-active-text-color;
+}

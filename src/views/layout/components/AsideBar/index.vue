@@ -9,9 +9,9 @@
       :style="{ 'margin-top': navType == 1 ? '60px' : '0' }"
       default-active="1-4-1"
       :collapse="isCollapse"
-      background-color="#282c34"
-      text-color="#fff"
-      active-text-color="#ffd04b"
+      :background-color="variables.asideBackground"
+      :text-color="variables.asideTextColor"
+      :active-text-color="variables.asideActiveTextColor"
     >
       <el-submenu index="1">
         <template slot="title">
@@ -52,6 +52,8 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "aside";
+
+import variables from "@/styles/app.scss";
 
 export default {
   name: "Aside",
@@ -99,6 +101,9 @@ export default {
     navType() {
       return this.$store.getters.navType;
     },
+    variables() {
+      return variables;
+    },
   },
 
   //监控data中的数据变化
@@ -137,6 +142,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .aside-container {
+  @include scrollBar(0);
   position: relative;
   width: 100%;
   overflow: hidden;
