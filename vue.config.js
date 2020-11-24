@@ -190,6 +190,7 @@ module.exports = {
     requireModuleExtension: true,
     sourceMap: true,
     loaderOptions: {
+      // 全局引入scss文件
       scss: {
         /*sass-loader 8.0语法 */
         //prependData: '@import "~@/styles/variables.scss";',

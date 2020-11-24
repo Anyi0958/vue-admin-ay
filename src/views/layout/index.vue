@@ -2,6 +2,7 @@
   <div class="layout-container">
     <!-- 头部 -->
     <header-bar
+      :variables="variables"
       class="layout-header"
       :nav-width="navType == 1 ? asideWidth : 0"
       :tag-width="asideWidth"
@@ -10,6 +11,7 @@
 
     <!-- 侧边栏 -->
     <aside-bar
+      :variables="variables"
       :aside-width="asideWidth"
       class="layout-aside"
       :style="{ top: navType == 2 ? '60px' : 0 }"
@@ -21,7 +23,7 @@
     </div>
 
     <!--  底部 -->
-    <footer-bar class="layout-footer" :style="{ 'margin-left': asideWidth }"></footer-bar>
+    <footer-bar class="layout-footer" :style="{ 'padding-left': asideWidth }"></footer-bar>
   </div>
 </template>
 
@@ -30,6 +32,8 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "layout";
+import variables from "@/styles/app.scss";
+
 import FooterBar from "@/components/FooterBar";
 import AsideBar from "./components/AsideBar/index";
 import HeaderBar from "./components/HeaderBar/index";
@@ -71,6 +75,9 @@ export default {
   computed: {
     navType() {
       return this.$store.getters.navType;
+    },
+    variables() {
+      return variables;
     },
   },
 
@@ -120,7 +127,7 @@ export default {
 <style lang="scss" scoped>
 .layout-container {
   @include relative;
-  overflow: hidden;
+  overflow: auto;
   background: $base-color-white;
   transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -132,11 +139,9 @@ export default {
     z-index: 999;
     width: auto;
     height: 100vh;
-    // overflow-y: auto;
     user-select: none;
-    background: $base-menu-background;
+    background: $base-aside-background;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-    transition: width $base-transition-time;
   }
 
   .layout-header {
@@ -147,12 +152,12 @@ export default {
     z-index: 997;
     width: 100%;
     height: auto;
+    user-select: none;
     box-shadow: $base-box-shadow;
   }
 
   .layout-app {
     @include scrollBar;
-
     position: relative;
     display: block;
     flex: 1;
@@ -175,15 +180,10 @@ export default {
     height: 30px !important;
     font-family: Arial, serif;
     line-height: 30px;
+    color: #000;
     text-align: center !important;
+    user-select: none;
     background: #f6f8f9;
-    .footBar {
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      color: #000;
-    }
   }
 }
 </style>

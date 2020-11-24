@@ -1,11 +1,7 @@
 <template>
   <div class="header-container">
     <!-- 菜单 -->
-    <el-row
-      :gutter="15"
-      class="header-nav"
-      :style="{ 'margin-left': navWidth, background: navType == 1 ? '#fff' : 'rgb(40, 44, 52)' }"
-    >
+    <el-row :gutter="15" class="header-nav" :style="{ 'margin-left': navWidth }">
       <el-col :xs="4" :sm="12" :md="12" :lg="12" :xl="12" class="left-panel">
         <!-- <div v-if="navType == 2" class="logo" :style="{ width: tagWidth }">
           <svg-icon icon-class="yun" color="#1296db" size="50" />
@@ -180,6 +176,16 @@ export default {
         return "260px";
       },
     },
+    variables: {
+      // 数据类型
+      type: [String, Number, Boolean, Function, Object, Array, Symbol],
+      // 是否必填
+      required: false,
+      // 默认值
+      default: () => {
+        return [];
+      },
+    },
   },
 
   data() {
@@ -257,6 +263,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .breadcrumb-container-light {
   margin-left: 20px;
@@ -346,38 +353,36 @@ export default {
   position: relative;
   height: auto;
   user-select: none;
-  transition: all 0.3s;
+  transition: $base-transition;
   .el-dropdown-link {
     color: #409eff;
     cursor: pointer;
   }
   .el-icon-arrow-down {
-    font-size: 12px;
+    font-size: $base-font-size-small;
   }
 
   .header-nav {
     padding-right: 15px;
-    background: $base-color-white;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    background: $base-nav-background;
+    box-shadow: $base-box-shadow;
     .menuIcon {
       font-size: 30px;
-      color: rgba(0, 0, 0, 0.65);
+      color: $base-nav-text-color;
       cursor: pointer;
     }
     .left-panel {
-      display: flex;
+      @include flex;
       flex-wrap: nowrap;
-      align-items: center;
-      justify-items: center;
+      justify-content: flex-start;
       height: $base-nav-bar-height;
       overflow: hidden;
       white-space: nowrap;
     }
     .right-panel {
       position: relative;
-      display: flex;
+      @include flex;
       align-content: center;
-      align-items: center;
       justify-content: flex-end;
       height: $base-nav-bar-height;
       ::v-deep {
@@ -393,10 +398,8 @@ export default {
         cursor: pointer;
       }
       .el-dropdown-link {
-        display: flex;
         align-content: center;
-        align-items: center;
-        justify-content: center;
+        @include flex;
         justify-items: center;
         height: 50px;
         padding: 0;
@@ -417,7 +420,7 @@ export default {
         }
       }
       .el-icon-arrow-down {
-        font-size: 12px;
+        font-size: $base-font-size-small;
       }
     }
   }

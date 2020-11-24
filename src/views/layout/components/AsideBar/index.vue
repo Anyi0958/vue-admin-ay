@@ -1,7 +1,7 @@
 <template>
   <el-aside :width="asideWidth" class="aside-container">
     <div v-if="navType == 1" class="logo" :style="{ width: asideWidth }">
-      <svg-icon icon-class="yun" color="#1296db" size="50" />
+      <svg-icon icon-class="yun" :color="variables.asideTextColor" size="50" />
       <span v-if="!isCollapse">{{ $t("login.title") }}</span>
     </div>
 
@@ -53,8 +53,6 @@
 
 let name = "aside";
 
-import variables from "@/styles/app.scss";
-
 export default {
   name: "Aside",
 
@@ -87,6 +85,16 @@ export default {
         return "260px";
       },
     },
+    variables: {
+      // 数据类型
+      type: [String, Number, Boolean, Function, Object, Array, Symbol],
+      // 是否必填
+      required: false,
+      // 默认值
+      default: () => {
+        return [];
+      },
+    },
   },
 
   data() {
@@ -100,9 +108,6 @@ export default {
     },
     navType() {
       return this.$store.getters.navType;
-    },
-    variables() {
-      return variables;
     },
   },
 
@@ -146,24 +151,23 @@ export default {
   position: relative;
   width: 100%;
   overflow: hidden;
-  transition: width 0.3s;
+  transition: width $base-transition-time;
 
   .logo {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 997;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex;
     height: $base-nav-bar-height;
     overflow: hidden;
     font-size: 20px;
     font-weight: bold;
     color: $base-color-blue;
+    color: $base-aside-text-color;
     white-space: nowrap;
-    background: $base-menu-background;
-    transition: all 0.3s;
+    background: $base-aside-background;
+    transition: width $base-transition-time;
     span {
       margin-left: 10px;
     }

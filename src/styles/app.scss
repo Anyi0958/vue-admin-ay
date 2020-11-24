@@ -29,13 +29,39 @@ $base-ceshi-boder: 1px solid $base-color-blue;
 /* 框架默认主题色 */
 $base-color-default: $base-color-blue;
 
+/* 默认阴影*/
+$base-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+/* 默认动画*/
+$base-transition: all 0.2s;
+/* 默认动画时长*/
+$base-transition-time: 0.2s;
+
 /* 侧边栏 */
 $base-aside-width-open: 260px;
 $base-aside-width-close: 60px;
-
 $base-aside-background: #282c34;
-$base-aside-text-color: #fff;
+$base-aside-text-color: $base-color-white;
 $base-aside-active-text-color: #ffd04b;
+
+/* 顶部nav-bar*/
+$base-nav-bar-height: 60px;
+$base-nav-background: $base-color-white;
+$base-nav-text-color: rgba(0, 0, 0, 0.65);
+
+/* 顶部多标签页*/
+$base-tabs-bar-height: 45px;
+$base-tabs-background: $base-color-white;
+$base-tabs-text-color: rgba(0, 0, 0, 0.65);
+
+/* 顶部多标签页tags-bar中每一个item的高度*/
+$base-tag-item-height: 25px;
+/* 菜单li标签的高度*/
+$base-menu-item-height: 40px;
+
+/* 横向布局时top-bar、logo、一级菜单的高度*/
+$base-top-bar-height: 65px;
+/* 纵向布局时logo的高度*/
+$base-logo-height: 75px;
 
 /* 横向布局纵向布局时菜单背景色*/
 $base-menu-background: rgb(40, 44, 52);
@@ -52,20 +78,7 @@ $base-title-color: #fff;
 $base-input-height: 32px;
 /* 默认paddiing*/
 $base-padding: 20px;
-/* 默认阴影*/
-$base-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-/* 横向布局时top-bar、logo、一级菜单的高度*/
-$base-top-bar-height: 65px;
-/* 纵向布局时logo的高度*/
-$base-logo-height: 75px;
-/* 顶部nav-bar的高度*/
-$base-nav-bar-height: 60px;
-/* 顶部多标签页tags-bar的高度*/
-$base-tabs-bar-height: 45px;
-/* 顶部多标签页tags-bar中每一个item的高度*/
-$base-tag-item-height: 25px;
-/* 菜单li标签的高度*/
-$base-menu-item-height: 40px;
+
 /* app-main的高度*/
 $base-app-main-height: calc(
   100vh - #{$base-nav-bar-height} - #{$base-tabs-bar-height} - #{$base-padding} - #{$base-padding} -
@@ -80,11 +93,6 @@ $base-right-content-width: calc(100% - #{$base-left-menu-width});
 $base-left-menu-width-min: 65px;
 /* 纵向布局时左侧导航已折叠时右侧内容的宽度*/
 $base-right-content-width-min: calc(100% - #{$base-left-menu-width-min});
-
-/* 默认动画*/
-$base-transition: all 0.2s;
-/* 默认动画时长*/
-$base-transition-time: 0.2s;
 
 :export {
   asideBackground: $base-aside-background;
