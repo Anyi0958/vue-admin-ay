@@ -263,6 +263,11 @@ export default {
     themeSwitch(v) {
       this.$store.commit("app/switchNavType", v);
       console.log(this.navType);
+      if (this.navType == 2) {
+        document.getElementsByTagName("body")[0].className = `vue-admin-theme-dark`;
+      } else {
+        document.getElementsByTagName("body")[0].className = ``;
+      }
     },
   },
 };

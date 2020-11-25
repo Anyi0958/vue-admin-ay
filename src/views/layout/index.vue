@@ -1,14 +1,5 @@
 <template>
   <div class="layout-container">
-    <!-- 头部 -->
-    <header-bar
-      :variables="variables"
-      class="layout-header"
-      :nav-width="navType == 1 ? asideWidth : 0"
-      :tag-width="asideWidth"
-      @menuOpen="menuOpen"
-    ></header-bar>
-
     <!-- 侧边栏 -->
     <aside-bar
       :variables="variables"
@@ -17,13 +8,24 @@
       :style="{ top: navType == 2 ? '60px' : 0 }"
     ></aside-bar>
 
-    <!-- 主体 -->
-    <div class="layout-app" :style="{ 'margin-left': asideWidth }">
-      <router-view />
-    </div>
+    <div class="layout-main">
+      <!-- 头部 -->
+      <header-bar
+        :variables="variables"
+        class="layout-header"
+        :nav-width="navType == 1 ? asideWidth : 0"
+        :tag-width="asideWidth"
+        @menuOpen="menuOpen"
+      ></header-bar>
 
-    <!--  底部 -->
-    <footer-bar class="layout-footer" :style="{ 'padding-left': asideWidth }"></footer-bar>
+      <!-- 主体 -->
+      <div class="layout-app" :style="{ 'margin-left': asideWidth }">
+        <router-view />
+      </div>
+
+      <!--  底部 -->
+      <footer-bar class="layout-footer" :style="{ 'padding-left': asideWidth }"></footer-bar>
+    </div>
   </div>
 </template>
 
@@ -127,7 +129,7 @@ export default {
 <style lang="scss" scoped>
 .layout-container {
   @include relative;
-  overflow: auto;
+  overflow: hidden;
   background: $base-color-white;
   transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -141,49 +143,56 @@ export default {
     height: 100vh;
     user-select: none;
     background: $base-aside-background;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  }
-
-  .layout-header {
-    position: fixed;
-    // position: relative;
-    top: 0;
-    left: 0;
-    z-index: 997;
-    width: 100%;
-    height: auto;
-    user-select: none;
     box-shadow: $base-box-shadow;
   }
-
-  .layout-app {
-    @include scrollBar;
+  .layout-main {
     position: relative;
-    display: block;
-    flex: 1;
-    flex-basis: auto;
-    width: 100%;
-    height: auto;
-    padding: 20px;
-    margin-top: $base-nav-bar-height + $base-tabs-bar-height;
+    width: auto;
+    height: 100vh;
+    overflow-x: hidden;
     overflow-y: auto;
-  }
+    background: $base-color-white;
+    .layout-header {
+      position: fixed;
+      // position: relative;
+      top: 0;
+      left: 0;
+      z-index: 997;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      box-shadow: $base-box-shadow;
+    }
 
-  .layout-footer {
-    position: fixed;
-    // position: relative;
-    bottom: 0;
-    left: 0;
-    z-index: 997;
-    width: 100%;
-    height: auto;
-    height: 30px !important;
-    font-family: Arial, serif;
-    line-height: 30px;
-    color: #000;
-    text-align: center !important;
-    user-select: none;
-    background: #f6f8f9;
+    .layout-app {
+      @include scrollBar;
+      position: relative;
+      display: block;
+      flex: 1;
+      flex-basis: auto;
+      width: 100%;
+      height: auto;
+      padding: 20px;
+      margin-top: $base-nav-bar-height + $base-tabs-bar-height;
+      overflow-y: auto;
+    }
+
+    .layout-footer {
+      position: fixed;
+      // position: relative;
+      bottom: 0;
+      left: 0;
+      z-index: 997;
+      width: 100%;
+      height: auto;
+      height: 30px !important;
+      font-family: Arial, serif;
+      line-height: 30px;
+      color: $base-color-black;
+      text-align: center !important;
+      user-select: none;
+      background: $base-color-white;
+    }
   }
 }
 </style>
