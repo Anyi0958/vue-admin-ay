@@ -13,7 +13,7 @@
         </div> -->
 
         <div v-if="navType == 2" class="logo" :style="{ width: '260px' }">
-          <svg-icon icon-class="yun" color="#1296db" size="50" />
+          <svg-icon icon-class="yun" color="#fff" size="50" />
           <span>{{ $t("login.title") }}</span>
         </div>
 
@@ -360,7 +360,7 @@ export default {
     overflow: hidden;
     font-size: 20px;
     font-weight: bold;
-    color: $base-color-blue;
+    color: $base-color-white;
     white-space: nowrap;
     transition: $base-transition;
     span {

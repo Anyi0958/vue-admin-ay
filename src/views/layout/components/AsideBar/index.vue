@@ -9,9 +9,9 @@
       :style="{ 'margin-top': navType == 1 ? '60px' : '0' }"
       default-active="1-4-1"
       :collapse="isCollapse"
-      :background-color="variables.asideBackground"
-      :text-color="variables.asideTextColor"
-      :active-text-color="variables.asideActiveTextColor"
+      :background-color="navType == 2 ? '#fff' : variables.asideBackground"
+      :text-color="navType == 2 ? '#000' : variables.asideTextColor"
+      :active-text-color="navType == 2 ? '#000' : variables.asideActiveTextColor"
     >
       <el-submenu index="1">
         <template slot="title">
