@@ -11,8 +11,6 @@
     "build:report": "vue-cli-service build --report",
     "plop": "plop",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint --fix",
     "eslint": "eslint --ext .js,.vue src --fix",
     "lint:style": "stylelint-config-prettier-check",

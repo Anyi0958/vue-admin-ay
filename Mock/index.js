@@ -8,7 +8,24 @@ let base = defaultSettings.base;
 // 获取 mock.Random 对象
 const Random = Mock.Random;
 
-let userInfo = () => {
+const bodyParmas = data => {
+  let params = {};
+
+  data.split("&").map(item => {
+    let v = item.split("=");
+    params[v[0]] = v[1];
+  });
+  return params;
+};
+
+let defaultResult = {
+  code: 200,
+  message: "success",
+  result: [],
+  success: true,
+};
+
+let userInfoInit = () => {
   if (Cookies.get("mockUser")) {
     return JSON.parse(Cookies.get("mockUser"));
   } else {
@@ -20,23 +37,16 @@ let userInfo = () => {
     ];
   }
 };
-userInfo = userInfo();
+
+let userInfo = userInfoInit();
 
 // 用户登录
 Mock.mock(base + "/login", (req, res) => {
   let params = {};
-  res = {
-    code: 200,
-    message: "success",
-    result: [],
-    success: true,
-  };
-  if (req.body) {
-    req.body.split("&").map(item => {
-      let v = item.split("=");
-      params[v[0]] = v[1];
-    });
-  }
+  res = defaultResult;
+
+  if (req.body)params = bodyParmas(req.body);
+
   let loginStatus = false;
 
   userInfo.map(item => {
@@ -53,24 +63,16 @@ Mock.mock(base + "/login", (req, res) => {
     res.code = 500;
     res.success = false;
   }
+
   return res;
 });
 
 // 用户注册
 Mock.mock(base + "/user/regist", (req, res) => {
   let params = {};
-  res = {
-    code: 200,
-    message: "success",
-    result: [],
-    success: true,
-  };
-  if (req.body) {
-    req.body.split("&").map(item => {
-      let v = item.split("=");
-      params[v[0]] = v[1];
-    });
-  }
+  res = res = defaultResult;
+
+  if (req.body)params = bodyParmas(req.body);
 
   let registStatus = true;
 
@@ -92,17 +94,13 @@ Mock.mock(base + "/user/regist", (req, res) => {
     res.code = 500;
     res.success = false;
   }
+
   return res;
 });
 
 // 用户信息
 Mock.mock(base + "/user/info", (req, res) => {
-  res = {
-    code: 200,
-    message: "success",
-    result: [],
-    success: true,
-  };
+  res = res = res = defaultResult;
 
   if (Cookies.get(defaultSettings.tokenName)) {
     res.result = {
@@ -112,6 +110,9 @@ Mock.mock(base + "/user/info", (req, res) => {
       roles: ["admin"],
       menuData: "",
       pageOpenedList: [],
+      userInfo: {
+        name: "@name",
+      },
     };
   } else {
     res.message = "登录已失效";

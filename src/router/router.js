@@ -3,17 +3,13 @@ import Home from "../views/Home.vue";
 export const commonRouter = [
   {
     path: "/",
-    redirect: "/Ay-Admin-Vue",
-  },
-  {
-    path: "/Ay-Admin-Vue",
     //设定路由的名字，首字母大写，一定要填写并且要跟view的name对应不然使用<keep-alive>时会出现各种问题
-    name: "Ay-Admin-Vue",
+    redirect: "Ay-Admin-Vue",
     component: () => import("@/views/layout/index.vue"),
     children: [
       {
-        path: "",
-        name: "Home",
+        path: "Ay-Admin-Vue",
+        name: "Ay-Admin-Vue",
         //当设置 true 的时候该路由不会再侧边栏出现
         hidden: true, // (不写的话默认 false)
         //当设置 false 的时候该路由在面包屑导航中不可被点击

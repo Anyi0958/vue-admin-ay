@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
     if (setting.routesWhiteList.includes(to.name)) {
       next();
     } else {
-      next({ name: "Login" });
+      next({ path: "/login" });
     }
   }
 });

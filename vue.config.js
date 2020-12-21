@@ -12,17 +12,20 @@ const CompressionPlugin = require("compression-webpack-plugin");
 //   else return "";
 // };
 
-let BASE_URL = "";
+let AN_BASE_URL = "";
+let AN_PORT = "";
 
 switch (process.env.NODE_ENV) {
   // 线上环境
   case "production":
-    BASE_URL = "http://47.102.96.85:8888";
+    AN_BASE_URL = "http://47.102.96.85:8888";
+    AN_PORT = 80;
     break;
 
   // 开发环境
   case "development":
-    BASE_URL = "http://47.102.96.85:8888";
+    AN_BASE_URL = "http://47.102.96.85:8888";
+    AN_PORT = 8081;
     break;
   default:
     break;
@@ -30,19 +33,19 @@ switch (process.env.NODE_ENV) {
 
 module.exports = {
   // 开发以及部署时的URL
-  publicPath: "",
+  publicPath: defaultSettings.publicPath,
 
   // 生产环境构建文件的目录名
-  outputDir: "dist",
+  outputDir: defaultSettings.outputDir,
 
   // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
-  assetsDir: "static",
+  assetsDir: defaultSettings.assetsDir,
 
   // 开发环境每次保存时是否输出为eslint编译警告
-  lintOnSave: process.env.NODE_ENV === "development",
+  lintOnSave: defaultSettings.lintOnSave,
 
   // 进行编译的依赖
-  transpileDependencies: ["vue-echarts"],
+  transpileDependencies: defaultSettings.transpileDependencies,
 
   devServer: {
     //模块热替换
@@ -61,12 +64,12 @@ module.exports = {
     // 项目本地启动地址
     host: "127.0.0.1",
     // 启动端口
-    port: process.env.NODE_ENV === "development" ? 8080 : 80,
+    port: AN_PORT,
     // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
     proxy: {
-      "/xboot": {
+      ["/" + defaultSettings.base]: {
         // 请求后端项目地址
-        target: BASE_URL,
+        target: AN_BASE_URL,
         ws: true,
       },
       "/foo": {

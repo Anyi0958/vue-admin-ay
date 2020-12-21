@@ -171,8 +171,6 @@
     "inspect": "vue-cli-service inspect",
     "build": "vue-cli-service build",   //打包
     "build:report": "vue-cli-service build --report",    // 打包并生成 report.html 以帮助分析包内容
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",     //修复
     "lint:style": "stylelint-config-prettier-check",  //修复
     "clear": "rimraf node_modules && rimraf dist && npm install",   //删除依赖包并重新下载，删除dist
