@@ -1,6 +1,6 @@
 let Mock = require("mockjs");
 const defaultSettings = require("@/config/settings.js");
-import Cookies from "js-cookie";
+import { setStore, getStore, removeStore } from "@/libs/storage";
 
 // 统一请求路径前缀
 let base = defaultSettings.base;
@@ -26,8 +26,8 @@ let defaultResult = {
 };
 
 let userInfoInit = () => {
-  if (Cookies.get("mockUser")) {
-    return JSON.parse(Cookies.get("mockUser"));
+  if (getStore("mockUser")) {
+    return JSON.parse(getStore("mockUser"));
   } else {
     return [
       {
@@ -88,7 +88,7 @@ Mock.mock(base + "/user/regist", (req, res) => {
       username: params.username,
       password: params.password,
     });
-    Cookies.set("mockUser", JSON.stringify(userInfo));
+    setStore("mockUser", JSON.stringify(userInfo));
   } else {
     res.message = "用户名已存在";
     res.code = 500;
@@ -102,7 +102,7 @@ Mock.mock(base + "/user/regist", (req, res) => {
 Mock.mock(base + "/user/info", (req, res) => {
   res = res = res = defaultResult;
 
-  if (Cookies.get(defaultSettings.tokenName)) {
+  if (getStore(defaultSettings.tokenName)) {
     res.result = {
       lang: "zh",
       name: "Ay-Vue",

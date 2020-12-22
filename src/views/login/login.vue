@@ -1,8 +1,9 @@
 <template>
   <div class="login-container" @keyup.enter="submitForm('form')">
-    <LangSwitch />
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
+        <LangSwitch class="lange" color="#8c8c8c" size="20" />
+
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
           <h2>
             <router-link to="/register">
@@ -111,7 +112,7 @@ export default {
             .dispatch("user/login", data)
             .then(res => {
               this.loading = false;
-              this.$router.push("/");
+              this.$router.push({ path: "/" });
             })
             .catch(() => {
               this.loading = false;
@@ -131,6 +132,13 @@ $min-width: 500px;
   @include backgroundImageCover("http://api.neweb.top/bing.php?type=rand");
   &::before {
     @include backgroundMask;
+  }
+  .lange {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 60;
+    cursor: pointer;
   }
   .content {
     position: relative;

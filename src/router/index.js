@@ -3,7 +3,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "@/store";
 
-import Cookies from "js-cookie";
+import { getStore } from "@/libs/storage";
 
 import nprogress from "nprogress";
 import "nprogress/nprogress.css";
@@ -38,24 +38,17 @@ router.beforeEach((to, from, next) => {
 
   // 对路由变化作出响应...
   if (setting.donation) {
-    console.log(
-      `%c 路由变化 %c 当前路由 ${to.name} %c 跳转路由 ${from.name}  %c`,
-      "background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
-      "background:#41b883 ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
-      "background:#E6A23C ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff",
-      "background:transparent"
-    );
     console.log("路由变化", to, from);
   }
 
   let name = to.name;
 
   // 是否已登录
-  if (Cookies.get(tokenName)) {
+  if (getStore(tokenName)) {
     if (name == "Login") {
       next({ path: "/" });
     } else {
-      const hasUserInfo = store.state.user.userInfo;
+      const hasUserInfo = store.getters.userInfo;
       if (hasUserInfo) {
         next();
       } else {

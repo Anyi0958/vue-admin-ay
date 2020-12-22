@@ -5,8 +5,8 @@
         <svg-icon icon-class="language" :style="{ color: color, 'font-size': size }" />
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="zh">简体中文</el-dropdown-item>
-        <el-dropdown-item command="en">English</el-dropdown-item>
+        <el-dropdown-item :disabled="language == 'zh'" command="zh">简体中文</el-dropdown-item>
+        <el-dropdown-item :disabled="language == 'en'" command="en">English</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -14,7 +14,7 @@
 
 <script>
 import Cookies from "js-cookie";
-
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   name: "LangSwitch",
   props: {
@@ -27,21 +27,16 @@ export default {
       default: "28",
     },
   },
+  computed: {
+    ...mapState({
+      language: state => state.user.language,
+    }),
+  },
   methods: {
     langChange(v) {
       this.$i18n.locale = v;
-      this.$store.dispatch("user/lang", v);
+      this.$store.dispatch("user/language", v);
     },
   },
 };
 </script>
-
-<style lang="scss">
-.lang-icon {
-  position: absolute;
-  top: 2vh;
-  right: 1.5vw;
-  z-index: 60;
-  cursor: pointer;
-}
-</style>

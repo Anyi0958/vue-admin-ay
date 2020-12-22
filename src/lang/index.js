@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-10-10 11:03:47
+ * @LastEditTime: 2020-12-22 18:13:47
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-admin-ay-template\src\lang\index.js
+ */
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 
@@ -14,12 +22,12 @@ import ElementLocale from "element-ui/lib/locale";
 import { locale } from "view-design";
 
 import setting from "../config/settings";
-import Cookies from "js-cookie";
+import { setStore, getStore, removeStore } from "@/libs/storage";
 
-let lang = (Cookies.get("language") || setting.lang).toLowerCase();
+let lang = (getStore("language") || setting.lang).toLowerCase();
 
 lang = setting.langList.includes(lang) ? lang : setting.langList[0];
-Cookies.set("language", lang);
+setStore("language", lang);
 
 // 设置语言
 Vue.use(VueI18n);
