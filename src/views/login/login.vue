@@ -3,12 +3,6 @@
     <LangSwitch />
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
-        <button v-draggable v-copy="'sssssss'" v-has="['addbb', 'edit']">复制</button>
-        <img
-          v-hasRole="['adminsss', 'test']"
-          v-waterMarker="{ text: 'An版权所有', textColor: 'red' }"
-          src="../../assets/logo.png"
-        />
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
           <h2>
             <router-link to="/register">
@@ -30,6 +24,7 @@
           <el-form-item prop="password">
             <el-input
               v-model="form.password"
+              v-emoji
               type="password"
               clearable
               show-password

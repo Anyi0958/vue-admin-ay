@@ -16,6 +16,7 @@
             <el-input
               v-model="form.username"
               v-focus
+              v-emoji
               clearable
               prefix-icon="el-icon-user"
             ></el-input>
@@ -24,6 +25,7 @@
           <el-form-item prop="password">
             <el-input
               v-model="form.password"
+              v-emoji
               type="password"
               clearable
               show-password
