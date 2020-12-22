@@ -58,13 +58,6 @@ const defaultSettings = require("@/config/settings.js");
 import FooterBar from "@/components/FooterBar";
 export default {
   name: "Register",
-  directives: {
-    focus: {
-      inserted(el) {
-        el.querySelector("input").focus();
-      },
-    },
-  },
   //import引入的组件需要注入到对象中才能使用
   components: {
     LangSwitch,
@@ -125,46 +118,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-$min-width: 500px;
-.login-container {
-  @include relative;
-  @include flex;
-  background: url("http://api.neweb.top/bing.php?type=rand") center center fixed no-repeat;
-  background-size: cover;
-  &::before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    content: "";
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  .content {
-    position: relative;
-    z-index: 12;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #ccc;
-    .login-form {
-      flex-direction: column;
-      width: 360px;
-      height: 320px;
-      padding: 10px;
-      @include flex;
-      div {
-        width: 100%;
-        margin-top: 10px;
-      }
-    }
-    .login-submit {
-      width: 100%;
-      height: 40px;
-      margin-top: 20px;
-    }
-  }
-}
-</style>

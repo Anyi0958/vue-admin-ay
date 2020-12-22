@@ -1,6 +1,9 @@
 import Vue from "vue";
 import setting from "./settings";
 
+// 引入自定义指令
+import "@/directives/index";
+
 //此部分引入的是我们所编写的mockjs文档
 setting.useMock && require("../../Mock/index.js");
 

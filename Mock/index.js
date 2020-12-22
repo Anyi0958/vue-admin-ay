@@ -45,7 +45,7 @@ Mock.mock(base + "/login", (req, res) => {
   let params = {};
   res = defaultResult;
 
-  if (req.body)params = bodyParmas(req.body);
+  if (req.body) params = bodyParmas(req.body);
 
   let loginStatus = false;
 
@@ -72,7 +72,7 @@ Mock.mock(base + "/user/regist", (req, res) => {
   let params = {};
   res = res = defaultResult;
 
-  if (req.body)params = bodyParmas(req.body);
+  if (req.body) params = bodyParmas(req.body);
 
   let registStatus = true;
 
@@ -111,7 +111,12 @@ Mock.mock(base + "/user/info", (req, res) => {
       menuData: "",
       pageOpenedList: [],
       userInfo: {
-        name: "@name",
+        nickName: Random.cname(),
+        "sex|0-1": 0,
+        age: Random.integer(1, 100),
+        id: Random.id(),
+        avatar: Random.image(),
+        address: Random.city(),
       },
     };
   } else {

@@ -1,5 +1,5 @@
 @charset "utf-8";
-
+// 清除浮动
 @mixin clearfix {
   &:after {
     display: table;
@@ -7,13 +7,13 @@
     content: "";
   }
 }
-
+// 弹性布局
 @mixin flex {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+// 滚动条样式
 @mixin scrollBar($width: 6px) {
   ::-webkit-scrollbar-track-piece {
     background: #d3dce6;
@@ -45,13 +45,31 @@
   //   border-radius: 10px;
   // }
 }
-
+// 定位
 @mixin relative {
   position: relative;
   width: 100%;
   height: 100%;
 }
-
+// 背景图片
+@mixin backgroundImageCover($url) {
+  background: #{url($url) center center fixed no-repeat};
+  background-size: cover;
+}
+// 背景蒙版
+@mixin backgroundMask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.5);
+}
+@mixin borderShow($color) {
+  box-shadow: #{0 0 10px $color};
+}
 @mixin pct($pct) {
   position: relative;
   width: #{$pct};

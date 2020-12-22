@@ -32,6 +32,6 @@ export const userInfo = params => {
     url: "/user/info",
     params: params,
     method: "post",
-    hasToken: false,
+    hasToken: true,
   });
 };

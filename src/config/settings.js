@@ -6,7 +6,7 @@ module.exports = {
   publicPath: "",
 
   // 生产环境构建文件的目录名
-  outputDir: "dist",
+  outputDir: "an",
 
   // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
   assetsDir: "static",
@@ -17,14 +17,20 @@ module.exports = {
   // 进行编译的依赖
   transpileDependencies: ["vue-echarts"],
 
-  //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题 登录标题）
+  //  标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题 登录标题）
   title: "AY-Vue-Admin",
 
   // 统一网络请求前缀
   base: "/xboot",
 
-  //token名称
+  // token存储变量
   tokenName: "accessToken",
+
+  // language存储变量
+  language: "language",
+
+  // userInfo存储变量
+  userInfo: "userInfo",
 
   // 配后端数据的默认接收方式 json/form
   // application/json;charset=UTF-8或者application/x-www-form-urlencoded;charset=UTF-8

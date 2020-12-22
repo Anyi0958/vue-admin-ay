@@ -1,9 +1,14 @@
 <template>
   <div class="login-container" @keyup.enter="submitForm('form')">
     <LangSwitch />
-
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
+        <button v-draggable v-copy="'sssssss'" v-has="['addbb', 'edit']">复制</button>
+        <img
+          v-hasRole="['adminsss', 'test']"
+          v-waterMarker="{ text: 'An版权所有', textColor: 'red' }"
+          src="../../assets/logo.png"
+        />
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
           <h2>
             <router-link to="/register">
@@ -15,6 +20,7 @@
           <el-form-item prop="username">
             <el-input
               v-model="form.username"
+              v-emoji
               v-focus
               clearable
               prefix-icon="el-icon-user"
@@ -42,6 +48,7 @@
         </el-form>
       </el-col>
     </el-row>
+
     <footer-bar v-if="footerCopy"></footer-bar>
   </div>
 </template>
@@ -56,13 +63,6 @@ const defaultSettings = require("@/config/settings.js");
 import FooterBar from "@/components/FooterBar";
 export default {
   name: "Login",
-  directives: {
-    focus: {
-      inserted(el) {
-        el.querySelector("input").focus();
-      },
-    },
-  },
   //import引入的组件需要注入到对象中才能使用
   components: {
     LangSwitch,
@@ -128,30 +128,21 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $min-width: 500px;
 .login-container {
   @include relative;
   @include flex;
-  background: url("http://api.neweb.top/bing.php?type=rand") center center fixed no-repeat;
-  background-size: cover;
+  @include backgroundImageCover("http://api.neweb.top/bing.php?type=rand");
   &::before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    content: "";
-    background-color: rgba(0, 0, 0, 0.5);
+    @include backgroundMask;
   }
   .content {
     position: relative;
     z-index: 12;
-
     background: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 10px #ccc;
+    @include borderShow(#ccc);
     .login-form {
       flex-direction: column;
       width: 360px;

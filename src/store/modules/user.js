@@ -1,44 +1,55 @@
-import { login, userInfo } from "@/api/user";
-import Cookies from "js-cookie";
 import setting from "@/config/settings";
-let tokenName = setting.tokenName;
+import { setStore, getStore, removeStore } from "@/libs/storage";
+import { login, userInfo } from "@/api/user";
+
+let anTokenName = setting.tokenName;
+let anLanguage = setting.language;
+let anUserInfo = setting.userInfo;
 
 const state = {
-  token: Cookies.get(tokenName),
-  language: Cookies.get("language"),
-  userInfo: "",
+  token: getStore(anTokenName),
+  language: getStore(anLanguage),
+  userInfo: getStore(anUserInfo),
 };
 
 const mutations = {
-  SET_TOKEN: (state, token) => {
-    state.token = token;
-    if (token) {
-      Cookies.set(tokenName, token);
+  SET_TOKEN: (state, data) => {
+    state.token = data;
+    if (data) {
+      setStore(anTokenName, data);
     } else {
-      Cookies.remove(tokenName);
+      removeStore(anTokenName);
     }
   },
-  SET_LANG: (state, data) => {
+
+  SET_LANGUAGE: (state, data) => {
     state.language = data;
     if (data) {
-      Cookies.set("language", data);
+      setStore(anLanguage, data);
     } else {
-      Cookies.remove("language");
+      removeStore(anLanguage);
     }
   },
-  SET_INFO: (state, data) => {
+
+  SET_USERINFO: (state, data) => {
     state.userInfo = data;
+    if (data) {
+      setStore(anUserInfo, data);
+    } else {
+      removeStore(anUserInfo);
+    }
   },
 };
 
 const actions = {
-  lang({ commit, state }, data) {
-    commit("SET_LANG", data);
+  // 修改语言
+  language({ commit, state }, data) {
+    commit("SET_LANGUAGE", data);
   },
 
   // user login
-  login({ commit }, userInfo) {
-    const { username, password } = userInfo;
+  login({ commit, state }, data) {
+    const { username, password } = data;
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password })
         .then(response => {
@@ -63,7 +74,7 @@ const actions = {
         .then(response => {
           let data = response;
           if (data.success) {
-            commit("SET_INFO", data.result);
+            commit("SET_USERINFO", data.result);
             resolve(data);
           } else {
             reject(error);
@@ -79,9 +90,8 @@ const actions = {
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       commit("SET_TOKEN", "");
-      commit("SET_INFO", "");
+      commit("SET_USERINFO", "");
       localStorage.clear();
-      Cookies.remove(tokenName);
       resolve();
     });
   },

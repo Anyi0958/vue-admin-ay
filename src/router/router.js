@@ -41,6 +41,8 @@ export const commonRouter = [
     name: "Login",
     meta: {
       title: "登录",
+      roles: ["admin", "test"],
+      permTypes: ["add", "edit"],
     },
     component: () => import("@/views/login/login.vue"),
   },
