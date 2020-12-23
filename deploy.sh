@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
+
 set -e
 npm run build
-cd dist
+cd an
 touch .nojekyll
 git init
 git add -A

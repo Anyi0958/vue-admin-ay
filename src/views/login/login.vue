@@ -134,7 +134,7 @@ $min-width: 500px;
   }
   .lange {
     position: absolute;
-    top: 0px;
+    top: 10px;
     right: 10px;
     z-index: 60;
     cursor: pointer;
