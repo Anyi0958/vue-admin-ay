@@ -49,7 +49,6 @@ import HelloWorld from "@/components/HelloWorld.vue";
 import Cookies from "js-cookie";
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 
-import { mapSate,map} from 'vuex'
 export default {
   name: "Home",
 
