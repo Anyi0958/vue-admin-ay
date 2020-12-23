@@ -3,18 +3,17 @@
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
         <LangSwitch class="lange" color="#8c8c8c" size="20" />
-        <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
-          <h2>
-            <router-link to="/login">
-              {{ $t("login.title") }}
-            </router-link>
-          </h2>
-          <br />
 
+        <div class="form-title">
+          <router-link to="/login">
+            {{ $t("login.title") }}
+          </router-link>
+        </div>
+
+        <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
           <el-form-item prop="username">
             <el-input
               v-model="form.username"
-              v-focus
               v-emoji
               clearable
               prefix-icon="el-icon-user"

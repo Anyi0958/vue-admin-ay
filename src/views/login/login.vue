@@ -3,15 +3,12 @@
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
         <LangSwitch class="lange" color="#8c8c8c" size="20" />
-
+        <div class="form-title">
+          <router-link to="/register">
+            {{ $t("login.title") }}
+          </router-link>
+        </div>
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
-          <h2>
-            <router-link to="/register">
-              {{ $t("login.title") }}
-            </router-link>
-          </h2>
-          <br />
-
           <el-form-item prop="username">
             <el-input
               v-model="form.username"
@@ -129,13 +126,15 @@ $min-width: 500px;
 .login-container {
   @include relative;
   @include flex;
-  @include backgroundImageCover("http://api.neweb.top/bing.php?type=rand");
+  // @include backgroundImageCover("http://api.neweb.top/bing.php?type=rand");
+  @include backgroundImageCover("https://api.ixiaowai.cn/gqapi/gqapi.php");
+
   &::before {
     @include backgroundMask;
   }
   .lange {
     position: absolute;
-    top: 10px;
+    top: 0px;
     right: 10px;
     z-index: 60;
     cursor: pointer;
@@ -143,24 +142,32 @@ $min-width: 500px;
   .content {
     position: relative;
     z-index: 12;
+    padding: 20px 30px 50px 30px !important;
     background: #fff;
     border-radius: 5px;
+
     @include borderShow(#ccc);
+    .form-title {
+      margin: 20px 0 40px 0;
+      font-size: 1.5em;
+      font-weight: bold;
+      line-height: 38px;
+      text-align: center;
+    }
     .login-form {
       flex-direction: column;
-      width: 360px;
-      height: 320px;
-      padding: 10px;
+      width: 340px;
+
       @include flex;
       div {
         width: 100%;
-        margin-top: 10px;
+        margin-bottom: 10px;
       }
     }
     .login-submit {
       width: 100%;
       height: 40px;
-      margin-top: 20px;
+      margin-top: 10px;
     }
   }
 }

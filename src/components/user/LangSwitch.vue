@@ -40,3 +40,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.el-dropdown {
+  display: inline !important;
+}
+</style>

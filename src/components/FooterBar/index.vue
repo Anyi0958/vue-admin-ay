@@ -1,7 +1,7 @@
 <template>
   <div class="footBar">
-    Copyright © 2020 安逸 All Rights Reserved. 备案号：
-    <a href="http://www.beian.miit.gov.cn" target="_blank" one-link-mark="yes">豫ICP备20009066号</a>
+    Copyright © 2020 An All Rights Reserved
+    <!-- 备案号：<a href="http://www.beian.miit.gov.cn" target="_blank" one-link-mark="yes">豫ICP备20009066号</a> -->
   </div>
 </template>
 

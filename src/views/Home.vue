@@ -49,6 +49,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
 import Cookies from "js-cookie";
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 
+import { mapSate,map} from 'vuex'
 export default {
   name: "Home",
 
@@ -87,20 +88,20 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
-    ...mapState({
-      AyVueAdmin1: "AyVueAdmin",
-      token1: state => state.user.token,
-      token2: "user.token",
-      token3: state => state.token,
-      token4: "token",
-      // 为了能够使用 `this` 获取局部状态，必须使用常规函数
-      ccc() {
-        return this.currentPage1;
-      },
-    }),
-    ...mapGetters({
-      AyVueAdmin2: "AyVueAdmin",
-    }),
+    // ...mapState({
+    //   AyVueAdmin1: "AyVueAdmin",
+    //   token1: state => state.user.token,
+    //   token2: "user.token",
+    //   token3: state => state.token,
+    //   token4: "token",
+    //   // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+    //   ccc() {
+    //     return this.currentPage1;
+    //   },
+    // }),
+    // ...mapGetters({
+    //   AyVueAdmin2: "AyVueAdmin",
+    // }),
   },
 
   //监控data中的数据变化
@@ -117,15 +118,15 @@ export default {
 
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log(this.$store.state.user.token);
-    console.log(this.token1, this.token2, this.token3, this.token4, this.ccc);
-    console.log(this.AyVueAdmin1);
-    console.log(this.AyVueAdmin2);
-    this.AyVueAdmin3("AyVueAdmin3");
-    console.log(this.AyVueAdmin1);
-    this.AyVueAdmin4().then(res => {
-      console.log(res);
-    });
+    // console.log(this.$store.state.user.token);
+    // console.log(this.token1, this.token2, this.token3, this.token4, this.ccc);
+    // console.log(this.AyVueAdmin1);
+    // console.log(this.AyVueAdmin2);
+    // this.AyVueAdmin3("AyVueAdmin3");
+    // console.log(this.AyVueAdmin1);
+    // this.AyVueAdmin4().then(res => {
+    //   console.log(res);
+    // });
   },
 
   //生命周期 - 更新之前
