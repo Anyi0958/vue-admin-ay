@@ -4,9 +4,15 @@
       <el-col class="content">
         <LangSwitch class="lange" color="#8c8c8c" size="20" />
 
-        <div class="form-title">
+        <div v-if="loginHeardType == 'title'" class="form-title">
           <router-link to="/login">
             {{ $t("login.title") }}
+          </router-link>
+        </div>
+
+        <div v-if="loginHeardType == 'logo'" class="form-title-logo">
+          <router-link to="/login">
+            <img src="../../assets/an.png" alt="logo" height="120px" />
           </router-link>
         </div>
 
@@ -80,6 +86,9 @@ export default {
         username: [{ required: true, message: this.$t("login.usererr"), trigger: "blur" }],
         password: [{ required: true, message: this.$t("login.passerr"), trigger: "blur" }],
       };
+    },
+    loginHeardType() {
+      return defaultSettings.loginHeardType;
     },
     footerCopy() {
       return defaultSettings.footerCopy;

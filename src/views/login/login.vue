@@ -3,11 +3,18 @@
     <el-row :gutter="20" type="flex" justify="center" align="middle">
       <el-col class="content">
         <LangSwitch class="lange" color="#8c8c8c" size="20" />
-        <div class="form-title">
+        <div v-if="loginHeardType == 'title'" class="form-title">
           <router-link to="/register">
             {{ $t("login.title") }}
           </router-link>
         </div>
+
+        <div v-if="loginHeardType == 'logo'" class="form-title-logo">
+          <router-link to="/register">
+            <img src="../../assets/an.png" alt="logo" height="120px" />
+          </router-link>
+        </div>
+
         <el-form ref="form" class="login-form" :model="form" :rules="ruleForm" :status-icon="true">
           <el-form-item prop="username">
             <el-input
@@ -80,6 +87,9 @@ export default {
         password: [{ required: true, message: this.$t("login.passerr"), trigger: "blur" }],
       };
     },
+    loginHeardType() {
+      return defaultSettings.loginHeardType;
+    },
     footerCopy() {
       return defaultSettings.footerCopy;
     },
@@ -147,12 +157,16 @@ $min-width: 500px;
     border-radius: 5px;
 
     @include borderShow(#ccc);
-    .form-title {
+    .form-title,
+    .form-title-logo {
       margin: 20px 0 40px 0;
       font-size: 1.5em;
       font-weight: bold;
       line-height: 38px;
       text-align: center;
+    }
+    .form-title-logo {
+      margin: 0 0 10px 0;
     }
     .login-form {
       flex-direction: column;

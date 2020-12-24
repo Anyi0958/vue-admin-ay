@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+rimraf an
 npm run build
 cd an
 touch .nojekyll

@@ -12,6 +12,13 @@ const state = {
   userInfo: getStore(anUserInfo),
 };
 
+const getters = {
+  token: state => data => {
+    console.log("vuex user Getters 参数", state, data);
+    return state.token + data;
+  },
+};
+
 const mutations = {
   SET_TOKEN: (state, data) => {
     state.token = data;
@@ -100,5 +107,6 @@ const actions = {
 export default {
   state,
   mutations,
+  getters,
   actions,
 };

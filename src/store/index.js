@@ -38,7 +38,7 @@ Object.keys(modules).forEach(key => {
 
 const store = new Vuex.Store({
   state: {
-    AyVueAdmin: "AyVueAdmin",
+    AyVueAdmin: "root-AyVueAdmin",
   },
   getters,
   mutations,
@@ -50,6 +50,7 @@ const store = new Vuex.Store({
 
 export default store;
 
+// 使用方法 https://www.cnblogs.com/caimuguodexiaohongmao/p/11854228.html
 /*
  *                        .::::.
  *                      .::::::::.

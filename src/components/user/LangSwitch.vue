@@ -14,7 +14,7 @@
 
 <script>
 import Cookies from "js-cookie";
-import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "LangSwitch",
   props: {
@@ -28,8 +28,8 @@ export default {
     },
   },
   computed: {
-    ...mapState({
-      language: state => state.user.language,
+    ...mapState("user", {
+      language: state => state.language,
     }),
   },
   methods: {

@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-25 15:46:58
+ * @LastEditTime: 2020-12-24 11:39:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-admin-ay-template\src\views\Home.vue
+-->
 <template>
   <div class="home-container">
     <!-- <LangSwitch :color="'#ccc'" /> -->
@@ -87,19 +95,26 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
-    // ...mapState({
-    //   AyVueAdmin1: "AyVueAdmin",
-    //   token1: state => state.user.token,
-    //   token2: "user.token",
-    //   token3: state => state.token,
-    //   token4: "token",
-    //   // 为了能够使用 `this` 获取局部状态，必须使用常规函数
-    //   ccc() {
-    //     return this.currentPage1;
-    //   },
+    ...mapState({
+      rootData: state => state.AyVueAdmin,
+    }),
+    ...mapGetters({
+      rootGett: "AyVueAdmin",
+    }),
+
+    ...mapState({
+      userData: state => state.user.token,
+    }),
+    ...mapGetters({
+      userGett: "user/token",
+    }),
+
+    // ...mapState("user", {
+    //   userData: "token",
     // }),
-    // ...mapGetters({
-    //   AyVueAdmin2: "AyVueAdmin",
+
+    // ...mapGetters("user", {
+    //   userGett: "token",
     // }),
   },
 
@@ -117,15 +132,41 @@ export default {
 
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    // console.log(this.$store.state.user.token);
-    // console.log(this.token1, this.token2, this.token3, this.token4, this.ccc);
-    // console.log(this.AyVueAdmin1);
-    // console.log(this.AyVueAdmin2);
-    // this.AyVueAdmin3("AyVueAdmin3");
-    // console.log(this.AyVueAdmin1);
-    // this.AyVueAdmin4().then(res => {
-    //   console.log(res);
-    // });
+    console.warn(" ");
+    console.log("根节点State", this.rootData);
+    console.log("根节点State", this.$store.state.AyVueAdmin);
+
+    console.warn(" ");
+    console.log("根节Getters", this.rootGett(99));
+    console.log("根节Getters", this.$store.getters.AyVueAdmin(99));
+
+    console.warn(" ");
+    this.rootMutations({ name: "mutions1" });
+    this.$store.commit("AyVueAdmin1", { name: "mutions2" });
+    this.$store.commit({
+      type: "AyVueAdmin1",
+      name: "mutions3",
+    });
+
+    console.warn(" ");
+    console.log("根节点Actions", this.rootActions("bbbb"));
+    console.log("根节点Actions", this.$store.dispatch("AyVueAdmin2", "bbbb"));
+
+    console.warn(" ");
+    console.log("USER节点State", this.userData);
+    console.log("USER节点State", this.$store.state.user.token);
+
+    console.warn(" ");
+    console.log("USER节点Getters", this.userGett(666));
+    console.log("USER节点Getters", this.$store.getters["user/token"](666));
+
+    console.warn(" ");
+    console.log("USER节点Mutations", this.userMutations("zh"));
+    console.log("USER节点Mutations", this.$store.commit("user/SET_LANGUAGE", "zh"));
+
+    console.warn(" ");
+    console.log("USER节点Acitons", this.userActions("zh"));
+    console.log("USER节点Acitons", this.$store.dispatch("user/language", "zh"));
   },
 
   //生命周期 - 更新之前
@@ -146,11 +187,19 @@ export default {
   //方法集合
   methods: {
     ...mapMutations({
-      AyVueAdmin3: "AyVueAdmin1",
+      rootMutations: "AyVueAdmin1",
     }),
     ...mapActions({
-      AyVueAdmin4: "AyVueAdmin3",
+      rootActions: "AyVueAdmin2",
     }),
+
+    ...mapMutations({
+      userMutations: "user/SET_LANGUAGE",
+    }),
+    ...mapActions({
+      userActions: "user/language",
+    }),
+
     async loginOut() {
       await this.$store.dispatch("user/logout");
       this.$router.push("/Login");

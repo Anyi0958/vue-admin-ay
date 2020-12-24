@@ -14,7 +14,7 @@
     "lint": "vue-cli-service lint --fix",
     "eslint": "eslint --ext .js,.vue src --fix",
     "lint:style": "stylelint-config-prettier-check",
-    "clear": "rimraf node_modules && rimraf dist",
+    "clear": "rimraf node_modules && rimraf an",
     "update": "ncu -u&&npm i",
     "update:globle": "ncu -g --concurrency 10 --timeout 80000",
     "push": "start ./push.sh",

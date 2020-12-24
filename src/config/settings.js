@@ -3,7 +3,7 @@
 
 module.exports = {
   // 开发以及部署时的URL
-  publicPath: "/",
+  publicPath: "",
 
   // 生产环境构建文件的目录名
   outputDir: "an",
@@ -19,6 +19,9 @@ module.exports = {
 
   //  标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题 登录标题）
   title: "AY-Vue-Admin",
+
+  //登录 注册页显示 logo / title
+  loginHeardType: "title",
 
   // 统一网络请求前缀
   base: "/xboot",
