@@ -1,30 +1,29 @@
 <template>
   <div class="layout-container">
-    <!-- 侧边栏 -->
-    <aside-bar
-      :variables="variables"
-      :aside-width="asideWidth"
-      class="layout-aside"
-      :style="{ top: navType == 2 ? '60px' : 0 }"
-    ></aside-bar>
-
     <div class="layout-main">
       <!-- 头部 -->
-      <header-bar
-        :variables="variables"
-        class="layout-header"
-        :nav-width="navType == 1 ? asideWidth : 0"
-        :tag-width="asideWidth"
-        @menuOpen="menuOpen"
-      ></header-bar>
+      <!-- <div class="layout-header"> -->
+      <!-- <header-bar
+          :aside-width="asideWidth"
+          :style="{ 'margin-left': asideWidth }"
+          @menuOpen="menuOpen"
+        ></header-bar> -->
+      <!-- </div> -->
+
+      <!-- 侧边栏 -->
+      <!-- <div class="layout-side"> -->
+      <side-bar></side-bar>
+      <!-- </div> -->
 
       <!-- 主体 -->
-      <div class="layout-app" :style="{ 'margin-left': asideWidth }">
-        <router-view />
-      </div>
+      <!-- <div class="layout-app"> -->
+      <!-- <router-view /> -->
+      <!-- </div> -->
 
       <!--  底部 -->
-      <footer-bar class="layout-footer" :style="{ 'padding-left': asideWidth }"></footer-bar>
+      <!-- <div class="layout-footer"> -->
+      <!-- <footer-bar></footer-bar> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -34,19 +33,17 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "layout";
-import variables from "@/styles/app.scss";
-
 import FooterBar from "@/components/FooterBar";
-import AsideBar from "./components/AsideBar/index";
+import SideBar from "./components/SideBar/index";
 import HeaderBar from "./components/HeaderBar/index";
 export default {
   name: "Layout",
 
   //import引入的组件需要注入到对象中才能使用
   components: {
-    FooterBar,
-    AsideBar,
-    HeaderBar,
+    // FooterBar,
+    SideBar,
+    // HeaderBar,
   },
 
   props: {
@@ -74,14 +71,7 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {
-    navType() {
-      return this.$store.getters.navType;
-    },
-    variables() {
-      return variables;
-    },
-  },
+  computed: {},
 
   //监控data中的数据变化
   watch: {},
@@ -117,6 +107,7 @@ export default {
   methods: {
     // 菜单展开收起
     menuOpen() {
+      console.log("ss");
       if (this.asideWidth == "260px") {
         this.asideWidth = "60px";
       } else {
@@ -128,12 +119,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .layout-container {
-  @include relative;
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background: $base-color-white;
-  transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-
-  .layout-aside {
+  .layout-side {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -141,17 +131,19 @@ export default {
     z-index: 999;
     width: auto;
     height: 100vh;
+    // overflow-y: auto;
     user-select: none;
-    background: $base-aside-background;
-    box-shadow: $base-box-shadow;
+    background: $base-menu-background;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    transition: width 0.3s;
   }
   .layout-main {
     position: relative;
     width: auto;
     height: 100vh;
-    overflow-x: hidden;
     overflow-y: auto;
     background: $base-color-white;
+    transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     .layout-header {
       position: fixed;
       // position: relative;
@@ -160,12 +152,9 @@ export default {
       z-index: 997;
       width: 100%;
       height: auto;
-      user-select: none;
-      box-shadow: $base-box-shadow;
+      @include boxShadow;
     }
-
     .layout-app {
-      @include scrollBar;
       position: relative;
       display: block;
       flex: 1;
@@ -188,11 +177,20 @@ export default {
       height: 30px !important;
       font-family: Arial, serif;
       line-height: 30px;
-      color: $base-color-black;
       text-align: center !important;
-      user-select: none;
-      background: $base-color-white;
+      background: #f6f8f9;
+      .footBar {
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: #000;
+      }
     }
   }
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-22 15:04:49
+ * @LastEditTime: 2020-12-24 18:25:20
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-admin-ay-template\src\directives\js\copy.js
+ */
 import { Message } from "element-ui";
 
 const copy = {
@@ -25,7 +33,7 @@ const copy = {
           textarea.select();
           const result = document.execCommand("Copy");
           if (result) {
-            Message.success("复制成功");
+            Message.success(`${el.$value} 复制成功`);
           }
           document.body.removeChild(textarea);
         };

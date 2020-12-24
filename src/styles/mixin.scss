@@ -67,8 +67,9 @@
   content: "";
   background-color: rgba(0, 0, 0, 0.5);
 }
-@mixin borderShow($color) {
-  box-shadow: #{0 0 10px $color};
+// 盒子阴影
+@mixin boxShadow($color: rgba(0, 21, 41, 0.08)) {
+  box-shadow: #{0 1px 4px $color};
 }
 @mixin pct($pct) {
   position: relative;

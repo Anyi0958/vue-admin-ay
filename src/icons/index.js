@@ -1,8 +1,8 @@
 import Vue from "vue";
-import SvgIcon from "@/components/SvgIcon"; // svg component
+import AnIcon from "@/components/AnIcon"; // svg component
 
 // register globally
-Vue.component("svg-icon", SvgIcon);
+Vue.component("an-icon", AnIcon);
 
 // 自动导入svg-icon
 // require.context有三个参数：
@@ -10,6 +10,14 @@ Vue.component("svg-icon", SvgIcon);
 //    useSubdirectories：是否检索子目录
 //    regExp: 匹配文件的正则表达式
 
-const req = require.context("./svg", false, /\.svg$/);
+const icons = require.context("./svg", false, /\.svg$/);
+const modules = {};
+
+icons.keys().forEach(key => {
+  modules[key.replace(/(\.\/|\.svg)/g, "")] = icons(key).default;
+});
+
 const requireAll = requireContext => requireContext.keys().map(requireContext);
-requireAll(req);
+requireAll(icons);
+
+export default modules;

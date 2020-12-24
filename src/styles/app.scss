@@ -1,7 +1,6 @@
 @charset "utf-8";
 
 @import "./mixin.scss";
-@import "./common.scss";
 
 /* 颜色 */
 $base-color-blue: #1890ff;
@@ -33,19 +32,16 @@ $base-color-default: $base-color-blue;
 
 /* 默认paddiing*/
 $base-padding: 20px;
-/* 默认阴影*/
-$base-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-/* 默认动画*/
-$base-transition: all 0.2s;
 /* 默认动画时长*/
 $base-transition-time: 0.2s;
 
 /* 侧边栏 */
-$base-aside-width-open: 260px;
-$base-aside-width-close: 60px;
-$base-aside-background: $base-color-dark;
-$base-aside-text-color: $base-color-white;
-$base-aside-active-text-color: #ffd04b;
+$base-sideBar-widthMax: 220px;
+$base-sideBar-widthMin: 60px;
+$base-sideBar-background: $base-color-dark;
+$base-sideBar-textColor: $base-color-white;
+$base-sideBar-active-textColor: $base-color-white;
+$base-sideBar-active-background: #1890ff;
 
 /* 顶部nav-bar*/
 $base-nav-bar-height: 60px;
@@ -96,7 +92,7 @@ $base-left-menu-width-min: 65px;
 $base-right-content-width-min: calc(100% - #{$base-left-menu-width-min});
 
 :export {
-  asideBackground: $base-aside-background;
-  asideTextColor: $base-aside-text-color;
-  asideActiveTextColor: $base-aside-active-text-color;
+  sideBarBackground: $base-sideBar-background;
+  sideBarTextColor: $base-sideBar-textColor;
+  sideBarActiveTextColor: $base-sideBar-active-textColor;
 }

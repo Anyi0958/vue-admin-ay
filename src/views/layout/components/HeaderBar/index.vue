@@ -343,7 +343,7 @@ export default {
   position: relative;
   height: auto;
   user-select: none;
-  transition: $base-transition;
+  transition: all $base-transition-time;
   .el-dropdown-link {
     color: #409eff;
     cursor: pointer;
@@ -362,7 +362,7 @@ export default {
     font-weight: bold;
     color: $base-color-white;
     white-space: nowrap;
-    transition: $base-transition;
+    transition: all $base-transition-time;
     span {
       margin-left: 10px;
     }
@@ -371,7 +371,7 @@ export default {
   .header-nav {
     padding-right: 15px;
     background: $base-nav-background;
-    box-shadow: $base-box-shadow;
+    @include boxShadow;
     .menuIcon {
       font-size: 30px;
       color: $base-nav-text-color;

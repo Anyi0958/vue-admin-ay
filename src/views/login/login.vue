@@ -156,7 +156,7 @@ $min-width: 500px;
     background: #fff;
     border-radius: 5px;
 
-    @include borderShow(#ccc);
+    @include boxShadow(#ccc);
     .form-title,
     .form-title-logo {
       margin: 20px 0 40px 0;
