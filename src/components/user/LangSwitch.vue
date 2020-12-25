@@ -2,7 +2,7 @@
   <div class="lang-icon">
     <el-dropdown @command="langChange">
       <span class="el-dropdown-link">
-        <an-icon type="svg-language" :style="{ color: color, 'font-size': size }" />
+        <an-icon type="svg-language" :color="color" :size="size" />
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item :disabled="language == 'zh'" command="zh">简体中文</el-dropdown-item>
@@ -32,6 +32,7 @@ export default {
       language: state => state.language,
     }),
   },
+  mounted() {},
   methods: {
     langChange(v) {
       this.$i18n.locale = v;

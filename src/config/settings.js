@@ -18,7 +18,7 @@ module.exports = {
   transpileDependencies: ["vue-echarts"],
 
   //  标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题 登录标题）
-  title: "AY-Vue-Admin",
+  title: "An-Vue-Admin",
 
   //登录 注册页显示 logo / title
   loginHeardType: "title",

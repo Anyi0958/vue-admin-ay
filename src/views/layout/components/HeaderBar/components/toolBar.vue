@@ -1,24 +1,33 @@
-<!--
- * @Author: your name
- * @Date: 2020-12-25 15:40:39
- * @LastEditTime: 2020-12-25 17:33:52
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \vue-admin-ay-template\src\views\layout\components\HeaderBar\components\toolbar.vue
--->
 <template>
   <div class="toolBar">
     <span class="toolBar-item">
-      <an-icon type="svg-compress"></an-icon>
+      <el-tooltip :content="$t('navbar.theme')">
+        <an-icon type="svg-theme" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
+      </el-tooltip>
     </span>
+
     <span class="toolBar-item">
-      <an-icon type="svg-compress"></an-icon>
+      <an-icon type="svg-expend" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
     </span>
+
     <span class="toolBar-item">
-      <an-icon type="svg-compress"></an-icon>
+      <an-icon type="svg-bell" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
     </span>
+
     <span class="toolBar-item">
-      <an-icon type="svg-compress"></an-icon>
+      <el-tooltip :content="$t('navbar.reload')">
+        <an-icon type="svg-reload" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
+      </el-tooltip>
+    </span>
+
+    <span class="toolBar-item">
+      <lang-switch color="rgba(0, 0, 0, 0.65)" size="18" />
+    </span>
+
+    <span class="toolBar-item">
+      <el-tooltip :content="$t('navbar.help')">
+        <an-icon type="svg-help" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
+      </el-tooltip>
     </span>
   </div>
 </template>
@@ -28,12 +37,14 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "toolBar";
-
+import LangSwitch from "@/components/user/LangSwitch";
 export default {
   name: "ToolBar",
 
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    LangSwitch,
+  },
 
   props: {
     msg: {
@@ -99,13 +110,12 @@ export default {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 5 px;
 
   .toolBar-item {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 5px;
+    padding: 0 8px;
     cursor: pointer;
     &:hover {
       background: rgba(0, 0, 0, 0.025);
