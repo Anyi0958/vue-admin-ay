@@ -2,7 +2,7 @@
   <div class="lang-icon">
     <el-dropdown @command="langChange">
       <span class="el-dropdown-link">
-        <svg-icon icon-class="language" :style="{ color: color, 'font-size': size }" />
+        <an-icon type="svg-language" :style="{ color: color, 'font-size': size }" />
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item :disabled="language == 'zh'" command="zh">简体中文</el-dropdown-item>

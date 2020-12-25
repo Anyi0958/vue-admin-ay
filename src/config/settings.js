@@ -26,6 +26,13 @@ module.exports = {
   // 统一网络请求前缀
   base: "/xboot",
 
+  // 配后端数据的默认接收方式 json/form
+  // application/json;charset=UTF-8或者application/x-www-form-urlencoded;charset=UTF-8
+  contentType: "form",
+
+  // 使用Mock
+  useMock: true,
+
   // token存储变量
   tokenName: "accessToken",
 
@@ -35,12 +42,8 @@ module.exports = {
   // userInfo存储变量
   userInfo: "userInfo",
 
-  // 配后端数据的默认接收方式 json/form
-  // application/json;charset=UTF-8或者application/x-www-form-urlencoded;charset=UTF-8
-  contentType: "form",
-
-  // 使用Mock
-  useMock: true,
+  // app 设置参数 存储变量
+  appName: "AnApp",
 
   //是否显示页面底部版权信息
   footerCopy: process.env.NODE_ENV == "development",

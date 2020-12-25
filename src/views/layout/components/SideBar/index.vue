@@ -2,8 +2,7 @@
   <el-aside class="aside-container">
     <div class="header-logo">
       <an-icon type="svg-yun" :color="variables.asideTextColor" size="50"></an-icon>
-      <!-- <svg-icon icon-class="yun" :color="variables.asideTextColor" size="50" /> -->
-      <!-- <span v-if="!isCollapse">{{ $t("login.title") }}</span> -->
+      <span>{{ $t("login.title") }}</span>
     </div>
 
     <el-menu
@@ -29,8 +28,12 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "asideBar";
+
 import asideBarItem from "./components/sidebarItem";
 import variables from "@/styles/app.scss";
+import { mapState, mapMutations } from "vuex";
+import { appStoreKeys as APP } from "@/config/settings";
+
 export default {
   name: "AsideBar",
 
@@ -126,6 +129,9 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
+    ...mapState({
+      sideBarUnfold: state => state.app.sideBarUnfold,
+    }),
     activeMenu() {
       const route = this.$route;
       console.log(route);
@@ -154,7 +160,9 @@ export default {
   beforeMount() {},
 
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    this.setSideBar("ssss");
+  },
 
   //生命周期 - 更新之前
   beforeUpdate() {},
@@ -172,7 +180,11 @@ export default {
   activated() {},
 
   //方法集合
-  methods: {},
+  methods: {
+    ...mapMutations({
+      setSideBar: `app/SET_SIDEBAR_UNFOLD`,
+    }),
+  },
 };
 </script>
 <style lang="scss" scoped>
