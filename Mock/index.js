@@ -70,7 +70,7 @@ Mock.mock(base + "/login", (req, res) => {
 // 用户注册
 Mock.mock(base + "/user/regist", (req, res) => {
   let params = {};
-  res = res = defaultResult;
+  res = defaultResult;
 
   if (req.body) params = bodyParmas(req.body);
 
@@ -100,7 +100,7 @@ Mock.mock(base + "/user/regist", (req, res) => {
 
 // 用户信息
 Mock.mock(base + "/user/info", (req, res) => {
-  res = res = res = defaultResult;
+  res = defaultResult;
 
   if (getStore(defaultSettings.tokenName)) {
     res.result = {
@@ -110,14 +110,12 @@ Mock.mock(base + "/user/info", (req, res) => {
       roles: ["admin"],
       menuData: "",
       pageOpenedList: [],
-      userInfo: {
-        nickName: Random.cname(),
-        "sex|0-1": 0,
-        age: Random.integer(1, 100),
-        id: Random.id(),
-        avatar: "https://api.ixiaowai.cn/mcapi/mcapi.php",
-        address: Random.city(),
-      },
+      nickName: Random.cname(),
+      sex: 0,
+      age: Random.integer(1, 100),
+      id: Random.id(),
+      avatar: "https://api.ixiaowai.cn/mcapi/mcapi.php",
+      address: Random.city(),
     };
   } else {
     res.message = "登录已失效";
@@ -125,6 +123,13 @@ Mock.mock(base + "/user/info", (req, res) => {
     res.success = false;
   }
 
+  return res;
+});
+
+// 用户登录
+Mock.mock(base + "/logout", (req, res) => {
+  res = defaultResult;
+  res.message = "退出成功";
   return res;
 });
 

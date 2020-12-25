@@ -1,16 +1,18 @@
 <template>
-  <el-dropdown class="userBar">
+  <el-dropdown class="userBar" @command="downClick">
     <span class="el-dropdown-link">
       <span>
-        <el-avatar :size="34" src="http://dwz.date/dpFJ"></el-avatar>
+        <el-avatar :size="34" :src="userInfo.avatar || 'http://dwz.date/dpFJ'"></el-avatar>
       </span>
-      <span class="name">An Admin ele</span>
+      <span class="name">{{ userInfo.nickName }}</span>
       <i class="el-icon-arrow-down el-icon--right"></i>
     </span>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item icon="el-icon-user">个人中心</el-dropdown-item>
-      <el-dropdown-item icon="el-icon-setting">个人设置</el-dropdown-item>
-      <el-dropdown-item divided icon="el-icon-switch-button">退出登录</el-dropdown-item>
+      <el-dropdown-item command="usercenter" icon="el-icon-user">个人中心</el-dropdown-item>
+      <el-dropdown-item command="userset" icon="el-icon-setting">个人设置</el-dropdown-item>
+      <el-dropdown-item command="logout" divided icon="el-icon-switch-button">
+        退出登录
+      </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
@@ -20,6 +22,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "userBar";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "UserBar",
@@ -50,7 +53,11 @@ export default {
     return {};
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+    ...mapState({
+      userInfo: state => state.user.userInfo,
+    }),
+  },
 
   //监控data中的数据变化
   watch: {},
@@ -83,7 +90,30 @@ export default {
   activated() {},
 
   //方法集合
-  methods: {},
+  methods: {
+    ...mapActions({
+      logout: "user/logout",
+    }),
+    downClick(name) {
+      switch (name) {
+        case "usercenter":
+          this.$message("个人中心");
+          break;
+        case "userset":
+          this.$message("个人设置");
+          break;
+        case "logout":
+          this.logout().then(res => {
+            if (res.success) {
+              this.$router.push("/login");
+            }
+          });
+          break;
+        default:
+          break;
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -1,12 +1,10 @@
 import { appName } from "@/config/settings";
 import { setStore, getStore, removeStore } from "@/libs/storage";
 
-!getStore(appName) && setStore(appName, new Object());
-
 const app = {
   state: {
     // sideBar侧边栏菜单
-    sideBarUnfold: getStore(appName)["sideBarUnfold"],
+    sideBarUnfold: getStore(appName, "sideBarUnfold"),
     // 菜单
     menuList: [
       {

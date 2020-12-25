@@ -12,11 +12,18 @@ export const setStore = (name, content) => {
 /**
  * 获取localStorage
  */
-export const getStore = name => {
+export const getStore = (name, key) => {
   if (!name) return;
   let v = window.localStorage.getItem(name);
   if (v == null) {
     return "";
+  }
+  // key 为 all 返回 完整对象
+  // 否则 返回对应的 值
+  if (key == "all") {
+    v = JSON.parse(v);
+  } else if (key) {
+    v = JSON.parse(v)[key];
   }
   return v;
 };

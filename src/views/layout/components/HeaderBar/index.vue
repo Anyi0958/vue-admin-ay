@@ -1,12 +1,12 @@
 <template>
   <div class="header-container">
     <!-- 菜单 -->
-    <el-row :gutter="15" class="header-nav">
-      <el-col :xs="4" :sm="12" :md="12" :lg="12" :xl="12" class="left-panel">
+    <el-row class="header-nav">
+      <el-col :xs="0" :sm="12" :md="12" :lg="12" :xl="12" class="left-panel">
         <!-- 菜单展开按钮 -->
 
         <!-- 面包屑 -->
-        <el-breadcrumb separator="/">
+        <el-breadcrumb separator="/" class="header-nav-breadcrumb">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
@@ -14,7 +14,7 @@
         </el-breadcrumb>
       </el-col>
 
-      <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
+      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
         <!-- 头像 -->
         <user-bar></user-bar>
 
@@ -124,13 +124,19 @@ export default {
       display: flex;
       align-items: center;
       height: 100%;
+      overflow: hidden;
     }
     .right-panel {
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
       height: 100%;
+      overflow: hidden;
     }
+  }
+  .header-nav-breadcrumb {
+    display: flex;
+    white-space: nowrap;
   }
 }
 

@@ -35,3 +35,14 @@ export const userInfo = params => {
     hasToken: true,
   });
 };
+
+// 退出
+export const logout = params => {
+  return request({
+    url: "/logout",
+    params: params,
+    method: "post",
+    dataType: "form",
+    hasToken: false,
+  });
+};

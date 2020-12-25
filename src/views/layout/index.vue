@@ -122,7 +122,7 @@ export default {
     flex: 1;
     flex-direction: column;
     width: auto;
-    min-width: $base-app-widthMin;
+    // min-width: $base-app-widthMin;
     height: 100%;
     min-height: 100vh;
     overflow: hidden;

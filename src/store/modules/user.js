@@ -1,6 +1,6 @@
 import setting from "@/config/settings";
 import { setStore, getStore, removeStore } from "@/libs/storage";
-import { login, userInfo } from "@/api/user";
+import { login, userInfo, logout } from "@/api/user";
 
 let anTokenName = setting.tokenName;
 let anLanguage = setting.language;
@@ -10,7 +10,7 @@ const user = {
   state: {
     token: getStore(anTokenName),
     language: getStore(anLanguage),
-    userInfo: getStore(anUserInfo),
+    userInfo: getStore(anUserInfo, "all"),
   },
 
   getters: {
@@ -97,10 +97,21 @@ const user = {
     // user logout
     logout({ commit, state }) {
       return new Promise((resolve, reject) => {
-        commit("SET_TOKEN", "");
-        commit("SET_USERINFO", "");
-        localStorage.clear();
-        resolve();
+        logout()
+          .then(response => {
+            let data = response;
+            if (data.success) {
+              commit("SET_TOKEN", "");
+              commit("SET_USERINFO", "");
+              localStorage.clear();
+              resolve(data);
+            } else {
+              reject(error);
+            }
+          })
+          .catch(error => {
+            reject(error);
+          });
       });
     },
   },
