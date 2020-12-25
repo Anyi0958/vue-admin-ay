@@ -78,10 +78,12 @@ import {
   MessageBox,
   Message,
   Notification,
+  Avatar,
 } from "element-ui";
 
 import "../styles/element.scss";
 
+Vue.use(Avatar);
 Vue.use(Pagination);
 Vue.use(Dialog);
 Vue.use(Autocomplete);

@@ -6,7 +6,7 @@
         <!-- 菜单展开按钮 -->
 
         <!-- 面包屑 -->
-        <el-breadcrumb separator=">">
+        <el-breadcrumb separator="/">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/' }">活动列表</el-breadcrumb-item>
@@ -14,11 +14,17 @@
         </el-breadcrumb>
       </el-col>
 
-      <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel"></el-col>
+      <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
+        <!-- 头像 -->
+        <user-bar></user-bar>
+
+        <!--  工具栏 -->
+        <tool-bar />
+      </el-col>
     </el-row>
 
     <!-- 标签栏 -->
-    <TagsBar :style="{ 'margin-left': tagWidth }" :menu-open.sync="menuOpen"></TagsBar>
+    <!-- <TagsBar :style="{ 'margin-left': tagWidth }" :menu-open.sync="menuOpen"></TagsBar> -->
   </div>
 </template>
 
@@ -30,14 +36,17 @@ let name = "header";
 
 import LangSwitch from "@/components/user/LangSwitch";
 import TagsBar from "../TagsBar/index";
-
+import ToolBar from "./components/toolBar";
+import UserBar from "./components/userBar";
 export default {
   name: "Header",
 
   //import引入的组件需要注入到对象中才能使用
   components: {
     // LangSwitch,
-    TagsBar,
+    // TagsBar,
+    ToolBar,
+    UserBar,
   },
 
   props: {
@@ -105,6 +114,24 @@ export default {
   position: relative;
   height: auto;
   user-select: none;
+  background: #fff;
+  .header-nav {
+    display: flex;
+    align-items: center;
+    height: $base-nav-bar-height;
+    padding: 0 20px;
+    .left-panel {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .right-panel {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      height: 100%;
+    }
+  }
 }
 
 .breadcrumb-container-light {

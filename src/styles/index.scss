@@ -10,6 +10,10 @@
   transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
 }
 
+// element Dropdown 下拉菜单 item 最小宽度
+.el-dropdown-menu__item {
+  min-width: 100px;
+}
 // 清除 element 菜单右侧1像素边框
 .el-menu {
   border-right: 0 !important ;
