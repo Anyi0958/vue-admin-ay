@@ -7,6 +7,76 @@ const app = {
   state: {
     // sideBar侧边栏菜单
     sideBarUnfold: getStore(appName)["sideBarUnfold"],
+    // 菜单
+    menuList: [
+      {
+        path: "/Ay-Admin-Vue",
+        title: "首页1",
+        id: "1",
+        icon: "element-el-icon-location",
+        children: [],
+      },
+      {
+        path: "/daohang",
+        title: "导航2",
+        id: "2",
+        icon: "element-el-icon-setting",
+        children: [
+          {
+            path: "/daohang2-1",
+            title: "导航2-1",
+            id: "2-1",
+            icon: "element-el-icon-setting",
+            children: [],
+          },
+          {
+            path: "/daohang2-2",
+            title: "导航2-2",
+            id: "2-2",
+            icon: "element-el-icon-setting",
+            children: [
+              {
+                path: "/daohang2-2-1",
+                title: "导航2-2-1",
+                id: "2-2-1",
+                icon: "element-el-icon-setting",
+                children: [],
+              },
+            ],
+          },
+          {
+            path: "/daohang2-3",
+            title: "导航2-3",
+            id: "2-3",
+            icon: "element-el-icon-setting",
+            children: [
+              {
+                path: "/daohang2-3-1",
+                title: "导航2-3-1",
+                id: "2-3-1",
+                icon: "element-el-icon-setting",
+                children: [
+                  {
+                    path: "/daohang2-3-1-1",
+                    title: "导航2-3-1-1",
+                    id: "2-3-1-1",
+                    icon: "element-el-icon-setting",
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: "/Ay-Admin-Vue3",
+        title: "导航3",
+        id: "3",
+        icon: "element-el-icon-location",
+        children: [],
+      },
+    ],
 
     loading: false, // 全局加载动画
     added: false, // 加载路由标识
@@ -44,7 +114,6 @@ const app = {
       },
     ],
     // 面包屑数组
-    menuList: [],
     routers: [],
     tagsList: [],
     messageCount: 0,

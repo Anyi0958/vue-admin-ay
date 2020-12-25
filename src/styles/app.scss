@@ -12,6 +12,7 @@ $base-color-orange: #ff6700;
 $base-color-red: #ff4d4f;
 $base-color-gray: rgba(0, 0, 0, 0.65);
 $base-color-dark: #282c34;
+$base-color-dark2: #001529;
 
 /* 字体大小配置*/
 $base-font-size-small: 12px;
@@ -35,13 +36,18 @@ $base-padding: 20px;
 /* 默认动画时长*/
 $base-transition-time: 0.2s;
 
+// app最小宽度
+$base-app-widthMin: 960px;
+
 /* 侧边栏 */
 $base-sideBar-widthMax: 220px;
 $base-sideBar-widthMin: 60px;
-$base-sideBar-background: $base-color-dark;
-$base-sideBar-textColor: $base-color-white;
-$base-sideBar-active-textColor: $base-color-white;
-$base-sideBar-active-background: #1890ff;
+$base-sideBar-header-height: 64px;
+$base-sideBar-footer-height: 40px;
+
+$base-sideBar-background: $base-color-dark2;
+$base-sideBar-textColor: hsla(0, 0%, 100%, 0.85);
+$base-sideBar-active-textColor: #1890ff;
 
 /* 顶部nav-bar*/
 $base-nav-bar-height: 60px;
@@ -92,6 +98,8 @@ $base-left-menu-width-min: 65px;
 $base-right-content-width-min: calc(100% - #{$base-left-menu-width-min});
 
 :export {
+  sideBarWidethMax: $base-sideBar-widthMax;
+  sideBarWidethMin: $base-sideBar-widthMin;
   sideBarBackground: $base-sideBar-background;
   sideBarTextColor: $base-sideBar-textColor;
   sideBarActiveTextColor: $base-sideBar-active-textColor;

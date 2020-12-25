@@ -76,13 +76,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .footBar {
-  position: absolute;
-  bottom: 30px;
   z-index: 10;
   width: 100%;
   height: 10px;
   font-size: 12px;
-  color: #fff;
+  color: hsla(0, 0%, 100%, 0.85);
   text-align: center;
   user-select: none;
   a {

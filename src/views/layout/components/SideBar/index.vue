@@ -1,26 +1,33 @@
 <template>
-  <el-aside class="aside-container">
-    <div class="header-logo">
-      <an-icon type="svg-yun" :color="variables.asideTextColor" size="50"></an-icon>
-      <span>{{ $t("login.title") }}</span>
+  <div
+    class="sidebar"
+    :style="{ width: sideBarUnfold ? variables.sideBarWidethMin : variables.sideBarWidethMax }"
+  >
+    <div class="header">
+      <a href="/" class="header-logo">
+        <an-icon type="svg-yun" :color="variables.asideTextColor" size="48"></an-icon>
+        <span v-show="!sideBarUnfold" class="header-title">{{ $t("login.title") }}</span>
+      </a>
     </div>
 
     <el-menu
+      class="main"
       :router="false"
       :unique-opened="false"
       :default-active="activeMenu"
-      :collapse="false"
+      :collapse="sideBarUnfold"
       :background-color="variables.sideBarBackground"
       :text-color="variables.sideBarTextColor"
       :active-text-color="variables.sideBarActiveTextColor"
     >
-      <asideBarItem :menu-list="menuList"></asideBarItem>
+      <sideBarItem v-for="item in menuList" :key="item.id" :menu-item="item"></sideBarItem>
     </el-menu>
 
-    <div class="footer-btn">
-      <an-icon type="svg-yun"></an-icon>
+    <div class="footer" @click="setSideBar(!sideBarUnfold)">
+      <an-icon v-if="!sideBarUnfold" type="svg-menu-close" size="24"></an-icon>
+      <an-icon v-else type="svg-menu-open" size="24"></an-icon>
     </div>
-  </el-aside>
+  </div>
 </template>
 
 <script>
@@ -29,7 +36,7 @@
 
 let name = "asideBar";
 
-import asideBarItem from "./components/sidebarItem";
+import sideBarItem from "./components/sidebarItem";
 import variables from "@/styles/app.scss";
 import { mapState, mapMutations } from "vuex";
 import { appStoreKeys as APP } from "@/config/settings";
@@ -39,7 +46,7 @@ export default {
 
   //import引入的组件需要注入到对象中才能使用
   components: {
-    asideBarItem,
+    sideBarItem,
   },
 
   props: {
@@ -62,76 +69,16 @@ export default {
 
   data() {
     //这里存放数据
-    return {
-      menuList: [
-        {
-          path: "/Ay-Admin-Vue",
-          title: "首页1",
-          id: "1",
-          icon: "element-el-icon-location",
-          children: [],
-        },
-        {
-          path: "/daohang",
-          title: "导航2",
-          id: "2",
-          icon: "element-el-icon-setting",
-          children: [
-            {
-              path: "/daohang2-1",
-              title: "导航2-1",
-              id: "2-1",
-              icon: "element-el-icon-setting",
-              children: [],
-            },
-            {
-              path: "/daohang2-2",
-              title: "导航2-2",
-              id: "2-2",
-              icon: "element-el-icon-setting",
-              children: [
-                {
-                  path: "/daohang2-2-1",
-                  title: "导航2-2-1",
-                  id: "2-2-1",
-                  icon: "element-el-icon-setting",
-                  children: [],
-                },
-              ],
-            },
-            {
-              path: "/daohang2-3",
-              title: "导航2-3",
-              id: "2-3",
-              icon: "element-el-icon-setting",
-              children: [
-                {
-                  path: "/daohang2-3-1",
-                  title: "导航2-3-1",
-                  id: "2-3-1",
-                  icon: "element-el-icon-setting",
-                  children: [
-                    {
-                      path: "/daohang2-3-1-1",
-                      title: "导航2-3-1-1",
-                      id: "2-3-1-1",
-                      icon: "element-el-icon-setting",
-                      children: [],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
+    return {};
   },
   //监听属性 类似于data概念
   computed: {
     ...mapState({
+      // 是否展开侧边栏
       sideBarUnfold: state => state.app.sideBarUnfold,
+      menuList: state => state.app.menuList,
     }),
+    // 当前选中菜单
     activeMenu() {
       const route = this.$route;
       console.log(route);
@@ -142,6 +89,7 @@ export default {
       }
       return path;
     },
+    // scss样式变量
     variables() {
       return variables;
     },
@@ -160,9 +108,7 @@ export default {
   beforeMount() {},
 
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    this.setSideBar("ssss");
-  },
+  mounted() {},
 
   //生命周期 - 更新之前
   beforeUpdate() {},
@@ -188,36 +134,73 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.aside-container {
-  @include scrollBar(0);
+.sidebar {
   position: relative;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: $base-sideBar-widthMin;
+  max-width: $base-sideBar-widthMax;
+  height: 100%;
+  padding-top: 0.1px;
+  margin-top: -0.1px;
   overflow: hidden;
-  transition: width $base-transition-time;
+  user-select: none;
+  background: $base-sideBar-background;
+  box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+  transition: background 0.5s, width 0.5s cubic-bezier(0.2, 0, 0, 1) 0s;
+  @include scrollBar(0);
 
-  .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 997;
-    @include flex;
-    height: $base-nav-bar-height;
+  .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: $base-sideBar-header-height;
     overflow: hidden;
-    font-size: 20px;
-    font-weight: bold;
-    color: $base-color-blue;
-    color: $base-sideBar-textColor;
-    white-space: nowrap;
+    line-height: 32px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
     background: $base-sideBar-background;
-    transition: width $base-transition-time;
-    span {
-      margin-left: 10px;
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      img {
+        display: inline-block;
+        height: 32px;
+        vertical-align: middle;
+      }
+    }
+    .header-title {
+      margin: 0 0 0 12px;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 32px;
+      color: #fff;
     }
   }
-  .el-menu {
-    height: 100vh;
-    overflow-y: auto;
-    border-right: none !important;
+  .footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: $base-sideBar-footer-height;
+    padding: 0 16px !important;
+    color: hsla(0, 0%, 100%, 0.65);
+    background: $base-sideBar-background;
+  }
+  .main {
+    flex: 1;
+    overflow: hidden auto;
+    zoom: 1;
+    background: $base-sideBar-background;
   }
 }
 </style>

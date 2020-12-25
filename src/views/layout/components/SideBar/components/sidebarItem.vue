@@ -1,25 +1,21 @@
 <template>
-  <div class="sidebarItem">
-    <template v-for="item in menuList">
-      <!-- 多级菜单 -->
-      <el-submenu v-if="menuChildern(item)" :key="item.id" :index="item.path">
-        <template slot="title">
-          <!-- 菜单icon -->
-          <an-icon :type="item.icon"></an-icon>
-          <!-- 菜单名称 -->
-          <span slot="title">{{ item.title }}</span>
-        </template>
-
-        <sidebar-item :menu-list="item.children" />
-      </el-submenu>
-
-      <!-- 一级菜单 -->
-      <el-menu-item v-else :key="item.id" :index="item.path" :router="item.path">
-        <an-icon :type="item.icon"></an-icon>
-        <span slot="title">{{ item.title }}</span>
-      </el-menu-item>
+  <!-- 多级菜单 -->
+  <el-submenu v-if="menuChildern(menuItem)" :index="menuItem.path">
+    <template slot="title">
+      <!-- 菜单icon -->
+      <i class="el-icon-location"></i>
+      <!-- 菜单名称 -->
+      <span>{{ menuItem.title }}</span>
     </template>
-  </div>
+
+    <sidebar-item v-for="item in menuItem.children" :key="item.id" :menu-item="item"></sidebar-item>
+  </el-submenu>
+
+  <!-- 一级菜单 -->
+  <el-menu-item v-else :index="menuItem.path" :router="menuItem.path">
+    <i class="el-icon-location"></i>
+    <span slot="title">{{ menuItem.title }}</span>
+  </el-menu-item>
 </template>
 
 <script>
@@ -35,11 +31,11 @@ export default {
   components: {},
 
   props: {
-    menuList: {
+    menuItem: {
       // 数据类型
-      type: [Array],
+      type: [Array, Object],
       // 是否必填
-      required: true,
+      required: false,
       // 默认值
       default: () => {
         return {};
@@ -86,10 +82,10 @@ export default {
 
   //方法集合
   methods: {
-    menuChildern(item) {
+    menuChildern(menuItem) {
       if (
-        Object.prototype.toString.call(item.children) == "[object Array]" &&
-        item.children.length > 0
+        Object.prototype.toString.call(menuItem.children) == "[object Array]" &&
+        menuItem.children.length > 0
       ) {
         return true;
       }

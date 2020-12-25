@@ -49,7 +49,7 @@
       </el-col>
     </el-row>
 
-    <footer-bar v-if="footerCopy"></footer-bar>
+    <footer-bar v-if="footerCopy" class="footBar"></footer-bar>
   </div>
 </template>
 
@@ -183,6 +183,11 @@ $min-width: 500px;
       height: 40px;
       margin-top: 10px;
     }
+  }
+  .footBar {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
   }
 }
 </style>

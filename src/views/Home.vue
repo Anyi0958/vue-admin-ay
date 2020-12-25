@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-09-25 15:46:58
- * @LastEditTime: 2020-12-24 11:39:34
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \vue-admin-ay-template\src\views\Home.vue
--->
 <template>
   <div class="home-container">
     <!-- <LangSwitch :color="'#ccc'" /> -->
@@ -26,7 +18,7 @@
       <el-button type="danger">危险按钮</el-button>
     </el-row>
 
-    <svg-icon icon-class="yun" color="#1296db" size="50" />
+    <an-icon icon-class="svg-yun" color="#1296db" size="50" />
 
     <el-button @click="loginOut">注销</el-button>
 

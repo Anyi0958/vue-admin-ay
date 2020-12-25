@@ -1,29 +1,26 @@
 <template>
-  <div class="layout-container">
-    <div class="layout-main">
-      <!-- 头部 -->
-      <!-- <div class="layout-header"> -->
-      <!-- <header-bar
-          :aside-width="asideWidth"
-          :style="{ 'margin-left': asideWidth }"
-          @menuOpen="menuOpen"
-        ></header-bar> -->
-      <!-- </div> -->
-
-      <!-- 侧边栏 -->
-      <!-- <div class="layout-side"> -->
+  <div class="layout-main">
+    <!-- 侧边栏 -->
+    <div class="layout-side">
       <side-bar></side-bar>
-      <!-- </div> -->
+    </div>
 
-      <!-- 主体 -->
-      <!-- <div class="layout-app"> -->
-      <!-- <router-view /> -->
-      <!-- </div> -->
+    <!-- 主体 -->
+    <div class="layout-app">
+      <!-- 头部 -->
+      <div class="layout-header">
+        <header-bar></header-bar>
+      </div>
+
+      <!-- 内容 -->
+      <div class="layout-content">
+        <router-view />
+      </div>
 
       <!--  底部 -->
-      <!-- <div class="layout-footer"> -->
-      <!-- <footer-bar></footer-bar> -->
-      <!-- </div> -->
+      <div class="layout-footer">
+        <footer-bar></footer-bar>
+      </div>
     </div>
   </div>
 </template>
@@ -41,9 +38,9 @@ export default {
 
   //import引入的组件需要注入到对象中才能使用
   components: {
-    // FooterBar,
+    FooterBar,
     SideBar,
-    // HeaderBar,
+    HeaderBar,
   },
 
   props: {
@@ -65,10 +62,7 @@ export default {
   },
 
   data() {
-    return {
-      themeType: 1,
-      asideWidth: "260px",
-    };
+    return {};
   },
   //监听属性 类似于data概念
   computed: {},
@@ -104,93 +98,55 @@ export default {
   activated() {},
 
   //方法集合
-  methods: {
-    // 菜单展开收起
-    menuOpen() {
-      console.log("ss");
-      if (this.asideWidth == "260px") {
-        this.asideWidth = "60px";
-      } else {
-        this.asideWidth = "260px";
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
-.layout-container {
+.layout-main {
   position: relative;
+  display: flex;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  background: #f0f2f5;
   .layout-side {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
     z-index: 999;
     width: auto;
-    height: 100vh;
-    // overflow-y: auto;
+    height: 100%;
+    min-height: 100vh;
     user-select: none;
-    background: $base-menu-background;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-    transition: width 0.3s;
   }
-  .layout-main {
+  .layout-app {
     position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     width: auto;
-    height: 100vh;
-    overflow-y: auto;
-    background: $base-color-white;
-    transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    min-width: $base-app-widthMin;
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #f0f2f5;
     .layout-header {
-      position: fixed;
-      // position: relative;
-      top: 0;
-      left: 0;
-      z-index: 997;
       width: 100%;
-      height: auto;
-      @include boxShadow;
     }
-    .layout-app {
-      position: relative;
-      display: block;
+    .layout-content {
       flex: 1;
-      flex-basis: auto;
-      width: 100%;
-      height: auto;
-      padding: 20px;
-      margin-top: $base-nav-bar-height + $base-tabs-bar-height;
-      overflow-y: auto;
+      width: auto;
+      padding: 0 20px;
+      overflow: auto;
     }
-
     .layout-footer {
-      position: fixed;
-      // position: relative;
-      bottom: 0;
-      left: 0;
-      z-index: 997;
       width: 100%;
-      height: auto;
-      height: 30px !important;
-      font-family: Arial, serif;
-      line-height: 30px;
-      text-align: center !important;
-      background: #f6f8f9;
-      .footBar {
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        color: #000;
+      height: 40px;
+      line-height: 40px;
+      background: #606266;
+      ::v-deep {
+        .footBar {
+          color: #fff;
+        }
       }
     }
   }
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
 }
 </style>
