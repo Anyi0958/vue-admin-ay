@@ -123,7 +123,7 @@ const app = {
     SET_SIDEBAR_UNFOLD: (state, data) => {
       state["sideBarUnfold"] = data;
 
-      let appData = JSON.parse(getStore(appName));
+      let appData = getStore(appName, "all");
       appData["sideBarUnfold"] = data;
       setStore(appName, appData);
     },

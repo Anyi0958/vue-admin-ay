@@ -16,6 +16,9 @@ export const getStore = (name, key) => {
   if (!name) return;
   let v = window.localStorage.getItem(name);
   if (v == null) {
+    if (key) {
+      return {};
+    }
     return "";
   }
   // key 为 all 返回 完整对象

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-25 15:40:39
- * @LastEditTime: 2020-12-25 16:35:08
+ * @LastEditTime: 2020-12-25 17:33:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-admin-ay-template\src\views\layout\components\HeaderBar\components\toolbar.vue
@@ -99,7 +99,7 @@ export default {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 5px;
+  padding: 0 5 px;
 
   .toolBar-item {
     display: flex;

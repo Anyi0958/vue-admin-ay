@@ -75,7 +75,14 @@ export default {
   computed: {
     ...mapState({
       // 是否展开侧边栏
-      sideBarUnfold: state => state.app.sideBarUnfold,
+      sideBarUnfold: state => {
+        let v = state.app.sideBarUnfold;
+        if (v === false || v === true) {
+          return v;
+        } else {
+          return false;
+        }
+      },
       menuList: state => state.app.menuList,
     }),
     // 当前选中菜单
