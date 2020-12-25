@@ -34,6 +34,14 @@ export const commonRouter = [
         },
         component: Home,
       },
+      {
+        path: "/icon",
+        name: "Icon",
+        meta: {
+          title: "icon",
+        },
+        component: () => import("@/views/icon/icon.vue"),
+      },
     ],
   },
   {
@@ -53,14 +61,6 @@ export const commonRouter = [
       title: "注册",
     },
     component: () => import("@/views/register/register.vue"),
-  },
-  {
-    path: "/icon",
-    name: "Icon",
-    meta: {
-      title: "icon",
-    },
-    component: () => import("@/views/common/icon/icon.vue"),
   },
   {
     path: "/about",

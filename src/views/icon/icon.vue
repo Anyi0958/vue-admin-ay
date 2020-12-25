@@ -8,8 +8,8 @@
         :xs="12"
         :sm="8"
         :md="4"
-        :lg="2"
-        :xl="2"
+        :lg="3"
+        :xl="3"
         class="icon-item"
       >
         <el-card shadow="hover">

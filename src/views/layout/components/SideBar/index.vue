@@ -12,7 +12,7 @@
 
     <el-menu
       class="main"
-      :router="false"
+      :router="true"
       :unique-opened="false"
       :default-active="activeMenu"
       :collapse="sideBarUnfold"

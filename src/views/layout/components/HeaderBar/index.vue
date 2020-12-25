@@ -24,7 +24,7 @@
     </el-row>
 
     <!-- 标签栏 -->
-    <!-- <TagsBar :style="{ 'margin-left': tagWidth }" :menu-open.sync="menuOpen"></TagsBar> -->
+    <TagsBar></TagsBar>
   </div>
 </template>
 
@@ -34,7 +34,6 @@
 
 let name = "header";
 
-import LangSwitch from "@/components/user/LangSwitch";
 import TagsBar from "../TagsBar/index";
 import ToolBar from "./components/toolBar";
 import UserBar from "./components/userBar";
@@ -43,8 +42,7 @@ export default {
 
   //import引入的组件需要注入到对象中才能使用
   components: {
-    // LangSwitch,
-    // TagsBar,
+    TagsBar,
     ToolBar,
     UserBar,
   },

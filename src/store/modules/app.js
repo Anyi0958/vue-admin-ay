@@ -68,8 +68,8 @@ const app = {
         ],
       },
       {
-        path: "/Ay-Admin-Vue3",
-        title: "导航3",
+        path: "/icon",
+        title: "icon",
         id: "3",
         icon: "element-el-icon-location",
         children: [],

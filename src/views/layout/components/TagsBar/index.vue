@@ -20,7 +20,7 @@
         :closable="!isAffix(item)"
       >
         <span slot="label">
-          <svg-icon :icon-class="item.icon" size="14"></svg-icon>
+          <an-icon :icon-class="item.icon" size="14"></an-icon>
           {{ lange == "zh" ? item.zhTitle : item.enTitle }}
         </span>
       </el-tab-pane>
