@@ -78,7 +78,7 @@ export default {
 .footBar {
   z-index: 10;
   width: 100%;
-  height: 10px;
+  height: 100%;
   font-size: 12px;
   color: hsla(0, 0%, 100%, 0.85);
   text-align: center;

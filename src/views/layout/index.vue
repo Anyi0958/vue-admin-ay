@@ -14,7 +14,9 @@
 
       <!-- 内容 -->
       <div class="layout-content">
-        <router-view />
+        <div>
+          <router-view />
+        </div>
       </div>
 
       <!--  底部 -->
@@ -124,17 +126,24 @@ export default {
     width: auto;
     // min-width: $base-app-widthMin;
     height: 100%;
+    height: 100%;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     background: #f0f2f5;
     .layout-header {
       width: 100%;
+      height: auto;
     }
     .layout-content {
-      flex: 1;
-      width: auto;
-      padding: 0 20px;
-      overflow: auto;
+      flex: 1; // 控制固定头部+底部
+      width: 100%;
+      height: auto;
+      overflow: hidden; // 控制固定头部+底部
+      & > div {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
     }
     .layout-footer {
       width: 100%;
