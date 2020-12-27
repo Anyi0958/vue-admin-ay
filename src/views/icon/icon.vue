@@ -116,7 +116,7 @@ export default {
   }
   .icon-title {
     margin-top: 14px;
-    font-size: 14px;
+    font-size: 1.4rem;
   }
 }
 </style>

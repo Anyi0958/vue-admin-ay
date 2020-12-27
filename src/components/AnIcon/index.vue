@@ -6,7 +6,7 @@
   <!-- element icon -->
   <i
     v-if="iconType == 'element'"
-    :style="{ color: color, 'font-size': size + 'px' }"
+    :style="{ color: color, 'font-size': iconSize + 'rem' }"
     :class="svgClass"
   ></i>
   <!-- svg icon -->
@@ -21,7 +21,7 @@
       v-else
       :class="svgClass"
       aria-hidden="true"
-      :style="{ color: color, 'font-size': size }"
+      :style="{ color: color, 'font-size': iconSize + 'rem' }"
       v-on="$listeners"
     >
       <use :xlink:href="iconName" />
@@ -55,6 +55,9 @@ export default {
     },
   },
   computed: {
+    iconSize() {
+      return Number(this.size) / 10;
+    },
     iconType() {
       if (this.type.indexOf("element-") != -1) {
         return "element";

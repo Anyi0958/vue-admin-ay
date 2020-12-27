@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-27 17:43:40
+ * @LastEditTime: 2020-12-27 19:34:59
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-admin-ay\src\components\FooterBar\index.vue
+-->
 <template>
   <div class="footBar">
     Copyright © 2020 An All Rights Reserved
@@ -79,7 +87,7 @@ export default {
   z-index: 10;
   width: 100%;
   height: 100%;
-  font-size: 12px;
+  font-size: 1.2rem;
   color: hsla(0, 0%, 100%, 0.85);
   text-align: center;
   user-select: none;

@@ -25,16 +25,19 @@
   margin: 0;
   @include scrollBar;
 }
-
+:root {
+  font-size: 10px;
+}
 body {
   position: relative;
   width: 100%;
   height: 100vh;
   padding: 0;
   margin: 0;
+
   font-family: Avenir, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
     Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 18px;
+  font-size: 1.8rem;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

@@ -187,7 +187,7 @@ export default {
     }
     .header-title {
       margin: 0 0 0 12px;
-      font-size: 18px;
+      font-size: 1.8rem;
       font-weight: 600;
       line-height: 32px;
       color: #fff;
