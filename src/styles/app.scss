@@ -37,7 +37,7 @@ $base-padding: 20px;
 $base-transition-time: 0.2s;
 
 // app最小宽度
-$base-app-widthMin: 960px;
+$base-app-widthMin: calc(1024px - 60px);
 
 /* 侧边栏 */
 $base-sideBar-widthMax: 220px;

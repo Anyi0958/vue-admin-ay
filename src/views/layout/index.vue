@@ -109,12 +109,12 @@ export default {
   display: flex;
   width: 100%;
   height: 100%;
+  overflow: auto hidden;
   background: #f0f2f5;
   .layout-side {
     z-index: 999;
     width: auto;
     height: 100%;
-    min-height: 100vh;
     user-select: none;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   }
@@ -124,10 +124,9 @@ export default {
     flex: 1;
     flex-direction: column;
     width: auto;
-    // min-width: $base-app-widthMin;
+    min-width: $base-app-widthMin;
     height: 100%;
     height: 100%;
-    min-height: 100vh;
     overflow: auto;
     background: #f0f2f5;
     .layout-header {
