@@ -69,10 +69,10 @@ export default {
   navbar: {
     dashboard: "Dashboard",
     github: "Github",
-    logOut: "Log Out",
-    profile: "Profile",
+    logOut: "Log out",
+    profile: "Personal center",
+    proset: "Personal Settings",
     theme: "Theme",
-    size: "Global Size",
     help: "Help",
     reload: "Reload",
   },

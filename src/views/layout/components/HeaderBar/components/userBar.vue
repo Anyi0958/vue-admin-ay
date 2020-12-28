@@ -8,10 +8,14 @@
       <i class="el-icon-arrow-down el-icon--right"></i>
     </span>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item command="usercenter" icon="el-icon-user">个人中心</el-dropdown-item>
-      <el-dropdown-item command="userset" icon="el-icon-setting">个人设置</el-dropdown-item>
+      <el-dropdown-item command="usercenter" icon="el-icon-user">
+        {{ $t("navbar.profile") }}
+      </el-dropdown-item>
+      <el-dropdown-item command="userset" icon="el-icon-setting">
+        {{ $t("navbar.proset") }}
+      </el-dropdown-item>
       <el-dropdown-item command="logout" divided icon="el-icon-switch-button">
-        退出登录
+        {{ $t("navbar.logOut") }}
       </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>

@@ -16,7 +16,7 @@
 
       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" class="right-panel">
         <!-- 头像 -->
-        <user-bar></user-bar>
+        <user-bar />
 
         <!--  工具栏 -->
         <tool-bar />
