@@ -24,6 +24,9 @@
         <footer-bar></footer-bar>
       </div>
     </div>
+
+    <!-- 设置按钮 -->
+    <set-btn></set-btn>
   </div>
 </template>
 
@@ -32,9 +35,10 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "layout";
-import FooterBar from "@/components/FooterBar";
+import FooterBar from "./components/FooterBar/index";
 import SideBar from "./components/SideBar/index";
 import HeaderBar from "./components/HeaderBar/index";
+import SetBtn from "./components/SetBtn/index";
 export default {
   name: "Layout",
 
@@ -43,6 +47,7 @@ export default {
     FooterBar,
     SideBar,
     HeaderBar,
+    SetBtn,
   },
 
   props: {

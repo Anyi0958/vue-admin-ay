@@ -58,9 +58,9 @@
 //例如：import 《组件名称》 from '《组件路径》';
 let name = "登录";
 import { login } from "@/api/user";
-import LangSwitch from "@/components/user/LangSwitch";
+import LangSwitch from "@/components/LangSwitch";
 const defaultSettings = require("@/config/settings.js");
-import FooterBar from "@/components/FooterBar";
+import FooterBar from "@/views/layout/components/FooterBar";
 export default {
   name: "Login",
   //import引入的组件需要注入到对象中才能使用

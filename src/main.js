@@ -4,7 +4,6 @@ import router from "./router";
 import store from "./store";
 
 import "./config/index";
-import "@/styles/index.scss"; // global css
 
 // 配置国际化
 import i18n from "@/lang/index";

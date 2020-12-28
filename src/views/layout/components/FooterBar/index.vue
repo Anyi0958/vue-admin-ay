@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-12-27 17:43:40
- * @LastEditTime: 2020-12-27 19:34:59
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \vue-admin-ay\src\components\FooterBar\index.vue
--->
 <template>
   <div class="footBar">
     Copyright © 2020 An All Rights Reserved

@@ -37,7 +37,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "toolBar";
-import LangSwitch from "@/components/user/LangSwitch";
+import LangSwitch from "@/components/LangSwitch";
 export default {
   name: "ToolBar",
 

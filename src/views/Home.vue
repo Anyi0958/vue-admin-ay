@@ -44,8 +44,8 @@
 
 let name = "首页";
 
-import LangSwitch from "@/components/user/LangSwitch";
-import HelloWorld from "@/components/HelloWorld.vue";
+import LangSwitch from "@/components/LangSwitch";
+import HelloWorld from "@/views/HelloWorld.vue";
 import Cookies from "js-cookie";
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 

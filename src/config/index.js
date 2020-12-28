@@ -1,30 +1,36 @@
 import Vue from "vue";
 import setting from "./settings";
 
-// 引入自定义指令
-import "@/directives/index";
-
-//此部分引入的是我们所编写的mockjs文档
+//  启用 mockjs
 setting.useMock && require("../../Mock/index.js");
 
-// 按需引入ui组件以及全局配置
-// import "@/ui/iview";
+//  global css
+import "@/styles/index.scss";
+
+//  引入自定义指令
+import "@/directives/index";
+
+//  按需引入ui组件以及全局配置
+//  import "@/ui/iview";
 import "@/ui/element";
 
-// 引入icon
+//  引入 an-icon 全局组件
 import "@/icons";
 
-// 轻量级时间格式  使用 https://www.cnblogs.com/cjrfan/p/9154539.html
+//  轻量级时间格式
+//  使用 https://www.cnblogs.com/cjrfan/p/9154539.html
 import dayjs from "dayjs";
 Vue.prototype.dayjs = dayjs;
 
 // 网络请求
 import { request, allRequest } from "@/libs/axios";
 
-import { setStore, getStore, removeStore } from "@/libs/storage";
-
 Vue.prototype.request = request;
 Vue.prototype.allRequest = allRequest;
+
+//  封装 localStorage
+//  注意 getStore 第二参数可选 可返回对象或对象对应的键值
+import { setStore, getStore, removeStore } from "@/libs/storage";
 
 Vue.prototype.setStore = setStore;
 Vue.prototype.getStore = getStore;

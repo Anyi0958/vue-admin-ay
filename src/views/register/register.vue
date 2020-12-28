@@ -59,9 +59,9 @@
 let name = "注册";
 import Cookies from "js-cookie";
 import { regist } from "@/api/user";
-import LangSwitch from "@/components/user/LangSwitch";
+import LangSwitch from "@/components/LangSwitch";
 const defaultSettings = require("@/config/settings.js");
-import FooterBar from "@/components/FooterBar";
+import FooterBar from "@/views/layout/components/FooterBar";
 export default {
   name: "Register",
   //import引入的组件需要注入到对象中才能使用
