@@ -1,5 +1,5 @@
 <template>
-  <div class="setbtn-container">
+  <div class="setbtn-container" @click="set">
     <an-icon type="element-el-icon-setting" size="18" color="#fff" />
   </div>
 </template>
@@ -72,7 +72,11 @@ export default {
   activated() {},
 
   //方法集合
-  methods: {},
+  methods: {
+    set() {
+      this.$message("打开设置");
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
