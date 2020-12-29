@@ -36,8 +36,11 @@ Object.keys(modules).forEach(key => {
 // 模块化下 getters 中 增加第三和第四参数 rootState rootGetters
 // 模块化下 actions 中 context 可以通过 context.rootState context.rootGetters
 
+// 使用方法 https://www.cnblogs.com/caimuguodexiaohongmao/p/11854228.html
+
 const store = new Vuex.Store({
   state: {
+    // 测试数据
     AyVueAdmin: "root-AyVueAdmin",
   },
   getters,
@@ -49,25 +52,3 @@ const store = new Vuex.Store({
 });
 
 export default store;
-
-// 使用方法 https://www.cnblogs.com/caimuguodexiaohongmao/p/11854228.html
-/*
- *                        .::::.
- *                      .::::::::.
- *                     :::::::::::
- *                  ..:::::::::::'
- *               '::::::::::::'
- *                 .::::::::::
- *            '::::::::::::::..
- *                 ..::::::::::::.
- *               ``::::::::::::::::
- *                ::::``:::::::::'        .:::.
- *               ::::'   ':::::'       .::::::::.
- *             .::::'      ::::     .:::::::'::::.
- *            .:::'       :::::  .:::::::::' ':::::.
- *           .::'        :::::.:::::::::'      ':::::.
- *          .::'         ::::::::::::::'         ``::::.
- *      ...:::           ::::::::::::'              ``::.
- *     ````':.          ':::::::::'                  ::::..
- *                        '.:::::'                    ':'````..
- */

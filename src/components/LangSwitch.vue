@@ -1,20 +1,26 @@
 <template>
   <div class="lang-icon">
-    <el-dropdown @command="langChange">
+    <el-dropdown @command="headleLang">
       <span class="el-dropdown-link">
         <an-icon type="svg-language" :color="color" :size="size" />
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item :disabled="language == 'zh'" command="zh">简体中文</el-dropdown-item>
-        <el-dropdown-item :disabled="language == 'en'" command="en">English</el-dropdown-item>
+        <el-dropdown-item
+          v-for="item in languageList"
+          :key="item.value"
+          :disabled="language == item.value"
+          :command="item.value"
+        >
+          {{ item.label }}
+        </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
 </template>
 
 <script>
-import Cookies from "js-cookie";
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
+import { languageList } from "@/config/settings";
 export default {
   name: "LangSwitch",
   props: {
@@ -28,14 +34,16 @@ export default {
     },
   },
   computed: {
-    ...mapState("user", {
-      language: state => state.language,
+    ...mapGetters({
+      language: "language",
     }),
+    languageList() {
+      return languageList;
+    },
   },
   mounted() {},
   methods: {
-    langChange(v) {
-      this.$i18n.locale = v;
+    headleLang(v) {
       this.$store.dispatch("user/language", v);
     },
   },

@@ -2,31 +2,29 @@
   <div class="layout-main">
     <!-- 侧边栏 -->
     <div class="layout-side">
-      <side-bar></side-bar>
+      <side-bar />
     </div>
 
     <!-- 主体 -->
     <div class="layout-app">
       <!-- 头部 -->
       <div class="layout-header">
-        <header-bar></header-bar>
+        <header-bar />
       </div>
 
       <!-- 内容 -->
       <div class="layout-content">
-        <div>
-          <router-view />
-        </div>
+        <app-main />
       </div>
 
       <!--  底部 -->
       <div class="layout-footer">
-        <footer-bar></footer-bar>
+        <footer-bar />
       </div>
     </div>
 
     <!-- 设置按钮 -->
-    <set-btn></set-btn>
+    <set-btn />
   </div>
 </template>
 
@@ -35,19 +33,18 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "layout";
-import FooterBar from "./components/FooterBar/index";
-import SideBar from "./components/SideBar/index";
-import HeaderBar from "./components/HeaderBar/index";
-import SetBtn from "./components/SetBtn/index";
+import { SideBar, HeaderBar, SetBtn, AppMain, FooterBar } from "./components";
+
 export default {
   name: "Layout",
 
   //import引入的组件需要注入到对象中才能使用
   components: {
-    FooterBar,
     SideBar,
     HeaderBar,
     SetBtn,
+    AppMain,
+    FooterBar,
   },
 
   props: {
@@ -143,11 +140,6 @@ export default {
       width: 100%;
       height: auto;
       overflow: hidden; // 控制固定头部+底部
-      & > div {
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-      }
     }
     .layout-footer {
       width: 100%;

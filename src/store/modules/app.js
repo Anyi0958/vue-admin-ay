@@ -4,7 +4,7 @@ import { setStore, getStore, removeStore } from "@/libs/storage";
 const app = {
   state: {
     // sideBar侧边栏菜单
-    sideBarUnfold: getStore(appName, "sideBarUnfold"),
+    sideBarUnfold: true,
     // 菜单
     menuList: [
       {
@@ -120,10 +120,16 @@ const app = {
   },
 
   mutations: {
+    SET_APP: (state, data) => {
+      for (var i in data) {
+        state[i] = data[i];
+      }
+    },
+
     SET_SIDEBAR_UNFOLD: (state, data) => {
       state["sideBarUnfold"] = data;
 
-      let appData = getStore(appName, "all");
+      let appData = getStore(appName, {});
       appData["sideBarUnfold"] = data;
       setStore(appName, appData);
     },

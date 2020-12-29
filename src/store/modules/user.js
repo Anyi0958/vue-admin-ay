@@ -1,58 +1,49 @@
-import setting from "@/config/settings";
+import { setLang } from "@/lang";
+import {
+  tokenName as anTokenName,
+  langName as anLangName,
+  userInfo as anUserInfo,
+} from "@/config/settings";
 import { setStore, getStore, removeStore } from "@/libs/storage";
 import { login, userInfo, logout } from "@/api/user";
 
-let anTokenName = setting.tokenName;
-let anLanguage = setting.language;
-let anUserInfo = setting.userInfo;
-
 const user = {
   state: {
-    token: getStore(anTokenName),
-    language: getStore(anLanguage),
-    userInfo: getStore(anUserInfo, "all"),
-  },
-
-  getters: {
-    token: state => data => {
-      console.log("vuex user Getters 参数", state, data);
-      return state.token + data;
-    },
+    token: "",
+    language: "",
+    userInfo: "",
   },
 
   mutations: {
     SET_TOKEN: (state, data) => {
       state.token = data;
-      if (data) {
-        setStore(anTokenName, data);
-      } else {
-        removeStore(anTokenName);
-      }
+      setStore(anTokenName, data);
     },
 
     SET_LANGUAGE: (state, data) => {
       state.language = data;
-      if (data) {
-        setStore(anLanguage, data);
-      } else {
-        removeStore(anLanguage);
-      }
+      setStore(anLangName, data);
     },
 
     SET_USERINFO: (state, data) => {
       state.userInfo = data;
-      if (data) {
-        setStore(anUserInfo, data);
-      } else {
-        removeStore(anUserInfo);
-      }
+      setStore(anUserInfo, data);
     },
   },
 
   actions: {
     // 修改语言
     language({ commit, state }, data) {
-      commit("SET_LANGUAGE", data);
+      return new Promise((resolve, reject) => {
+        setLang(data)
+          .then(lang => {
+            commit("SET_LANGUAGE", lang);
+            resolve();
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     },
 
     // user login

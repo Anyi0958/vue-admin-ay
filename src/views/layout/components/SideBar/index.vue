@@ -20,7 +20,7 @@
       :text-color="variables.sideBarTextColor"
       :active-text-color="variables.sideBarActiveTextColor"
     >
-      <sideBarItem v-for="item in menuList" :key="item.id" :menu-item="item"></sideBarItem>
+      <sideBar-item v-for="item in menuList" :key="item.id" :menu-item="item"></sideBar-item>
     </el-menu>
 
     <div class="footer" @click="setSideBar(!sideBarUnfold)">
@@ -36,9 +36,9 @@
 
 let name = "asideBar";
 
-import sideBarItem from "./components/sidebarItem";
+import SideBarItem from "./components/sidebarItem";
 import variables from "@/styles/app.scss";
-import { mapState, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import { appStoreKeys as APP } from "@/config/settings";
 
 export default {
@@ -46,7 +46,7 @@ export default {
 
   //import引入的组件需要注入到对象中才能使用
   components: {
-    sideBarItem,
+    SideBarItem,
   },
 
   props: {
@@ -73,17 +73,10 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
-    ...mapState({
+    ...mapGetters({
       // 是否展开侧边栏
-      sideBarUnfold: state => {
-        let v = state.app.sideBarUnfold;
-        if (v === false || v === true) {
-          return v;
-        } else {
-          return false;
-        }
-      },
-      menuList: state => state.app.menuList,
+      sideBarUnfold: "sideBarUnfold",
+      menuList: "menuList",
     }),
     // 当前选中菜单
     activeMenu() {

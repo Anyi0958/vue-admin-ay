@@ -1,30 +1,40 @@
 <template>
   <div class="toolBar">
+    <!-- 主体 -->
     <span class="toolBar-item">
       <el-tooltip :content="$t('navbar.theme')">
         <an-icon type="svg-theme" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
       </el-tooltip>
     </span>
 
-    <span class="toolBar-item">
-      <an-icon type="svg-expend" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
+    <!-- 全屏 -->
+    <span class="toolBar-item" @click="handleFullscreen">
+      <an-icon
+        :type="fullscreen ? 'svg-compress' : 'svg-expend'"
+        color="rgba(0, 0, 0, 0.65)"
+        size="18"
+      ></an-icon>
     </span>
 
-    <span class="toolBar-item">
+    <!-- 通知 -->
+    <span class="toolBar-item" @click="headleBell">
       <an-icon type="svg-bell" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
     </span>
 
-    <span class="toolBar-item">
+    <!-- 刷新 -->
+    <span class="toolBar-item" @click="headleReload">
       <el-tooltip :content="$t('navbar.reload')">
         <an-icon type="svg-reload" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
       </el-tooltip>
     </span>
 
+    <!-- 切换语言 -->
     <span class="toolBar-item">
       <lang-switch color="rgba(0, 0, 0, 0.65)" size="18" />
     </span>
 
-    <span class="toolBar-item">
+    <!-- 帮助 -->
+    <span class="toolBar-item" @click="headleHelp">
       <el-tooltip :content="$t('navbar.help')">
         <an-icon type="svg-help" color="rgba(0, 0, 0, 0.65)" size="18"></an-icon>
       </el-tooltip>
@@ -66,7 +76,9 @@ export default {
 
   data() {
     //这里存放数据
-    return {};
+    return {
+      fullscreen: false,
+    };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -102,7 +114,45 @@ export default {
   activated() {},
 
   //方法集合
-  methods: {},
+  methods: {
+    // 全屏
+    handleFullscreen() {
+      let element = document.documentElement;
+      if (this.fullscreen) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      } else {
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.webkitRequestFullScreen) {
+          element.webkitRequestFullScreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if (element.msRequestFullscreen) {
+          // IE11
+          element.msRequestFullscreen();
+        }
+      }
+      this.fullscreen = !this.fullscreen;
+    },
+    // 刷新
+    headleReload() {
+      this.$message("刷新");
+    },
+    headleBell() {
+      this.$message("通知");
+    },
+    headleHelp() {
+      this.$message("帮助");
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

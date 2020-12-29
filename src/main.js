@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-import "./config/index";
+import Initializer from "./config/index";
 
 // 配置国际化
 import i18n from "@/lang/index";
@@ -15,9 +15,7 @@ new Vue({
   router,
   store,
   i18n,
-  data: {},
-  watch: {},
-  mounted() {},
-  methods: {},
+  // init localstorage, vuex
+  created: Initializer,
   render: h => h(App),
 }).$mount("#app");

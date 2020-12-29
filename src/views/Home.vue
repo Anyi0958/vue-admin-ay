@@ -87,24 +87,21 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
-    ...mapState({
-      rootData: state => state.AyVueAdmin,
-    }),
-    ...mapGetters({
-      rootGett: "AyVueAdmin",
-    }),
-
-    ...mapState({
-      userData: state => state.user.token,
-    }),
-    ...mapGetters({
-      userGett: "user/token",
-    }),
-
+    // ...mapState({
+    //   rootData: state => state.AyVueAdmin,
+    // }),
+    // ...mapGetters({
+    //   rootGett: "AyVueAdmin",
+    // }),
+    // ...mapState({
+    //   userData: state => state.user.token,
+    // }),
+    // ...mapGetters({
+    //   userGett: "user/token",
+    // }),
     // ...mapState("user", {
     //   userData: "token",
     // }),
-
     // ...mapGetters("user", {
     //   userGett: "token",
     // }),
@@ -124,41 +121,34 @@ export default {
 
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.warn(" ");
-    console.log("根节点State", this.rootData);
-    console.log("根节点State", this.$store.state.AyVueAdmin);
-
-    console.warn(" ");
-    console.log("根节Getters", this.rootGett(99));
-    console.log("根节Getters", this.$store.getters.AyVueAdmin(99));
-
-    console.warn(" ");
-    this.rootMutations({ name: "mutions1" });
-    this.$store.commit("AyVueAdmin1", { name: "mutions2" });
-    this.$store.commit({
-      type: "AyVueAdmin1",
-      name: "mutions3",
-    });
-
-    console.warn(" ");
-    console.log("根节点Actions", this.rootActions("bbbb"));
-    console.log("根节点Actions", this.$store.dispatch("AyVueAdmin2", "bbbb"));
-
-    console.warn(" ");
-    console.log("USER节点State", this.userData);
-    console.log("USER节点State", this.$store.state.user.token);
-
-    console.warn(" ");
-    console.log("USER节点Getters", this.userGett(666));
-    console.log("USER节点Getters", this.$store.getters["user/token"](666));
-
-    console.warn(" ");
-    console.log("USER节点Mutations", this.userMutations("zh"));
-    console.log("USER节点Mutations", this.$store.commit("user/SET_LANGUAGE", "zh"));
-
-    console.warn(" ");
-    console.log("USER节点Acitons", this.userActions("zh"));
-    console.log("USER节点Acitons", this.$store.dispatch("user/language", "zh"));
+    // console.warn(" ");
+    // console.log("根节点State", this.rootData);
+    // console.log("根节点State", this.$store.state.AyVueAdmin);
+    // console.warn(" ");
+    // console.log("根节Getters", this.rootGett(99));
+    // console.log("根节Getters", this.$store.getters.AyVueAdmin(99));
+    // console.warn(" ");
+    // this.rootMutations({ name: "mutions1" });
+    // this.$store.commit("AyVueAdmin1", { name: "mutions2" });
+    // this.$store.commit({
+    //   type: "AyVueAdmin1",
+    //   name: "mutions3",
+    // });
+    // console.warn(" ");
+    // console.log("根节点Actions", this.rootActions("bbbb"));
+    // console.log("根节点Actions", this.$store.dispatch("AyVueAdmin2", "bbbb"));
+    // console.warn(" ");
+    // console.log("USER节点State", this.userData);
+    // console.log("USER节点State", this.$store.state.user.token);
+    // console.warn(" ");
+    // console.log("USER节点Getters", this.userGett(666));
+    // console.log("USER节点Getters", this.$store.getters["user/token"](666));
+    // console.warn(" ");
+    // console.log("USER节点Mutations", this.userMutations("zh"));
+    // console.log("USER节点Mutations", this.$store.commit("user/SET_LANGUAGE", "zh"));
+    // console.warn(" ");
+    // console.log("USER节点Acitons", this.userActions("zh"));
+    // console.log("USER节点Acitons", this.$store.dispatch("user/language", "zh"));
   },
 
   //生命周期 - 更新之前

@@ -11,30 +11,37 @@ export const setStore = (name, content) => {
 
 /**
  * 获取localStorage
+ * 可选默认参数值
  */
-export const getStore = (name, key) => {
-  if (!name) return;
-  let v = window.localStorage.getItem(name);
-  if (v == null) {
-    if (key) {
-      return {};
-    }
-    return "";
+export const getStore = (name, optionalDefaultValue) => {
+  let data = window.localStorage.getItem(name);
+  if (!data) {
+    return optionalDefaultValue ? optionalDefaultValue : "";
   }
-  // key 为 all 返回 完整对象
-  // 否则 返回对应的 值
-  if (key == "all") {
-    v = JSON.parse(v);
-  } else if (key) {
-    v = JSON.parse(v)[key];
+
+  let v = "";
+  try {
+    v = JSON.parse(data);
+  } catch (e) {
+    v = data;
   }
-  return v;
+
+  return v !== undefined ? v : optionalDefaultValue;
 };
 
 /**
  * 删除localStorage
  */
+
 export const removeStore = name => {
   if (!name) return;
   window.localStorage.removeItem(name);
+};
+
+/**
+ * 清空localStorage
+ */
+
+export const clearStore = () => {
+  window.localStorage.clear();
 };

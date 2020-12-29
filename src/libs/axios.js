@@ -2,13 +2,14 @@
 import axios from "axios";
 import { router } from "@/router";
 import store from "@/store";
-import { Message as iviewMessage } from "view-design";
+// import { Message as iviewMessage } from "view-design";
 import { Message } from "element-ui";
 import setting from "@/config/settings";
 import Cookies from "js-cookie";
 
-let uType = Cookies.get("uiType") || setting.uiType;
-let $_Message = uType == "element" ? Message : iviewMessage;
+// let uType = Cookies.get("uiType") || setting.uiType;
+// let $_Message = uType == "element" ? Message : iviewMessage;
+let $_Message = Message;
 
 // 统一请求路径前缀
 let base = setting.base;
@@ -135,14 +136,14 @@ axios.interceptors.response.use(
  * @param {*} hasToken  是否携带凭证，默认携带
  */
 
-export const request = obj => {
-  let { method, url, params, dataType, hasToken } = Object.assign(
-    {
-      dataType: setting.contentType,
-      hasToken: true,
-    },
-    obj
-  );
+export const request = ({
+  method,
+  url,
+  params,
+  dataType = setting.contentType,
+  hasToken = true,
+}) => {
+  if (setting.donation) console.log("axios接收参数", arguments);
 
   return axios({
     dataType: dataType.toLowerCase(),

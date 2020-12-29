@@ -36,9 +36,6 @@ module.exports = {
   // token存储变量
   tokenName: "accessToken",
 
-  // language存储变量
-  language: "language",
-
   // userInfo存储变量
   userInfo: "userInfo",
 
@@ -57,10 +54,22 @@ module.exports = {
   //ui尺寸( default small  large)
   uiSize: "default",
 
+  // language存储变量
+  langName: "language",
+
   // 当前语言（默认中文）
-  lang: "en",
+  language: "zh",
   // 可选语言
-  langList: ["zh", "en"],
+  languageList: [
+    {
+      label: "简体中文",
+      value: "zh",
+    },
+    {
+      label: "English",
+      value: "en",
+    },
+  ],
 
   //是否显示顶部进度条
   progressBar: true,

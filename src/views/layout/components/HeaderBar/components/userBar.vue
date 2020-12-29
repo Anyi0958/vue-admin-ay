@@ -26,7 +26,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 
 let name = "userBar";
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "UserBar",
@@ -58,8 +58,8 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
-    ...mapState({
-      userInfo: state => state.user.userInfo,
+    ...mapGetters({
+      userInfo: "userInfo",
     }),
   },
 
