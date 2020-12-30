@@ -1,59 +1,36 @@
 <template>
-  <div id="tabs-bar-container" class="tabs-bar-container">
-    <!-- 菜单展开按钮 -->
-    <div v-if="navType == 2">
-      <svg-icon v-if="menuOpen" icon-class="menu-close" class-name="menuIcon" @click="headerMenu" />
-      <svg-icon v-else icon-class="menu-open" class-name="menuIcon" @click="headerMenu" />
-    </div>
-
+  <div class="tabs-bar-container">
     <el-tabs
       v-model="tabActive"
       type="card"
-      class="tabs-content"
+      closable
+      stretch
+      class="an-tabs"
       @tab-click="handleTabClick"
       @tab-remove="handleTabRemove"
     >
       <el-tab-pane
-        v-for="item in visitedRoutes"
-        :key="item.path"
+        v-for="(item, index) in visitedRoutes"
+        :key="index"
         :name="item.path"
         :closable="!isAffix(item)"
       >
         <span slot="label">
-          <an-icon :icon-class="item.icon" size="14"></an-icon>
-          {{ lange == "zh" ? item.zhTitle : item.enTitle }}
+          <an-icon :type="item.icon" size="14"></an-icon>
+          {{ language == "zh" ? item.zhTitle : item.enTitle }}
         </span>
       </el-tab-pane>
     </el-tabs>
-
-    <el-dropdown @command="handleCommand">
-      <span class="tabAciton">
-        <span>
-          {{ $t("tagBar.action") }}
-        </span>
-        <i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-      <el-dropdown-menu slot="dropdown" class="tabs-more">
-        <!-- <el-dropdown-item command="refreshRoute">
-          <vab-icon :icon="['fas', 'circle-notch']" />
-          刷新
-        </el-dropdown-item> -->
-        <el-dropdown-item command="closeOtherstabs">{{ $t("tagBar.closeOther") }}</el-dropdown-item>
-        <el-dropdown-item command="closeLefttabs">{{ $t("tagBar.closeLeft") }}</el-dropdown-item>
-        <el-dropdown-item command="closeRighttabs">{{ $t("tagBar.closeRight") }}</el-dropdown-item>
-        <el-dropdown-item command="closeAlltabs">{{ $t("tagBar.closeAll") }}</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
   </div>
 </template>
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 
-let name = "";
-
+let name = "tagbar";
+import { mapGetters } from "vuex";
 export default {
-  name: "",
+  name: "Tagbar",
 
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -95,110 +72,107 @@ export default {
           path: "Tab 1",
           zhTitle: " Zh Tab 1",
           enTitle: "En Tab 1 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 2",
           zhTitle: " Zh Tab 2",
           enTitle: "En Tab 2 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 3",
           zhTitle: " Zh Tab 3",
           enTitle: "En Tab 3 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 4",
           zhTitle: " Zh Tab 4",
           enTitle: "En Tab 4 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 5",
           zhTitle: " Zh Tab 5",
           enTitle: "En Tab 5 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 6",
           zhTitle: " Zh Tab 6",
           enTitle: "En Tab 6 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 7",
           zhTitle: " Zh Tab 7",
           enTitle: "En Tab 7 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 8",
           zhTitle: " Zh Tab 8",
           enTitle: "En Tab 8 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 9",
           zhTitle: " Zh Tab 9",
           enTitle: "En Tab 9 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 10",
           zhTitle: "Zh Tab 10",
           enTitle: "En Tab 10 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 11",
           zhTitle: "Zh Tab 11",
           enTitle: "En Tab 11 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
 
         {
           path: "Tab 12",
           zhTitle: "Zh Tab 12",
           enTitle: "En Tab 12 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 13",
           zhTitle: "Zh Tab 13",
           enTitle: "En Tab 13 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 14",
           zhTitle: "Zh Tab 14",
           enTitle: "En Tab 14 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 15",
           zhTitle: "Zh Tab 15",
           enTitle: "En Tab 15 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
         {
           path: "Tab 16",
           zhTitle: "Zh Tab 16",
           enTitle: "En Tab 16 ",
-          icon: "el-icon-date",
+          icon: "element-el-icon-date",
         },
       ],
     };
   },
   //监听属性 类似于data概念
   computed: {
-    lange() {
-      return this.$store.state.user.language;
-    },
-    navType() {
-      return this.$store.getters.navType;
-    },
+    ...mapGetters({
+      language: "language",
+    }),
   },
 
   //监控data中的数据变化
@@ -237,40 +211,9 @@ export default {
 
   //方法集合
   methods: {
-    headerMenu() {
-      this.$parent.$emit("menuOpen");
-    },
     handleTabClick() {},
     handleTabRemove() {},
-    handleCommand(v) {
-      let tagIndex = this.visitedRoutes.length;
-      switch (v) {
-        case "closeOtherstabs":
-          this.visitedRoutes = this.visitedRoutes.filter(item => {
-            return this.isAffix(item) || item.path == this.tabActive;
-          });
-          break;
-        case "closeLefttabs":
-          this.visitedRoutes = this.visitedRoutes.filter((item, index) => {
-            if (item.path == this.tabActive) tagIndex = index;
-            return this.isAffix(item) || tagIndex <= index;
-          });
-          break;
-        case "closeRighttabs":
-          this.visitedRoutes = this.visitedRoutes.filter((item, index) => {
-            if (item.path == this.tabActive) tagIndex = index;
-            return this.isAffix(item) || tagIndex >= index;
-          });
-          break;
-        case "closeAlltabs":
-          this.visitedRoutes = this.visitedRoutes.filter(item => {
-            return this.isAffix(item);
-          });
-          break;
-        default:
-          break;
-      }
-    },
+
     isAffix(tag) {
       if (tag.path == "Tab 1" || tag.path == "Tab 3") return true;
       return false;
@@ -281,76 +224,65 @@ export default {
 <style lang="scss" scoped>
 .tabs-bar-container {
   position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  height: $base-tabs-bar-height;
-  padding-right: $base-padding;
-  padding-left: $base-padding;
-  user-select: none;
-  background: $base-tabs-background;
-  border-top: 1px solid #f6f6f6;
-
-  ::v-deep {
-    .fold-unfold {
-      margin-right: $base-padding;
-    }
-  }
-  .tabAciton {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    &:first-child span {
-      display: inline-block;
-      max-width: 70px;
-      margin-right: 5px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-
-  .tabs-content {
-    width: calc(100% - 130px);
-    height: $base-tag-item-height;
-
+  width: 100%;
+  overflow: hidden;
+  .an-tabs {
+    height: $base-tabs-bar-height;
     ::v-deep {
+      .el-tabs__header {
+        margin: 0;
+        border: none;
+      }
+      .el-tabs__nav {
+        display: flex;
+        align-items: center;
+        height: $base-tabs-bar-height;
+        border: none;
+      }
       .el-tabs__nav-next,
       .el-tabs__nav-prev {
+        line-height: $base-tabs-bar-height;
+      }
+      .el-tabs__item {
+        box-sizing: border-box;
         height: $base-tag-item-height;
+        margin-right: 5px;
         line-height: $base-tag-item-height;
+        color: $base-tag-item-textColor;
+        background: $base-tag-item-background;
+        border: none;
+        border-radius: 2.5px;
+        transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+        &:hover {
+          padding: 0 13px;
+          color: $base-tag-item-active-color;
+        }
+        &.is-active {
+          padding: 0 13px;
+          color: $base-tag-item-active-color;
+        }
+        &:hover:after,
+        &.is-active:after {
+          width: 100%;
+          transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1), border 0s, background 0s,
+            color 0s, font-size 0s;
+        }
+
+        &:after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          content: "";
+          background-color: $base-tag-item-active-color;
+        }
       }
 
-      .el-tabs__header {
-        border-bottom: 0;
-
-        .el-tabs__nav {
-          border: 0;
-        }
-
-        .el-tabs__item {
-          box-sizing: border-box;
-          height: $base-tag-item-height;
-          margin-right: 5px;
-          line-height: $base-tag-item-height;
-          border: 1px solid #dcdfe6;
-          border-radius: 2.5px;
-          transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
-
-          &.is-active {
-            border: 1px solid $base-color-blue;
-          }
-        }
+      .el-tabs__content {
+        display: none;
       }
     }
-  }
-
-  .more {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    cursor: pointer;
   }
 }
 </style>

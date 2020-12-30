@@ -56,10 +56,11 @@ $base-nav-text-color: $base-color-gray;
 
 /* 顶部多标签页*/
 $base-tabs-bar-height: 45px;
-$base-tabs-background: $base-color-white;
-$base-tabs-text-color: $base-color-gray;
 /* 顶部多标签页tags-bar中每一个item的高度*/
-$base-tag-item-height: 25px;
+$base-tag-item-height: 35px;
+$base-tag-item-background: $base-color-white;
+$base-tag-item-textColor: $base-color-gray;
+$base-tag-item-active-color: #1890ff;
 
 /* 菜单li标签的高度*/
 $base-menu-item-height: 40px;

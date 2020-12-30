@@ -58,7 +58,11 @@ axios.interceptors.request.use(
   err => {
     if (setting.donation) console.log("请求错误", err);
     // 对请求错误做些什么
-    $_Message.error("请求超时");
+    $_Message({
+      showClose: true,
+      message: `请求超时`,
+      type: "error",
+    });
     return Promise.resolve(err);
   }
 );
@@ -80,25 +84,49 @@ axios.interceptors.response.use(
         }
 
         if (data.message !== null) {
-          $_Message.error(data.message);
+          $_Message({
+            showClose: true,
+            message: data.message,
+            type: "error",
+          });
         } else {
-          $_Message.error("未知错误，请重新登录");
+          $_Message({
+            showClose: true,
+            message: "未知错误，请重新登录",
+            type: "error",
+          });
         }
         break;
       case setting.noPermissionCode:
         // 没有权限
         if (data.message !== null) {
-          $_Message.error(data.message);
+          $_Message({
+            showClose: true,
+            message: data.message,
+            type: "error",
+          });
         } else {
-          $_Message.error("没有权限");
+          $_Message({
+            showClose: true,
+            message: "没有权限",
+            type: "error",
+          });
         }
         break;
       case 500:
         // 错误
         if (data.message !== null) {
-          $_Message.error(data.message);
+          $_Message({
+            showClose: true,
+            message: data.message,
+            type: "error",
+          });
         } else {
-          $_Message.error("未知错误");
+          $_Message({
+            showClose: true,
+            message: "未知错误",
+            type: "error",
+          });
         }
         break;
       default:
@@ -122,7 +150,11 @@ axios.interceptors.response.use(
     // $_Message.error(message || `后端接口未知异常`, "error");
 
     if (setting.donation) console.log("响应错误", err);
-    $_Message.error(err.toString());
+    $_Message({
+      showClose: true,
+      message: err.toString(),
+      type: "error",
+    });
     return Promise.resolve(err);
   }
 );

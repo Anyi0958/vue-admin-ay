@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2020-12-22 15:04:49
- * @LastEditTime: 2020-12-24 18:25:20
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \vue-admin-ay-template\src\directives\js\copy.js
- */
 import { Message } from "element-ui";
 
 const copy = {
@@ -16,7 +8,11 @@ const copy = {
         el.handler = () => {
           if (!el.$value) {
             // 值为空的时候，给出提示。可根据项目UI仔细设计
-            Message.error("无复制内容");
+            Message({
+              showClose: true,
+              message: `无复制内容`,
+              type: "error",
+            });
             return;
           }
           // 动态创建 textarea 标签
@@ -33,7 +29,11 @@ const copy = {
           textarea.select();
           const result = document.execCommand("Copy");
           if (result) {
-            Message.success(`${el.$value} 复制成功`);
+            Message({
+              showClose: true,
+              message: `${el.$value} 复制成功`,
+              type: "success",
+            });
           }
           document.body.removeChild(textarea);
         };

@@ -111,13 +111,14 @@ export default {
 .header-container {
   position: relative;
   height: auto;
+  padding: 0 20px;
   user-select: none;
   background: #fff;
+
   .header-nav {
     display: flex;
     align-items: center;
     height: $base-nav-bar-height;
-    padding: 0 20px;
     .left-panel {
       display: flex;
       align-items: center;
