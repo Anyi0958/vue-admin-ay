@@ -169,7 +169,7 @@ axios.interceptors.response.use(
  */
 
 export const request = ({
-  method,
+  method = "get",
   url,
   params,
   dataType = setting.contentType,

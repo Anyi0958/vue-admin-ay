@@ -21,6 +21,20 @@
         </span>
       </el-tab-pane>
     </el-tabs>
+
+    <el-dropdown class="more">
+      <span class="el-dropdown-link">
+        更多
+        <i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>黄金糕</el-dropdown-item>
+        <el-dropdown-item>狮子头</el-dropdown-item>
+        <el-dropdown-item>螺蛳粉</el-dropdown-item>
+        <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+        <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </div>
 </template>
 <script>
@@ -224,9 +238,15 @@ export default {
 <style lang="scss" scoped>
 .tabs-bar-container {
   position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   overflow: hidden;
   .an-tabs {
+    width: calc(100% - 90px);
     height: $base-tabs-bar-height;
     ::v-deep {
       .el-tabs__header {
@@ -281,6 +301,24 @@ export default {
 
       .el-tabs__content {
         display: none;
+      }
+    }
+  }
+  .more {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90px;
+    height: $base-tabs-bar-height;
+    padding-right: 5px;
+    cursor: pointer;
+    ::v-deep {
+      span {
+        padding-right: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }
