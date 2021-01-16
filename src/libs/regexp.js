@@ -34,5 +34,4 @@ export const regExpConfig = {
   isChina: /^[\u4e00-\u9fa5]{2,8}$/,
   isNozeroNumber: /^\+?[1-9]\d*$/, // 大于零的正整数
   float: /^\d+(\.?|(\.\d+)?)$/, // 匹配正整数或者小数 或者0.这个特殊值
-}
-
+};
